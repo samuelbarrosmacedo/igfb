@@ -26,7 +26,9 @@
         1993,
         1994,
         2016,
-        2018
+        2018,
+        2022,
+        2023
       ],
       "claim_club": "palmeiras",
       "note": "Contém também títulos pré-1971, que ficam explicitamente fora do IGFB."
@@ -65,6 +67,31 @@
       ],
       "claim_club": "flamengo",
       "note": "Fonte histórica de 2011; não representa necessariamente posição jurídica atual. Convenção IGFB preservada; exige análise de documentos posteriores."
+    },
+    {
+      "source_id": "cbf-corinthians-2017",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/corinthians-campeao-brasileiro-de-2017",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        2005,
+        2011,
+        2015,
+        2017
+      ],
+      "claim_club": "corinthians",
+      "note": "Notícia CBF 15/11/2017 cita explicitamente quatro títulos do Corinthians na era de pontos corridos."
+    },
+    {
+      "source_id": "cbf-flamengo-2025",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/confianca-x-abc-f-c/flamengo-vai-para-sua-60-participacao-seguida-no-brasileirao-betano",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        2025
+      ],
+      "claim_club": "flamengo",
+      "note": "Matéria CBF de 22/01/2026 identifica Flamengo como campeão de 2025; NÃO usar sua contagem de participações desde 1967."
     }
   ]
 }
