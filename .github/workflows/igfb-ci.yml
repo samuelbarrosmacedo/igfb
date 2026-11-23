@@ -25,3 +25,7 @@ jobs:
           python -m igfb_agent.review_queue
           python -m igfb_agent.source_readiness
           python -m igfb_agent.project_audit
+      - name: Validar exportação pública do frontend
+        run: |
+          python -m igfb_agent.public_export --output /tmp/igfb-public-data
+          python -c "import json,pathlib; p=pathlib.Path('/tmp/igfb-public-data'); m=json.loads((p/'manifest.json').read_text()); assert all((p/f).is_file() for f in m['files']); r=json.loads((p/'ranking.json').read_text()); assert r['ranking']==[] and r['approved_results']==0"
