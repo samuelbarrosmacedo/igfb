@@ -20,6 +20,7 @@ class PublicExportTests(unittest.TestCase):
     def test_empty_export_never_publishes_ranking(self):
         files = build_public_data(candidates=[], status_path=self.status)
         self.assertEqual(files["ranking.json"]["ranking"], [])
+        self.assertEqual(len(files["research-backlog.json"]["tasks"]), 55)
         self.assertEqual(files["ranking.json"]["approved_results"], 0)
         self.assertEqual(files["coverage.json"]["lead_coverage_percent"], 0.0)
         self.assertEqual(files["coverage.json"]["seasons_without_leads"], list(range(1971, 2026)))
@@ -32,7 +33,7 @@ class PublicExportTests(unittest.TestCase):
     def test_export_files_match_manifest(self):
         folder = self.root / "data"
         exported = export_public_data(folder, candidates=[], status_path=self.status)
-        self.assertEqual(len(exported), 6)
+        self.assertEqual(len(exported), 7)
         manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
         self.assertEqual(set(manifest["files"]), set(exported) - {"manifest.json"})
         for filename, expected in manifest["sha256"].items():
