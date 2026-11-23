@@ -9,6 +9,8 @@ def source_readiness(candidates=None):
     by_year = defaultdict(set)
     by_club = Counter()
     for item in records:
+        if not isinstance(item, dict):
+            raise ValueError("Candidato inválido")
         if item.get("approved") is not False or item.get("status") != "candidate_requires_review":
             raise ValueError("Somente candidatos pendentes são permitidos")
         year = item.get("year")
@@ -16,6 +18,10 @@ def source_readiness(candidates=None):
             raise ValueError("Ano fora do recorte")
         if item.get("edition_id") != f"brasileirao:{year}" or item.get("competition") != "brasileirao":
             raise ValueError("Edição inconsistente")
+        if not isinstance(item.get("source_id"), str) or not item["source_id"].strip():
+            raise ValueError("Fonte inválida")
+        if not isinstance(item.get("club_id"), str) or not item["club_id"].strip():
+            raise ValueError("Clube inválido")
         by_year[year].add(item["source_id"])
         by_club[item["club_id"]] += 1
     return {
@@ -28,3 +34,10 @@ def source_readiness(candidates=None):
         "approved_results": 0,
         "warning": "Contagem de pistas não mede cobertura histórica homologada.",
     }
+
+def main():
+    import json
+    print(json.dumps(source_readiness(), ensure_ascii=False, indent=2))
+
+if __name__ == "__main__":
+    main()
