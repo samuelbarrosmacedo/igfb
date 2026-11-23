@@ -46,6 +46,10 @@ class RegistryRobustnessTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_catalog([Edition("state:2000", "estadual", 2000, "Federação")], [E])
 
+    def test_shared_champion_format_is_not_silently_supported(self):
+        with self.assertRaises(ValueError):
+            validate_catalog([Edition("special:2000", "brasileirao", 2000, "CBF", single_champion=False)], [E])
+
     def test_duplicate_edition(self):
         with self.assertRaises(ValueError):
             validate_catalog([ED, ED], [E])
