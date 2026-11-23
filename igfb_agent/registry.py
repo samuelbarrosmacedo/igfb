@@ -31,7 +31,7 @@ def validate_catalog(editions, evidence):
             raise ValueError("Edição fora do recorte")
         if not isinstance(e.organizer, str) or not e.organizer.strip():
             raise ValueError("Organizador obrigatório")
-        if e.competition == "estadual" and not e.jurisdiction.strip():
+        if e.competition == "estadual" and (not isinstance(e.jurisdiction, str) or not e.jurisdiction.strip()):
             raise ValueError("Estadual exige federação ou jurisdição")
         if e.single_champion is not True:
             raise ValueError("Edições com campeões compartilhados exigem regra específica")
@@ -39,12 +39,14 @@ def validate_catalog(editions, evidence):
             raise ValueError("Edição duplicada")
         editions_by_id[e.edition_id] = e
     for e in evidence:
-        if not e.evidence_id.strip() or e.evidence_id in evidence_by_id:
+        if not isinstance(e.evidence_id, str) or not e.evidence_id.strip() or e.evidence_id in evidence_by_id:
             raise ValueError("Evidência duplicada ou sem ID")
+        if not isinstance(e.url, str):
+            raise ValueError("URL de evidência inválida")
         p = urlparse(e.url)
         if p.scheme != "https" or not p.hostname:
             raise ValueError("Fonte exige HTTPS")
-        if len(e.sha256) != 64 or any(c not in "0123456789abcdef" for c in e.sha256):
+        if not isinstance(e.sha256, str) or len(e.sha256) != 64 or any(c not in "0123456789abcdef" for c in e.sha256):
             raise ValueError("Hash SHA-256 inválido")
         if e.source_type not in {"official", "historical_archive", "secondary", "exploratory"}:
             raise ValueError("Tipo de fonte desconhecido")
