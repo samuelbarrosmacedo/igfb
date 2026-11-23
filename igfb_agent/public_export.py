@@ -100,6 +100,8 @@ def verify_public_data(directory):
         actual = sha256((folder / name).read_bytes()).hexdigest()
         if actual != expected:
             raise ValueError("Integridade de dataset comprometida: " + name)
+    if set(files) != set(build_public_data(candidates=[])["manifest.json"]["files"]):
+        raise ValueError("Contrato público incompleto")
     ranking = json.loads((folder / "ranking.json").read_text(encoding="utf-8"))
     if ranking.get("ranking") != [] or ranking.get("approved_results") != 0:
         raise ValueError("Ranking não homologado não pode ser publicado")
