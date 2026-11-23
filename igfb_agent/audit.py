@@ -33,16 +33,17 @@ def detect_conflicts(results):
     for r in records:
         if not r.approved:
             continue
-        key = (r.club.strip(), r.year, r.competition)
+        edition = r.edition_id or f"{r.competition}:{r.year}"
+        key = (r.club.strip(), r.year, r.competition, edition)
         if r.outcome in EXCLUSIVE:
             by_club[key].add(r.outcome)
         if r.outcome == "champion" and r.competition in COMPETITION_GROUPS:
-            by_champion[(r.year, r.competition)].add(r.club.strip())
+            by_champion[(r.year, r.competition, edition)].add(r.club.strip())
     conflicts = []
-    for (club, year, competition), outcomes in sorted(by_club.items()):
+    for (club, year, competition, edition), outcomes in sorted(by_club.items()):
         if len(outcomes) > 1:
             conflicts.append(Conflict("incompatible_outcomes", competition, year, (club,), tuple(sorted(outcomes))))
-    for (year, competition), clubs in sorted(by_champion.items()):
+    for (year, competition, edition), clubs in sorted(by_champion.items()):
         if len(clubs) > 1:
             conflicts.append(Conflict("multiple_champions", competition, year, tuple(sorted(clubs)), ("champion",)))
     return conflicts
@@ -59,7 +60,7 @@ def weighted_totals(results, weights=None):
     for r in records:
         if not r.approved:
             raise ValueError("Evidência não aprovada")
-        key = (r.club.strip(), r.year, r.competition, r.outcome)
+        key = (r.club.strip(), r.edition_id or f"{r.competition}:{r.year}", r.outcome)
         if key in seen:
             continue
         seen.add(key)
