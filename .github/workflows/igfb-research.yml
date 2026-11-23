@@ -26,6 +26,8 @@ jobs:
       - name: Coletar fontes pendentes
         env:
           IGFB_FETCH_LIMIT: '2'
+          IGFB_GEMINI_ENABLED: '1'
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python -m igfb_agent
       - name: Persistir somente mudanças reais
         run: |
