@@ -13,7 +13,7 @@ class EvidenceInventoryTests(unittest.TestCase):
         self.item = {
             "evidence_id": "synthetic-1971", "file": "evidence.txt",
             "sha256": hashlib.sha256(b"synthetic test evidence").hexdigest(),
-            "source_url": "https://www.cbf.com.br/teste",
+            "source_url": "https://www.cbf.com.br/teste", "source_id": "cbf-test",
             "year": 1971, "edition_id": "brasileirao:1971",
             "retrieved_at": "2026-11-23T12:00:00Z", "approved": False,
         }
@@ -50,6 +50,20 @@ class EvidenceInventoryTests(unittest.TestCase):
             validate_evidence_inventory(
                 {"schema_version": 1, "evidence": [self.item, self.item]}, self.root
             )
+
+    def test_missing_source_id_rejected(self):
+        item = {**self.item}
+        item.pop("source_id")
+        with self.assertRaises(ValueError):
+            self.verify(item)
+
+    def test_invalid_timestamp_rejected(self):
+        with self.assertRaises(ValueError):
+            self.verify({**self.item, "retrieved_at": "ontem"})
+
+    def test_naive_timestamp_rejected(self):
+        with self.assertRaises(ValueError):
+            self.verify({**self.item, "retrieved_at": "2026-11-23T12:00:00"})
 
     def test_empty_inventory_is_valid_but_not_progress(self):
         result = validate_evidence_inventory({"schema_version": 1, "evidence": []}, self.root)
