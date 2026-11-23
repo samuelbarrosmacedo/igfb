@@ -25,6 +25,7 @@ jobs:
           python -m igfb_agent.review_queue
           python -m igfb_agent.source_readiness
           python -m igfb_agent.project_audit
+          python -m igfb_agent.evidence_inventory config/evidence_inventory.json --root .
           python -m igfb_agent.research_backlog
           python -m igfb_agent.research_report --output /tmp/igfb-research-plan.md
           python -m igfb_agent.research_report --format csv --output /tmp/igfb-research-plan.csv
