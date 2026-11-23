@@ -34,3 +34,14 @@ jobs:
         run: |
           python -m igfb_agent.public_export --output /tmp/igfb-public-data
           python -c "from igfb_agent.public_export import verify_public_data; assert verify_public_data('/tmp/igfb-public-data')"
+      - name: Publicar relatórios para auditoria
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: igfb-audit-reports
+          retention-days: 14
+          path: |
+            /tmp/igfb-research-plan.md
+            /tmp/igfb-research-plan.csv
+            /tmp/igfb-public-data/
+          if-no-files-found: error
