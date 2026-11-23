@@ -110,6 +110,18 @@ O módulo [`coverage.py`](igfb_agent/coverage.py) mede quantas edições **cadas
 
 Testes de cobertura e integridade: [`tests/test_coverage.py`](tests/test_coverage.py). A estimativa antiga de 38% continua não auditada.
 
+### Calendário de temporadas e relatório de cobertura
+
+O módulo [`calendar.py`](igfb_agent/calendar.py) gera **55 identidades de edições do Brasileiro de 1971 a 2025**, além de identidades separadas para a participação anual na Série A. Não inclui Taça Brasil, Robertão ou 1937. O calendário **não contém campeões, participantes, colocações nem resultados homologados**. Os metadados de organização precisam ser verificados por edição.
+
+Para gerar um relatório JSON reproduzível da cobertura inicial do calendário:
+
+```bash
+python -m igfb_agent.baseline_report
+```
+
+Esse relatório registra 55 edições cadastradas e zero resultados aprovados, sem converter essa contagem em porcentagem de conclusão do projeto. Os testes de regressão ficam em [`tests/test_calendar.py`](tests/test_calendar.py).
+
 ## Pipeline de dados
 
 ```mermaid
@@ -136,7 +148,7 @@ A coleta experimental pode ser acionada manualmente; não há execução periód
 | Definição do recorte e pesos | Documentada; calibração pendente |
 | Coleta incremental | Implementada em caráter inicial |
 | Registro de eventos | Implementado |
-| Calendário do Brasileiro 1971–2025 | Integrado à fila de coleta |
+| Calendário do Brasileiro 1971–2025 | 55 edições canônicas geradas; metadados e resultados pendentes de verificação |
 | Revisão cruzada de resultados | Protocolo definido; dados ainda pendentes |
 | Rebaixamentos e formatos especiais | Pendente |
 | Núcleo matemático e testes unitários | Pontuação, catálogos e cenários implementados; calibração e auditoria pendentes |
