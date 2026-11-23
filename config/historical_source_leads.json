@@ -91,7 +91,9 @@
         2025
       ],
       "claim_club": "flamengo",
-      "note": "Matéria CBF de 22/01/2026 identifica Flamengo como campeão de 2025; NÃO usar sua contagem de participações desde 1967."
+      "note": "Página CBF acessada e conteúdo conferido em 23/11/2026: texto de 22/01/2026 identifica Flamengo como campeão do Brasileirão 2025. O número de participações inclui 1967–1970 e NÃO pode ser usado no IGFB. Documento ainda não arquivado com SHA-256 nem homologado.",
+      "source_checked_on": "2026-11-23",
+      "source_check_status": "page_content_checked_not_archived"
     }
   ]
 }
