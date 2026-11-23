@@ -134,6 +134,12 @@ python -m igfb_agent.candidates
 
 A conferência ainda deve examinar o documento original, verificar integridade/hash, identidade do clube e decisões de homologação. Os testes ficam em [`tests/test_candidates.py`](tests/test_candidates.py).
 
+### Auditoria das pistas e testes contínuos
+
+[`source_readiness.py`](igfb_agent/source_readiness.py) calcula a distribuição das pistas por ano e clube, além das temporadas ainda sem nenhuma pista. Esses números **não representam resultados homologados** nem cobertura histórica integral. A base institucional foi ampliada com referências a 2022, 2023, 2025 e títulos do Corinthians na era de pontos corridos. A fonte de participações do Flamengo de 2026 contém contagem desde 1967: **essa contagem não deve ser importada** para o IGFB, que começa em 1971.
+
+O workflow [`igfb-ci.yml`](.github/workflows/igfb-ci.yml) roda compilação, testes unitários e comandos de relatório em push e pull request, sem chamadas a APIs pagas, coleta automática ou escrita de resultados. **A criação do workflow não equivale à confirmação de execução bem-sucedida**; verificar o status na aba Actions.
+
 ## Pipeline de dados
 
 ```mermaid
