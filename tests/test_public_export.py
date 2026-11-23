@@ -29,6 +29,8 @@ class PublicExportTests(unittest.TestCase):
         files = build_public_data(candidates=[], status_path=self.status)
         self.assertEqual(files["project-status.json"]["progress"]["percent"], 38)
         self.assertFalse(files["project-status.json"]["progress"]["usable_as_completion_metric"])
+        self.assertEqual(files["project-status.json"]["measured_progress"]["percent"], 0.0)
+        self.assertEqual(files["project-status.json"]["measured_progress"]["denominator"], 55)
 
     def test_export_files_match_manifest(self):
         folder = self.root / "data"
