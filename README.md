@@ -20,13 +20,15 @@ O IGFB estuda a trajetória dos clubes brasileiros a partir de **conquistas, cam
 
 </div>
 
+**[ROADMAP E METAS](ROADMAP.md)** — prioridades, critérios de aceite e indicadores separados por dimensão.
+
 ## Indicadores recalculados
 
 O comando `python -m igfb_agent.project_audit` recalcula a **cobertura de pistas documentais por temporada**: número de temporadas com pelo menos uma pista dividido pelas 55 temporadas de 1971 a 2025. No conjunto de pistas registrado em 23/11/2026, são **20 de 55 temporadas (36,36%)**. Este número mede apenas a presença de pistas, não sua veracidade, documentação arquivada, homologação ou percentual de conclusão do IGFB. A estimativa histórica de 38% continua separada e não auditada. A exportação pública também recalcula a cobertura em `coverage.json`.
 
 ## Dados públicos para o futuro site
 
-O exportador `python -m igfb_agent.public_export --output web/public/data` gera um contrato JSON estático com manifesto, estado do projeto, cobertura de pistas, pesos experimentais, fila de revisão e ranking indisponível. A exportação é **conservadora**: não transforma pistas em resultados homologados nem cria pontuações. `ranking.json` contém `ranking: []` enquanto não houver homologação e pipeline de aprovação devidamente integrado.
+O exportador `python -m igfb_agent.public_export --output web/public/data` gera um contrato JSON estático com manifesto, estado do projeto, cobertura de pistas, pesos experimentais, fila de revisão, fila de pesquisa e ranking indisponível. O arquivo `project-status.json` diferencia `progress` (legado não auditado) de `measured_progress` (cobertura documental calculada). A exportação é **conservadora**: não transforma pistas em resultados homologados nem cria pontuações. `ranking.json` contém `ranking: []` enquanto não houver homologação e pipeline de aprovação devidamente integrado.
 
 O frontend poderá consumir esses arquivos locais em produção, sem chamadas da API do GitHub em cada visualização. A CI valida a geração em diretório temporário. A publicação automática e a futura exportação de registros aprovados exigem implementação e validação próprias.
 
