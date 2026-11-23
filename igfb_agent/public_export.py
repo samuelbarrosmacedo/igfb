@@ -11,6 +11,7 @@ from .scoring import WEIGHTS
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_VERSION = 1
+PUBLIC_FILES = ("project-status.json", "coverage.json", "methodology.json", "review-queue.json", "ranking.json")
 
 def build_public_data(*, candidates=None, status_path=None):
     records = tuple(build_candidates() if candidates is None else candidates)
@@ -22,7 +23,7 @@ def build_public_data(*, candidates=None, status_path=None):
             "schema_version": SCHEMA_VERSION,
             "dataset_status": "research_in_progress",
             "approved_results": 0,
-            "files": ["project-status.json", "coverage.json", "methodology.json", "review-queue.json", "ranking.json"],
+            "files": list(PUBLIC_FILES),
             "warning": "Sem ranking homologado; não converter pistas em pontuação.",
         },
         "project-status.json": {
@@ -100,7 +101,7 @@ def verify_public_data(directory):
         actual = sha256((folder / name).read_bytes()).hexdigest()
         if actual != expected:
             raise ValueError("Integridade de dataset comprometida: " + name)
-    if set(files) != set(build_public_data(candidates=[])["manifest.json"]["files"]):
+    if set(files) != set(PUBLIC_FILES):
         raise ValueError("Contrato público incompleto")
     ranking = json.loads((folder / "ranking.json").read_text(encoding="utf-8"))
     if ranking.get("ranking") != [] or ranking.get("approved_results") != 0:
