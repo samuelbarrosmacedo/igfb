@@ -4,7 +4,9 @@ from dataclasses import dataclass
 from math import fsum, isfinite
 from .scoring import WEIGHTS, validate_result
 
-EXCLUSIVE = {"champion", "runner_up", "third", "fourth", "semifinal"}
+EXCLUSIVE = {"champion", "runner_up", "third", "fourth"}
+# Semifinal é etapa alcançada, não colocação incompatível com título/vice.
+AWARD_PRIORITY = {"champion": 5, "runner_up": 4, "third": 3, "fourth": 2, "semifinal": 1}
 COMPETITION_GROUPS = {
     "brasileirao": "brasileirao",
     "libertadores": "libertadores",
@@ -57,6 +59,7 @@ def weighted_totals(results, weights=None):
     weights = WEIGHTS if weights is None else weights
     totals = defaultdict(list)
     seen = set()
+    awards = {}
     for r in records:
         if not r.approved:
             raise ValueError("Evidência não aprovada")
@@ -70,7 +73,15 @@ def weighted_totals(results, weights=None):
             raise ValueError("Peso ausente") from exc
         if not isfinite(weight):
             raise ValueError("Peso não finito")
-        totals[r.club.strip()].append(weight)
+        if r.outcome in AWARD_PRIORITY:
+            group = (r.club.strip(), r.competition, r.year, r.edition_id or f"{r.competition}:{r.year}")
+            previous = awards.get(group)
+            if previous is None or AWARD_PRIORITY[r.outcome] > AWARD_PRIORITY[previous[0]]:
+                awards[group] = (r.outcome, weight)
+        else:
+            totals[r.club.strip()].append(weight)
+    for (club, _competition, _year, _edition), (_outcome, weight) in awards.items():
+        totals[club].append(weight)
     return {club: fsum(values) for club, values in sorted(totals.items())}
 
 def sensitivity_envelope(results, scenarios):
