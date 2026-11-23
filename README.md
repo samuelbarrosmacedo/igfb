@@ -140,6 +140,16 @@ A conferência ainda deve examinar o documento original, verificar integridade/h
 
 O workflow [`igfb-ci.yml`](.github/workflows/igfb-ci.yml) roda compilação, testes unitários e comandos de relatório em push e pull request, sem chamadas a APIs pagas, coleta automática ou escrita de resultados. **A criação do workflow não equivale à confirmação de execução bem-sucedida**; verificar o status na aba Actions.
 
+### Fila de revisão histórica
+
+A rotina [`review_queue.py`](igfb_agent/review_queue.py) consolida candidatos por edição, preserva as fontes de cada afirmação e sinaliza **afirmações concorrentes de campeões**. Múltiplas fontes para o mesmo clube não implicam verificação independente. A rotina não homologa nem atribui pontos.
+
+```bash
+python -m igfb_agent.review_queue
+```
+
+O comando produz JSON reproduzível, incluindo edições com afirmações concorrentes. Testes de triagem: [`tests/test_review_queue.py`](tests/test_review_queue.py). A CI também executa esse comando em commits.
+
 ## Pipeline de dados
 
 ```mermaid
