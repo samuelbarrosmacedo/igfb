@@ -1,169 +1,145 @@
 <div align="center">
 
 # IGFB
-### Índice de Grandeza do Futebol Brasileiro
+### ÍNDICE DE GRANDEZA DO FUTEBOL BRASILEIRO
 
-**Um ranking histórico do futebol brasileiro construído com evidências, regras explícitas e cálculos reproduzíveis.**
+**História, desempenho e consistência. Um índice construído para ser questionado — e reproduzido.**
 
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![GitHub Actions](https://img.shields.io/badge/Automação-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/samuelbarrosmacedo/igfb/actions)
-[![Licença](https://img.shields.io/badge/Licen%C3%A7a-n%C3%A3o_definida-lightgrey)](#licença-e-uso)
-[![Status](https://img.shields.io/badge/Status-prot%C3%B3tipo-orange)](#estado-atual)
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Pipeline](https://img.shields.io/github/actions/workflow/status/samuelbarrosmacedo/igfb/igfb-research.yml?style=for-the-badge&logo=githubactions&label=Pipeline)](https://github.com/samuelbarrosmacedo/igfb/actions/workflows/igfb-research.yml)
+[![Pesquisa](https://img.shields.io/badge/Pesquisa-Em%20desenvolvimento-F59E0B?style=for-the-badge)](#andamento)
+[![Dados](https://img.shields.io/badge/Dados-Auditoria%20pendente-64748B?style=for-the-badge)](#andamento)
 
-**[Acompanhar execuções](https://github.com/samuelbarrosmacedo/igfb/actions)** · **[Consultar metodologia](#metodologia)** · **[Ver estado do projeto](state/status.json)** · **[Examinar código](igfb_agent/)**
-
-</div>
+**[METODOLOGIA](#metodologia)** · **[CRITÉRIOS](#matriz-de-pontuação)** · **[PIPELINE](#pipeline-de-dados)** · **[ANDAMENTO](#andamento)**
 
 ---
 
-> [!IMPORTANT]
-> **Transparência:** este repositório está em desenvolvimento. **Não existe ranking final auditado.** A referência histórica de **38% é uma estimativa anterior, ainda não verificada**, e não deve ser interpretada como cobertura de dados ou percentual de testes aprovados.
+### O que significa ser grande?
 
-## A pergunta que queremos responder
+O IGFB estuda a trajetória dos clubes brasileiros a partir de **conquistas, campanhas, permanência na elite e desempenho ao longo do tempo**. Seu propósito não é substituir o debate: é estabelecer uma base quantitativa transparente para ele.
 
-**Quais são os maiores clubes da história do futebol brasileiro — e como justificar cada posição?**
+</div>
 
-O IGFB transforma critérios esportivos em um modelo de pontuação inspecionável. Cada resultado precisa estar associado à sua edição, competição, fonte, regra de interpretação e cálculo. O objetivo não é produzir uma lista com aparência de precisão: é permitir que outra pessoa **reproduza, conteste e audite** o ranking.
+## Visão geral
 
-### Princípios
+O índice combina desempenho esportivo e continuidade histórica. Cada registro que influenciar a classificação deverá identificar **clube, competição, edição, resultado, evidência e regra de pontuação**. O sistema diferencia informações coletadas de resultados efetivamente homologados.
 
-| Princípio | Compromisso |
+| Pilar | O que mede |
 |:--|:--|
-| **Rastreabilidade** | Toda afirmação pontuável deve ter origem verificável |
-| **Reprodutibilidade** | Pesos e fórmulas são aplicados por código, não por opinião da IA |
-| **Separação de estados** | Encontrado ≠ extraído ≠ validado ≠ pontuado |
-| **Tratamento de controvérsias** | Convenções metodológicas são declaradas, nunca disfarçadas de consenso |
-| **Continuidade** | Execuções independentes preservam checkpoints e evitam repetir trabalho |
-| **Custo adicional zero** | A automação deve respeitar as cotas gratuitas dos serviços utilizados |
+| **Conquistas** | Títulos nacionais e internacionais, com pesos por relevância |
+| **Campanhas** | Vice-campeonatos e colocações relevantes |
+| **Regularidade** | Participações na Série A desde 1971 |
+| **Desempenho histórico** | Consistência em diferentes períodos |
+| **Rebaixamentos** | Quedas esportivas confirmadas entre divisões |
+
+> [!IMPORTANT]
+> **O ranking definitivo ainda não foi publicado.** O indicador histórico de aproximadamente **38%** é uma estimativa preliminar, **não auditada**. Não representa cobertura comprovada nem resultados homologados.
 
 ## Metodologia
 
-### Recorte histórico
+**Recorte principal:** temporadas encerradas até **2025**. O Campeonato Brasileiro Série A é considerado **a partir de 1971**. Taça Brasil, Robertão e a competição de 1937 **não pontuam** neste modelo.
 
-- O **Campeonato Brasileiro Série A** começa em **1971** para fins de títulos, campanhas e longevidade do IGFB.
-- **Taça Brasil (1959–1968), Robertão (1967–1970) e torneio de 1937** ficam excluídos de pontuação e bônus.
-- **Flamengo em 1987:** tratado como campeão por **convenção metodológica do IGFB**, explicitamente distinta de reconhecimento oficial consensual; a edição não pode gerar campeão ou vice duplicado.
-- Temporadas em curso não são misturadas com séries históricas já encerradas. O corte inicial de consolidação é **2025**.
-- Rebaixamentos devem ser esportivos, confirmados e associados à transição de divisão; formatos excepcionais exigem análise específica.
+**1987:** a atribuição do título brasileiro ao Flamengo é uma **convenção expressa do IGFB**, sem alegação de consenso institucional. O tratamento da edição deve impedir duplicidades e permanecer identificado no registro de origem.
 
-### Pesos experimentais
+**Rebaixamentos:** só são contabilizadas quedas esportivas comprovadas. Mudanças administrativas, formatos excepcionais e resultados revertidos exigem análise documental antes de qualquer penalidade.
 
-Os valores abaixo são **hipóteses de modelagem**, não resultado final calibrado.
+### Matriz de pontuação
 
-| Competição / indicador | Campeão | Vice | Outros |
+Pesos **experimentais**, sujeitos à calibração e à análise de sensibilidade:
+
+| Indicador | Título | Vice | Outros resultados |
 |:--|--:|--:|:--|
-| Mundial clássico | +900 | — | |
-| Mundial FIFA anual | +950 | — | |
-| Mundial expandido | +1.100 | — | |
+| Mundial clássico | +900 | — | — |
+| Mundial FIFA anual | +950 | — | — |
+| Mundial expandido | +1.100 | — | — |
 | Libertadores | +700 | +250 | Semifinal +90 |
-| Brasileirão Série A | +450 | +160 | 3º +75; 4º +45 |
+| Campeonato Brasileiro | +450 | +160 | 3º +75 · 4º +45 |
 | Copa do Brasil | +300 | +110 | Semifinal +40 |
-| Sul-Americana | +200 | +70 | |
-| CONMEBOL / Mercosul | +170 | +60 | |
-| Recopa | +100 | +30 | |
-| Supercopa | +75 | +20 | |
-| Estadual | +25 | +8 | |
-| Longevidade Série A (1971+) | — | — | +8 por edição |
+| Copa Sul-Americana | +200 | +70 | — |
+| CONMEBOL / Mercosul | +170 | +60 | — |
+| Recopa | +100 | +30 | — |
+| Supercopa | +75 | +20 | — |
+| Campeonato estadual | +25 | +8 | — |
+| Permanência na Série A | — | — | +8 por temporada |
 | Rebaixamento A → B | — | — | −400 |
 | Rebaixamento B → C | — | — | −600 |
 | Rebaixamento C → D | — | — | −800 |
 
-> [!WARNING]
-> A tabela documenta a **proposta de pesos**. A implementação atual ainda **não calcula o ranking completo**, nem valida todas as competições. Não confunda metodologia definida com processamento concluído.
+A aplicação de pesos pressupõe registros verificados. **Uma página coletada não equivale a um resultado confirmado.**
 
-## Como funciona a automação
+## Pipeline de dados
 
 ```mermaid
-flowchart TD
-    A["GitHub Actions — execução agendada"] --> B["Carregar estado e fontes"]
-    B --> C{"Há fonte pendente?"}
-    C -- "Não" --> Z["Encerrar sem inventar progresso"]
-    C -- "Sim" --> D["Coletar HTML com HTTPX"]
-    D --> E["Extrair texto e hash SHA-256"]
-    E --> F["Registrar evento e checkpoint"]
-    F --> G["Git commit: somente alterações reais"]
-    G --> H["Próximo lote retoma do estado salvo"]
+flowchart LR
+    A["Calendário de edições"] --> B["Coleta documental"]
+    B --> C["Identificação e hash"]
+    C --> D["Registro de evidências"]
+    D --> E["Conferência histórica"]
+    E --> F["Pontuação reproduzível"]
+    F --> G["Ranking e visualizações"]
+    C --> H[("Histórico versionado")]
+    E --> H
 ```
 
-**Implementado nesta fase:** coleta de páginas previamente cadastradas, registro de hashes, histórico de eventos e checkpoint em Git. **Planejado:** descoberta automática de fontes, extração estruturada por LLM, confronto de evidências, cálculos completos, revisão de controvérsias e dashboard final.
+O processamento é incremental e conserva registros entre execuções. Fontes já coletadas não são baixadas novamente sem necessidade; falhas entram em espera para nova tentativa. A coleta utiliza [HTTPX](https://www.python-httpx.org/) e [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/); o agendamento e o histórico ficam no [GitHub Actions](https://docs.github.com/actions) e no Git.
 
-**IA gratuita não está conectada nesta versão.** A assinatura ChatGPT Plus não inclui chamadas gratuitas à API da OpenAI. Nenhuma chave privada deve ser incluída no repositório.
+> [!NOTE]
+> A implementação atual cobre a **etapa inicial de coleta e rastreabilidade**. Conferência histórica abrangente, pontuação integral e publicação do ranking ainda dependem de desenvolvimento e auditoria.
 
-## Estado atual
+## Andamento
 
-| Componente | Situação |
+| Frente | Situação |
 |:--|:--|
-| Repositório GitHub | Criado |
-| Regras iniciais | Documentadas |
-| Coleta HTTP | Implementação inicial |
-| Histórico de eventos / deduplicação | Implementação inicial |
-| Agendamento | Configurado no workflow; execução real precisa ser verificada |
-| Descoberta ampla de fontes | Pendente |
-| IA para interpretação histórica | Pendente |
-| Validação cruzada | Pendente |
-| Cálculo integral do ranking | Pendente |
-| Dashboard final | Pendente |
+| Definição do recorte e pesos | Documentada; calibração pendente |
+| Coleta incremental | Implementada em caráter inicial |
+| Registro de eventos | Implementado |
+| Calendário do Brasileiro 1971–2025 | Integrado à fila de coleta |
+| Revisão cruzada de resultados | Pendente |
+| Rebaixamentos e formatos especiais | Pendente |
+| Cálculo integral e testes históricos | Pendente |
+| Visualização final | Pendente |
 
-O arquivo [`state/status.json`](state/status.json) registra o estado declarado do projeto. O arquivo [`state/events.jsonl`](state/events.jsonl) contém eventos produzidos pelas execuções, quando existirem.
+Consulte [o estado do projeto](state/status.json), [o histórico de coleta](state/events.jsonl) e [as execuções](https://github.com/samuelbarrosmacedo/igfb/actions/workflows/igfb-research.yml).
 
-## Estrutura do repositório
+## Organização
 
 ```text
-igfb/
-├── .github/workflows/igfb-research.yml  # GitHub Actions
-├── config/
-│   ├── project_rules.json                # Restrições metodológicas
-│   └── seed_sources.json                 # Fontes iniciais
-├── igfb_agent/
-│   ├── __init__.py
-│   └── __main__.py                        # Coleta experimental
-├── state/
-│   ├── events.jsonl                      # Registro de eventos
-│   └── status.json                       # Estado resumido
-├── requirements.txt
-└── README.md
+config/                 recorte, convenções e fontes
+igfb_agent/             rotina de coleta incremental
+state/                  eventos e checkpoints
+.github/workflows/      execução agendada
+requirements.txt        dependências Python
 ```
 
-## Executar localmente
+## Executar
 
-Requer Python 3.12+.
+Requer Python 3.12 ou superior.
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-IGFB_FETCH_LIMIT=2 python -m igfb_agent
+python -m igfb_agent
 ```
 
-No Windows PowerShell, ative com `.venv\Scripts\Activate.ps1` e defina a variável de ambiente com `$env:IGFB_FETCH_LIMIT="2"`.
+No Windows PowerShell, a ativação do ambiente é `.venv\Scripts\Activate.ps1`. O processamento agendado ocorre no GitHub Actions, sujeito à disponibilidade e aos limites do serviço.
 
-Para execução na nuvem, acesse **[Actions](https://github.com/samuelbarrosmacedo/igfb/actions)**. A execução agendada usa a configuração do workflow e pode atrasar por limitações do GitHub.
+## Política de evidências
 
-## Critérios de qualidade antes de publicar um ranking
+A pesquisa prioriza registros institucionais da **CBF, CONMEBOL, FIFA e federações**, complementados por acervos históricos e fontes secundárias identificadas. Divergências são registradas e investigadas; não são resolvidas por mera preferência de uma fonte. Conteúdos externos permanecem sujeitos a direitos autorais e às condições de acesso de seus respectivos sites.
 
-- [ ] Cobertura histórica de cada competição elegível
-- [ ] Fontes rastreáveis por edição e clube
-- [ ] Deduplicação de títulos, campanhas e temporadas
-- [ ] Revisão de edições com regulamentos excepcionais
-- [ ] Rebaixamentos confirmados e sem penalidades indevidas
-- [ ] Pesos calibrados e análise de sensibilidade
-- [ ] Testes de regressão e auditoria de dados
-- [ ] Dashboard navegável, com explicação de cada pontuação
+## Licenciamento
 
-## Fontes e responsabilidade editorial
-
-Prioridade para **CBF, CONMEBOL, FIFA, federações e registros históricos verificáveis**. Fontes secundárias podem orientar a descoberta, mas não substituem a avaliação da evidência. Conteúdos coletados de terceiros continuam sujeitos a direitos autorais e condições de acesso.
-
-## Licença e uso
-
-**Nenhuma licença de código aberto foi definida ainda.** O repositório ser público não concede automaticamente permissão para reutilização do código. Uma licença poderá ser adicionada após decisão do mantenedor.
+**Licença ainda não definida.** A publicação deste repositório não implica autorização automática de redistribuição ou uso comercial.
 
 ---
 
 <div align="center">
 
-**IGFB · Grandeza se argumenta. Dados se verificam.**
+### IGFB
 
-<sub>Desenvolvimento incremental · Sem ranking final publicado · Transparência metodológica acima de aparência de certeza</sub>
+**A grandeza se debate. Os números precisam resistir à análise.**
+
+<sub>Pesquisa histórica · Metodologia aberta à revisão · Resultados sujeitos a auditoria</sub>
 
 </div>
