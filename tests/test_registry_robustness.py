@@ -75,6 +75,15 @@ class RegistryRobustnessTests(unittest.TestCase):
     def test_tie_ranks(self):
         self.assertEqual(rank_scores({"A":10,"B":10,"C":5}), {"A":1,"B":1,"C":3})
 
+    def test_ranking_rejects_text_and_boolean(self):
+        for value in ("10", True, float("nan"), float("inf")):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                rank_scores({"A": value, "B": 5})
+
+    def test_ranking_rejects_empty_club(self):
+        with self.assertRaises(ValueError):
+            rank_scores({"": 10})
+
     def test_stability(self):
         altered = copy.deepcopy(WEIGHTS)
         altered["brasileirao"]["runner_up"] = 500
