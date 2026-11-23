@@ -89,6 +89,9 @@ S_c^{\min}=\min_{\theta\in\Theta}S_c(\theta),\qquad S_c^{\max}=\max_{\theta\in\T
 
 O envelope mostra a variação do resultado sob cenários metodológicos e **não é intervalo de confiança estatístico**. Testes específicos ficam em [`tests/test_audit.py`](tests/test_audit.py). Nenhum ranking foi gerado com dados fictícios.
 
+> [!CAUTION]
+> **Limite do esquema atual:** resultados estaduais ainda precisam identificar a federação e a edição específica. O auditor não considera campeões de estados diferentes um conflito global. Da mesma forma, categorias históricas com mais de um torneio por temporada exigem identificadores próprios antes de uma homologação completa.
+
 ## Pipeline de dados
 
 ```mermaid
