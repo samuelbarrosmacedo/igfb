@@ -1,7 +1,5 @@
 name: IGFB - coleta experimental
 on:
-  schedule:
-    - cron: '*/5 * * * *'
   workflow_dispatch:
 permissions:
   contents: write
@@ -28,8 +26,7 @@ jobs:
       - name: Coletar fontes pendentes
         env:
           IGFB_FETCH_LIMIT: '2'
-          IGFB_GEMINI_ENABLED: '1'
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          IGFB_GEMINI_ENABLED: '0'
         run: python -m igfb_agent
       - name: Persistir somente mudanças reais
         run: |
