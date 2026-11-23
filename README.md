@@ -20,6 +20,12 @@ O IGFB estuda a trajetória dos clubes brasileiros a partir de **conquistas, cam
 
 </div>
 
+## Dados públicos para o futuro site
+
+O exportador `python -m igfb_agent.public_export --output web/public/data` gera um contrato JSON estático com manifesto, estado do projeto, cobertura de pistas, pesos experimentais, fila de revisão e ranking indisponível. A exportação é **conservadora**: não transforma pistas em resultados homologados nem cria pontuações. `ranking.json` contém `ranking: []` enquanto não houver homologação e pipeline de aprovação devidamente integrado.
+
+O frontend poderá consumir esses arquivos locais em produção, sem chamadas da API do GitHub em cada visualização. A CI valida a geração em diretório temporário. A publicação automática e a futura exportação de registros aprovados exigem implementação e validação próprias.
+
 ## Visão geral
 
 O índice combina desempenho esportivo e continuidade histórica. Cada registro que influenciar a classificação deverá identificar **clube, competição, edição, resultado, evidência e regra de pontuação**. O sistema diferencia informações coletadas de resultados efetivamente homologados.
