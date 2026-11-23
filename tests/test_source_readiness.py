@@ -27,6 +27,15 @@ class SourceReadinessTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             source_readiness([item])
 
+    def test_page_checked_not_archived(self):
+        item = dict(build_candidates()[0])
+        item["source_page_checked"] = True
+        item["source_archived"] = False
+        report = source_readiness([item])
+        self.assertEqual(report["checked_source_pages"], 1)
+        self.assertEqual(report["source_ids_without_archived_bytes"], 1)
+        self.assertEqual(report["approved_results"], 0)
+
     def test_empty_leads_reports_all_missing(self):
         report = source_readiness([])
         self.assertEqual(len(report["years_without_leads"]), 55)
