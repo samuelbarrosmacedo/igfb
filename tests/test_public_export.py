@@ -21,6 +21,7 @@ class PublicExportTests(unittest.TestCase):
         files = build_public_data(candidates=[], status_path=self.status)
         self.assertEqual(files["ranking.json"]["ranking"], [])
         self.assertEqual(files["ranking.json"]["approved_results"], 0)
+        self.assertEqual(files["coverage.json"]["lead_coverage_percent"], 0.0)
         self.assertEqual(files["coverage.json"]["seasons_without_leads"], list(range(1971, 2026)))
 
     def test_legacy_percentage_is_not_audited(self):
@@ -43,6 +44,7 @@ class PublicExportTests(unittest.TestCase):
     def test_real_leads_remain_unapproved(self):
         files = build_public_data(status_path=self.status)
         self.assertGreater(files["coverage.json"]["source_leads"], 0)
+        self.assertGreater(files["coverage.json"]["lead_coverage_percent"], 0)
         self.assertEqual(files["ranking.json"]["ranking"], [])
 
     def test_invalid_audited_status_blocks_export(self):
