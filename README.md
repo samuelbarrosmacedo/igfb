@@ -156,6 +156,10 @@ A trilha [`decisions.py`](igfb_agent/decisions.py) exige decisões com revisor, 
 
 Consulte o [protocolo de homologação](docs/DECISOES_HOMOLOGACAO.md) e os [testes sintéticos](tests/test_decisions.py). O mecanismo ainda não verifica assinatura de revisor nem recalcula o hash dos documentos originais.
 
+### Auditoria de estado reproduzível
+
+Execute `python -m igfb_agent.project_audit` para gerar um relatório JSON com recorte de 1971–2025 (55 temporadas), quantidade de pistas, edições pendentes de revisão, temporadas sem pistas e registros aprovados. O comando recusa marcar como auditado o percentual legado de 38% sem metodologia verificável; **não** calcula um novo percentual nem considera pistas como resultados comprovados. A CI executa esse comando juntamente com os testes. Consulte `tests/test_project_audit.py`.
+
 ## Pipeline de dados
 
 ```mermaid
