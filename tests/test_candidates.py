@@ -31,6 +31,22 @@ class CandidatesTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_leads(payload)
 
+    def test_rejects_non_cbf_domain(self):
+        payload = lead([1971])
+        payload["sources"][0]["url"] = "https://cbf.com.br.evil.example/record"
+        with self.assertRaises(ValueError):
+            validate_leads(payload)
+
+    def test_rejects_duplicate_year(self):
+        with self.assertRaises(ValueError):
+            validate_leads(lead([1971, 1971]))
+
+    def test_rejects_non_string_url(self):
+        payload = lead([1971])
+        payload["sources"][0]["url"] = None
+        with self.assertRaises(ValueError):
+            validate_leads(payload)
+
     def test_valid_1971(self):
         records = validate_leads(lead([1971]))
         self.assertEqual(records[0]["edition_id"], "brasileirao:1971")
