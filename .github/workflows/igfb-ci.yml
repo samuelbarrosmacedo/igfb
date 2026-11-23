@@ -1,0 +1,24 @@
+name: IGFB - validação contínua
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compilar módulos
+        run: python -m compileall -q igfb_agent tests
+      - name: Executar todos os testes
+        run: python -m unittest discover -s tests -v
+      - name: Verificar calendário e pistas
+        run: |
+          python -m igfb_agent.baseline_report
+          python -m igfb_agent.candidates
