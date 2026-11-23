@@ -8,10 +8,11 @@ from .source_readiness import source_readiness
 from .review_queue import review_queue
 from .candidates import build_candidates
 from .scoring import WEIGHTS
+from .research_backlog import research_backlog
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_VERSION = 1
-PUBLIC_FILES = ("project-status.json", "coverage.json", "methodology.json", "review-queue.json", "ranking.json")
+PUBLIC_FILES = ("project-status.json", "coverage.json", "methodology.json", "review-queue.json", "research-backlog.json", "ranking.json")
 
 def build_public_data(*, candidates=None, status_path=None):
     records = tuple(build_candidates() if candidates is None else candidates)
@@ -56,6 +57,7 @@ def build_public_data(*, candidates=None, status_path=None):
             "status": "manual_review_required",
             "items": list(queue),
         },
+        "research-backlog.json": research_backlog(records),
         "ranking.json": {
             "schema_version": SCHEMA_VERSION,
             "status": "unavailable_pending_homologation",
