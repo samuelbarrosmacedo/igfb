@@ -27,6 +27,16 @@ class AuditTests(unittest.TestCase):
         bounds = sensitivity_envelope([result("A","champion")],[WEIGHTS,scenario])
         self.assertEqual(bounds["A"],{"min":450.0,"max":600.0})
 
+    def test_state_titles_are_not_globally_exclusive(self):
+        records = [result("A", "champion", "estadual"), result("B", "champion", "estadual")]
+        self.assertEqual(detect_conflicts(records), [])
+
+    def test_sensitivity_accepts_iterator(self):
+        scenario = copy.deepcopy(WEIGHTS)
+        scenario["brasileirao"]["champion"] = 500
+        records = iter([result("A", "champion")])
+        self.assertEqual(sensitivity_envelope(records, [WEIGHTS, scenario])["A"], {"min":450.0,"max":500.0})
+
     def test_empty_scenarios(self):
         with self.assertRaises(ValueError):
             sensitivity_envelope([],[])
