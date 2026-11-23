@@ -69,7 +69,7 @@ A aplicação de pesos pressupõe registros verificados. **Uma página coletada 
 
 ## Núcleo matemático (em desenvolvimento)
 
-A implementação em [`igfb_agent/scoring.py`](igfb_agent/scoring.py) calcula pesos experimentais exclusivamente sobre registros aprovados, elimina duplicações do mesmo resultado e disponibiliza três transformações estatísticas independentes:
+A implementação em [`igfb_agent/scoring.py`](igfb_agent/scoring.py) calcula pesos experimentais exclusivamente sobre registros aprovados, elimina duplicações do mesmo resultado, evita somar bônus de semifinal ao título/vice da mesma edição e disponibiliza três transformações estatísticas independentes:
 
 - **Consistência temporal (índice de Jain):** `C = (Σpₜ)² / (T·Σpₜ²)`, com pontuações anuais não negativas e anos sem resultado representados por zero.
 - **Padronização por temporada:** `Z = (p − μₜ) / σₜ`, com retorno zero para variância nula.
@@ -83,7 +83,7 @@ Os registros de pontuação aceitam um identificador opcional `edition_id` para 
 
 ### Auditoria de conflitos e sensibilidade
 
-O módulo [`igfb_agent/audit.py`](igfb_agent/audit.py) verifica resultados incompatíveis dentro de uma edição e sinaliza múltiplos campeões da mesma competição. Ele **não resolve automaticamente disputas históricas**; essas ocorrências exigem análise documental e convenções explícitas. A detecção é conservadora: não substitui regras específicas de formatos excepcionais.
+O módulo [`igfb_agent/audit.py`](igfb_agent/audit.py) verifica colocações incompatíveis dentro de uma edição e sinaliza múltiplos campeões da mesma competição. Semifinal é tratada como etapa alcançada, não como colocação incompatível com título ou vice; a pontuação utiliza apenas o melhor resultado da edição. Ele **não resolve automaticamente disputas históricas**; essas ocorrências exigem análise documental e convenções explícitas. A detecção é conservadora: não substitui regras específicas de formatos excepcionais.
 
 O mesmo módulo calcula um **envelope de sensibilidade** para conjuntos explícitos de pesos:
 
