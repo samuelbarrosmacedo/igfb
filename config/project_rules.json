@@ -1,0 +1,12 @@
+{
+  "name": "IGFB",
+  "baseline_year": 1971,
+  "through_year": 2025,
+  "excluded": [
+    "Taça Brasil",
+    "Robertão",
+    "1937"
+  ],
+  "flamengo_1987": "convenção metodológica, não consenso oficial",
+  "status": "regras experimentais; resultados exigem fontes"
+}
