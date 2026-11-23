@@ -1,0 +1,12 @@
+[
+  {
+    "url": "https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_1971",
+    "trust": "exploratory",
+    "topic": "brasileirao"
+  },
+  {
+    "url": "https://www.conmebol.com/libertadores/",
+    "trust": "official",
+    "topic": "libertadores"
+  }
+]
