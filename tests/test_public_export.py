@@ -71,6 +71,27 @@ class PublicExportTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             verify_public_data(folder)
 
+    def test_unhashable_manifest_filename_is_rejected_cleanly(self):
+        folder = self.root / "data"
+        export_public_data(folder, candidates=[], status_path=self.status)
+        path = folder / "manifest.json"
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+        manifest["files"][0] = {"not": "a filename"}
+        path.write_text(json.dumps(manifest), encoding="utf-8")
+        with self.assertRaises(ValueError):
+            verify_public_data(folder)
+
+    def test_missing_ranking_in_manifest_is_rejected(self):
+        folder = self.root / "data"
+        export_public_data(folder, candidates=[], status_path=self.status)
+        path = folder / "manifest.json"
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+        manifest["files"].remove("ranking.json")
+        manifest["sha256"].pop("ranking.json")
+        path.write_text(json.dumps(manifest), encoding="utf-8")
+        with self.assertRaises(ValueError):
+            verify_public_data(folder)
+
     def test_invalid_audited_status_blocks_export(self):
         self.status.write_text(json.dumps({
             "progress_percent_estimate": 38, "progress_audited": True,
