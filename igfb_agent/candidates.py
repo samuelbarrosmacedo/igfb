@@ -18,10 +18,14 @@ def validate_leads(payload):
         url = source.get("url", "")
         if not isinstance(url, str):
             raise ValueError('URL inválida')
-        parsed = urlparse(url)
+        try:
+            parsed = urlparse(url)
+            port = parsed.port
+        except ValueError as exc:
+            raise ValueError("URL inválida") from exc
         if not isinstance(sid, str) or not sid.strip() or sid in seen:
             raise ValueError("Identificador de fonte inválido ou duplicado")
-        if parsed.scheme != "https" or parsed.hostname not in {"cbf.com.br", "www.cbf.com.br"} or parsed.username or parsed.password:
+        if parsed.scheme != "https" or parsed.hostname not in {"cbf.com.br", "www.cbf.com.br"} or parsed.username or parsed.password or port not in (None, 443) or parsed.fragment:
             raise ValueError("Fonte deve usar HTTPS")
         if source.get("publisher") != "CBF" or source.get("source_type") != "official":
             raise ValueError("Tipo de fonte inesperado")
@@ -35,6 +39,9 @@ def validate_leads(payload):
             raise ValueError("Ano inválido")
         if len(years) != len(set(years)):
             raise ValueError('Ano duplicado')
+        checked_status = source.get("source_check_status")
+        if checked_status is not None and checked_status not in {"page_content_checked_not_archived", "unverified", "unreachable"}:
+            raise ValueError("Estado de conferência inválido")
         seen.add(sid)
         for year in years:
             if type(year) is not int or year in EXCLUDED or not FIRST <= year <= LAST:
@@ -46,6 +53,7 @@ def validate_leads(payload):
                 "edition_id": f"brasileirao:{year}",
                 "outcome_claim": "champion",
                 "claim_verification": "unverified",
+                "source_page_checked": checked_status == "page_content_checked_not_archived",
                 "source_archived": False,
                 "source_id": sid,
                 "source_url": url,
