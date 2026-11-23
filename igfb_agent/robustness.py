@@ -4,10 +4,21 @@ from math import fsum, isfinite
 from .audit import weighted_totals
 
 def rank_scores(scores):
-    """Ranking por competição: posições iguais para empates exatos."""
-    if any(not isfinite(float(v)) for v in scores.values()):
-        raise ValueError("Pontuação inválida")
-    ordered = sorted(scores.items(), key=lambda x: (-x[1], x[0]))
+    """Ranking por competição, com empate exato e valores numéricos finitos."""
+    normalized = {}
+    for club, value in scores.items():
+        if not isinstance(club, str) or not club.strip():
+            raise ValueError("Identificador de clube inválido")
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            raise ValueError("Pontuação deve ser numérica")
+        try:
+            numeric = float(value)
+        except (ValueError, OverflowError) as exc:
+            raise ValueError("Pontuação inválida") from exc
+        if not isfinite(numeric):
+            raise ValueError("Pontuação inválida")
+        normalized[club] = numeric
+    ordered = sorted(normalized.items(), key=lambda x: (-x[1], x[0]))
     ranks = {}
     for i, (club, score) in enumerate(ordered, 1):
         ranks[club] = i if i == 1 or score != ordered[i-2][1] else ranks[ordered[i-2][0]]
