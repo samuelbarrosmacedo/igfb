@@ -9,6 +9,8 @@ from urllib.parse import urlparse
 import httpx
 from bs4 import BeautifulSoup
 
+from .document_review import examine_document
+
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = ROOT / "config" / "seed_sources.json"
 EVENTS = ROOT / "state" / "events.jsonl"
@@ -73,6 +75,9 @@ def main():
                      "topic": source.get("topic", "unknown"),
                      "edition": source.get("edition"),
                      "at": now.isoformat(), "approved": False}
+            review = examine_document(page_text, url, source.get("topic", "unknown"))
+            if review is not None:
+                event["document_review"] = review
             collected += 1
         except (httpx.HTTPError, ValueError) as exc:
             event = {"url": url, "status": "retry",
