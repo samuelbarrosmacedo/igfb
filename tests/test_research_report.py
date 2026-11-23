@@ -1,5 +1,6 @@
 import unittest
 from igfb_agent.research_report import render_markdown
+from igfb_agent.research_backlog import research_backlog
 
 class ResearchReportTests(unittest.TestCase):
     def test_empty_backlog_reports_all_55_years(self):
@@ -13,7 +14,10 @@ class ResearchReportTests(unittest.TestCase):
         report = render_markdown()
         self.assertIn("Não é conclusão global", report)
         self.assertIn("archive_and_verify_source", report)
-        self.assertIn("36.36%", report)
+        current = research_backlog()
+        self.assertIn("{}/{} ({:.2f}%)".format(
+            current["seasons_with_leads"], current["total_seasons"],
+            current["lead_coverage_percent"]), report)
 
 if __name__ == "__main__":
     unittest.main()
