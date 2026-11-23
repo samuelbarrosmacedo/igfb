@@ -41,3 +41,16 @@ def review_queue(candidates=None):
         "status": "manual_review_required",
         "approved": False,
     } for year, clubs in sorted(grouped.items()))
+
+def main():
+    import json
+    queue = review_queue()
+    print(json.dumps({
+        "review_items": queue,
+        "review_count": len(queue),
+        "conflicting_editions": [item["year"] for item in queue if item["has_competing_claims"]],
+        "approved_results": 0,
+    }, ensure_ascii=False, indent=2))
+
+if __name__ == "__main__":
+    main()
