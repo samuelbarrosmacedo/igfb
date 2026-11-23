@@ -1,5 +1,7 @@
 import unittest
-from igfb_agent.research_report import render_markdown
+import csv
+import io
+from igfb_agent.research_report import render_markdown, render_csv
 from igfb_agent.research_backlog import research_backlog
 
 class ResearchReportTests(unittest.TestCase):
@@ -9,6 +11,19 @@ class ResearchReportTests(unittest.TestCase):
         self.assertIn("| 1971 | discover_official_source | 0 | 0 | 0 |", report)
         self.assertIn("| 2025 | discover_official_source | 0 | 0 | 0 |", report)
         self.assertEqual(sum(line.startswith("| 19") or line.startswith("| 20") for line in report.splitlines()), 55)
+
+    def test_csv_has_one_row_per_season_and_no_approvals(self):
+        rows = list(csv.DictReader(io.StringIO(render_csv([]))))
+        self.assertEqual(len(rows), 55)
+        self.assertEqual({int(row["year"]) for row in rows}, set(range(1971, 2026)))
+        self.assertTrue(all(row["approved"] == "false" for row in rows))
+        self.assertTrue(all(row["stage"] == "discover_official_source" for row in rows))
+
+    def test_csv_preserves_current_source_ids(self):
+        rows = list(csv.DictReader(io.StringIO(render_csv())))
+        self.assertEqual(len(rows), 55)
+        self.assertTrue(any(row["source_ids"] for row in rows))
+        self.assertTrue(all(row["approved"] == "false" for row in rows))
 
     def test_real_sources_do_not_imply_approval(self):
         report = render_markdown()
