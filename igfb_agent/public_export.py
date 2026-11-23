@@ -64,11 +64,18 @@ def build_public_data(*, candidates=None, status_path=None):
 def export_public_data(output_dir, *, candidates=None, status_path=None):
     destination = Path(output_dir)
     documents = build_public_data(candidates=candidates, status_path=status_path)
+    # Serialize before writing, and publish the checksum manifest last.
+    payloads = {name: (json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True) + "\\n").encode("utf-8")
+                for name, data in documents.items()}
+    manifest = documents["manifest.json"]
+    manifest["sha256"] = {name: sha256(blob).hexdigest()
+                          for name, blob in payloads.items() if name != "manifest.json"}
+    payloads["manifest.json"] = (json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\\n").encode("utf-8")
     destination.mkdir(parents=True, exist_ok=True)
-    for filename, payload in documents.items():
+    for filename in (*manifest["files"], "manifest.json"):
         target = destination / filename
         temporary = destination / (filename + ".tmp")
-        temporary.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        temporary.write_bytes(payloads[filename])
         temporary.replace(target)
     return tuple(documents)
 
