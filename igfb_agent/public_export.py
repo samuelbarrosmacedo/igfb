@@ -2,6 +2,7 @@
 import argparse
 import json
 from pathlib import Path
+from hashlib import sha256
 from .project_audit import audit_project
 from .source_readiness import source_readiness
 from .review_queue import review_queue
