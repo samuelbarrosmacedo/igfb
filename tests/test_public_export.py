@@ -1,4 +1,5 @@
 import json
+from hashlib import sha256
 import tempfile
 import unittest
 from pathlib import Path
@@ -33,6 +34,9 @@ class PublicExportTests(unittest.TestCase):
         self.assertEqual(len(exported), 6)
         manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
         self.assertEqual(set(manifest["files"]), set(exported) - {"manifest.json"})
+        for filename, expected in manifest["sha256"].items():
+            self.assertEqual(sha256((folder / filename).read_bytes()).hexdigest(), expected)
+        self.assertEqual(set(manifest["sha256"]), set(manifest["files"]))
         for filename in exported:
             self.assertEqual(json.loads((folder / filename).read_text(encoding="utf-8"))["schema_version"], 1)
 
