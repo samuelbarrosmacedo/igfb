@@ -77,6 +77,18 @@ A implementação em [`igfb_agent/scoring.py`](igfb_agent/scoring.py) calcula pe
 
 Esses componentes **não formam ainda o índice definitivo**. Falta definir o universo de comparação, tratar assimetrias históricas, calibrar coeficientes e testar robustez, incerteza e sensibilidade dos pesos. Não há pontuação de clubes homologada nesta fase. Os testes estão em [`tests/test_scoring.py`](tests/test_scoring.py).
 
+### Auditoria de conflitos e sensibilidade
+
+O módulo [`igfb_agent/audit.py`](igfb_agent/audit.py) verifica resultados incompatíveis dentro de uma edição e sinaliza múltiplos campeões da mesma competição. Ele **não resolve automaticamente disputas históricas**; essas ocorrências exigem análise documental e convenções explícitas. A detecção é conservadora: não substitui regras específicas de formatos excepcionais.
+
+O mesmo módulo calcula um **envelope de sensibilidade** para conjuntos explícitos de pesos:
+
+```math
+S_c^{\min}=\min_{\theta\in\Theta}S_c(\theta),\qquad S_c^{\max}=\max_{\theta\in\Theta}S_c(\theta)
+```
+
+O envelope mostra a variação do resultado sob cenários metodológicos e **não é intervalo de confiança estatístico**. Testes específicos ficam em [`tests/test_audit.py`](tests/test_audit.py). Nenhum ranking foi gerado com dados fictícios.
+
 ## Pipeline de dados
 
 ```mermaid
