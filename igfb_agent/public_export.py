@@ -9,6 +9,7 @@ from .review_queue import review_queue
 from .candidates import build_candidates
 from .scoring import WEIGHTS
 from .research_backlog import research_backlog
+from .evidence_reconciliation import reconcile_evidence
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_VERSION = 1
@@ -16,6 +17,8 @@ PUBLIC_FILES = ("project-status.json", "coverage.json", "methodology.json", "rev
 
 def build_public_data(*, candidates=None, status_path=None):
     records = tuple(build_candidates() if candidates is None else candidates)
+    evidence = reconcile_evidence(candidates=records)
+    records = tuple(evidence["candidates"])
     audit = audit_project(status_path=status_path, candidates=records)
     readiness = source_readiness(records)
     queue = review_queue(records)
@@ -45,6 +48,8 @@ def build_public_data(*, candidates=None, status_path=None):
             "checked_source_pages": readiness["checked_source_pages"],
             "source_ids_without_archived_bytes": readiness["source_ids_without_archived_bytes"],
             "approved_results": 0,
+            "verified_archives": evidence["verified_archives"],
+            "archived_candidate_count": evidence["archived_candidate_count"],
         },
         "methodology.json": {
             "schema_version": SCHEMA_VERSION,
