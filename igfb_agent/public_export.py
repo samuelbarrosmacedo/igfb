@@ -90,6 +90,8 @@ def verify_public_data(directory):
     hashes = manifest.get("sha256")
     if manifest.get("schema_version") != SCHEMA_VERSION or not isinstance(files, list) or not isinstance(hashes, dict):
         raise ValueError("Manifesto público inválido")
+    if any(not isinstance(name, str) for name in files):
+        raise ValueError("Nome de dataset inválido")
     if len(files) != len(set(files)) or set(files) != set(hashes):
         raise ValueError("Arquivos e hashes inconsistentes")
     for name in files:
