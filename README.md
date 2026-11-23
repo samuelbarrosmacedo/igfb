@@ -150,6 +150,12 @@ python -m igfb_agent.review_queue
 
 O comando produz JSON reproduzível, incluindo edições com afirmações concorrentes. Testes de triagem: [`tests/test_review_queue.py`](tests/test_review_queue.py). A CI também executa esse comando em commits.
 
+### Homologação explícita e revogável
+
+A trilha [`decisions.py`](igfb_agent/decisions.py) exige decisões com revisor, justificativa, data com fuso, referência à edição e evidência cadastrada. Permite revogar uma aprovação sem apagar o histórico. Somente `materialize_approved` transforma decisões ativas e consistentes em resultados aprovados. **Não há decisões reais registradas neste estágio.**
+
+Consulte o [protocolo de homologação](docs/DECISOES_HOMOLOGACAO.md) e os [testes sintéticos](tests/test_decisions.py). O mecanismo ainda não verifica assinatura de revisor nem recalcula o hash dos documentos originais.
+
 ## Pipeline de dados
 
 ```mermaid
