@@ -58,6 +58,20 @@ class RegistryRobustnessTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_catalog([ED], [Evidence("doc", "https://example.org", "xyz", "official")])
 
+    def test_malformed_evidence_fields(self):
+        malformed = [
+            Evidence(None, "https://example.org", HASH, "official"),
+            Evidence("doc", None, HASH, "official"),
+            Evidence("doc", "https://example.org", None, "official"),
+        ]
+        for item in malformed:
+            with self.subTest(item=item), self.assertRaises(ValueError):
+                validate_catalog([ED], [item])
+
+    def test_malformed_state_jurisdiction(self):
+        with self.assertRaises(ValueError):
+            validate_catalog([Edition("state:2000", "estadual", 2000, "Fed", None)], [E])
+
     def test_tie_ranks(self):
         self.assertEqual(rank_scores({"A":10,"B":10,"C":5}), {"A":1,"B":1,"C":3})
 
