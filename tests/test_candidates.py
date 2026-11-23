@@ -47,6 +47,15 @@ class CandidatesTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_leads(payload)
 
+    def test_boolean_year_rejected(self):
+        with self.assertRaises(ValueError):
+            validate_leads(lead([True]))
+
+    def test_unverified_flag(self):
+        record = validate_leads(lead([1971]))[0]
+        self.assertEqual(record["claim_verification"], "unverified")
+        self.assertIs(record["source_archived"], False)
+
     def test_valid_1971(self):
         records = validate_leads(lead([1971]))
         self.assertEqual(records[0]["edition_id"], "brasileirao:1971")
