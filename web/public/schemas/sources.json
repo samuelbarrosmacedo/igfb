@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "number",
+      "const": 2
+    },
+    "status": {
+      "type": "string",
+      "const": "source_leads_not_homologated"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https:\\/\\/"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "checked_on": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "page_checked_not_archived",
+              "unverified_lead"
+            ]
+          },
+          "archived_sha256": {
+            "type": "null"
+          },
+          "approved": {
+            "type": "boolean",
+            "const": false
+          },
+          "club_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "years": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1971,
+              "maximum": 2025
+            }
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "publisher",
+          "note",
+          "checked_on",
+          "state",
+          "archived_sha256",
+          "approved",
+          "club_ids",
+          "years"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "sources"
+  ],
+  "additionalProperties": false
+}

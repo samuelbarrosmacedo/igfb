@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "number",
+      "const": 2
+    },
+    "status": {
+      "type": "string",
+      "const": "calendar_with_research_states"
+    },
+    "competition": {
+      "type": "string",
+      "const": "brasileirao"
+    },
+    "editions": {
+      "minItems": 55,
+      "maxItems": 55,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "year": {
+            "type": "integer",
+            "minimum": 1971,
+            "maximum": 2025
+          },
+          "competition": {
+            "type": "string",
+            "const": "brasileirao"
+          },
+          "evidence_state": {
+            "type": "string",
+            "enum": [
+              "lead_found",
+              "no_lead"
+            ]
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "has_competing_claims": {
+            "type": "boolean"
+          },
+          "approved_results": {
+            "type": "number",
+            "const": 0
+          },
+          "champion": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "id",
+          "year",
+          "competition",
+          "evidence_state",
+          "source_ids",
+          "has_competing_claims",
+          "approved_results",
+          "champion"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "competition",
+    "editions"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "number",
+      "const": 2
+    },
+    "stage": {
+      "type": "string",
+      "const": "research_in_progress"
+    },
+    "progress": {
+      "type": "object",
+      "properties": {
+        "percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "audited": {
+          "type": "boolean",
+          "const": false
+        },
+        "usable_as_completion_metric": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "required": [
+        "percent",
+        "audited",
+        "usable_as_completion_metric"
+      ],
+      "additionalProperties": false
+    },
+    "approved_results": {
+      "type": "number",
+      "const": 0
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "first_year": {
+          "type": "number",
+          "const": 1971
+        },
+        "last_year": {
+          "type": "number",
+          "const": 2025
+        },
+        "seasons": {
+          "type": "number",
+          "const": 55
+        },
+        "excluded_pre_1971": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "required": [
+        "first_year",
+        "last_year",
+        "seasons",
+        "excluded_pre_1971"
+      ],
+      "additionalProperties": false
+    },
+    "audit_status": {
+      "type": "string"
+    },
+    "last_collection_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ranking_publication": {
+      "type": "string",
+      "const": "blocked"
+    },
+    "publication_reason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "stage",
+    "progress",
+    "approved_results",
+    "scope",
+    "audit_status",
+    "last_collection_at",
+    "ranking_publication",
+    "publication_reason"
+  ],
+  "additionalProperties": false
+}

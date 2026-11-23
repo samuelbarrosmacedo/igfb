@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "number",
+      "const": 2
+    },
+    "dataset_status": {
+      "type": "string",
+      "const": "research_in_progress"
+    },
+    "approved_results": {
+      "type": "number",
+      "const": 0
+    },
+    "source_commit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+    },
+    "data_published_at": {
+      "type": "null"
+    },
+    "dataset_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "first_year": {
+          "type": "number",
+          "const": 1971
+        },
+        "last_year": {
+          "type": "number",
+          "const": 2025
+        },
+        "seasons": {
+          "type": "number",
+          "const": 55
+        },
+        "excluded_pre_1971": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "required": [
+        "first_year",
+        "last_year",
+        "seasons",
+        "excluded_pre_1971"
+      ],
+      "additionalProperties": false
+    },
+    "audit_status": {
+      "type": "string",
+      "const": "research_state_checked_results_not_homologated"
+    },
+    "files": {
+      "minItems": 8,
+      "maxItems": 8,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "project-status.json",
+          "coverage.json",
+          "methodology.json",
+          "review-queue.json",
+          "ranking.json",
+          "clubs.json",
+          "editions.json",
+          "sources.json"
+        ]
+      }
+    },
+    "datasets": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "enum": [
+          "project-status.json",
+          "coverage.json",
+          "methodology.json",
+          "review-queue.json",
+          "ranking.json",
+          "clubs.json",
+          "editions.json",
+          "sources.json"
+        ]
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^snapshots\\/[a-f0-9]{64}\\/[a-z-]+\\.json$"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "availability": {
+            "type": "string",
+            "enum": [
+              "available",
+              "withheld"
+            ]
+          }
+        },
+        "required": [
+          "path",
+          "sha256",
+          "availability"
+        ],
+        "additionalProperties": false
+      },
+      "required": [
+        "project-status.json",
+        "coverage.json",
+        "methodology.json",
+        "review-queue.json",
+        "ranking.json",
+        "clubs.json",
+        "editions.json",
+        "sources.json"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_status",
+    "approved_results",
+    "source_commit",
+    "generated_at",
+    "data_published_at",
+    "dataset_id",
+    "scope",
+    "audit_status",
+    "files",
+    "datasets"
+  ],
+  "additionalProperties": false
+}

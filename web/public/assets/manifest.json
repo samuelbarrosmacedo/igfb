@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {"path":"pitch.svg", "origin":"Arte vetorial original criada para o projeto IGFB nesta implementação", "author":"Projeto IGFB / implementação assistida", "license":"Licenciamento do projeto ainda não definido; sem assets de terceiros", "attribution_required":false},
+    {"path":"mark.svg", "origin":"Marca geométrica original do frontend IGFB", "author":"Projeto IGFB / implementação assistida", "license":"Licenciamento do projeto ainda não definido", "attribution_required":false},
+    {"path":"social.svg", "origin":"Composição tipográfica original IGFB", "author":"Projeto IGFB / implementação assistida", "license":"Licenciamento do projeto ainda não definido", "attribution_required":false}
+  ],
+  "fonts": [
+    {"family":"Barlow Condensed", "author":"Jeremy Tribby", "source":"https://fontsource.org/fonts/barlow-condensed/about", "license":"OFL-1.1", "license_file":"licenses/barlow-condensed.txt"},
+    {"family":"Montserrat", "author":"Julieta Ulanovsky and contributors", "source":"https://fontsource.org/fonts/montserrat/about", "license":"OFL-1.1", "license_file":"licenses/montserrat.txt"},
+    {"family":"JetBrains Mono", "author":"JetBrains, Philipp Nurullin, Konstantin Bulenkov", "source":"https://fontsource.org/fonts/jetbrains-mono/about", "license":"OFL-1.1", "license_file":"licenses/jetbrains-mono.txt"}
+  ],
+  "club_crests": {"included":false, "reason":"Nenhum escudo com autorização específica comprovada nesta entrega. Usado fallback tipográfico.", "reviewed_sources":["https://github.com/sportsdataverse/sdvplot", "https://github.com/JoseArroyave/football-logos", "https://www.footylogos.com/logo-usage-right"], "finding":"Licença do código de um repositório não comprova direitos de redistribuição de cada marca."}
+}

@@ -1,0 +1,115 @@
+name: IGFB - site, contrato e publicação
+on:
+  pull_request:
+    paths:
+      [
+        "web/**",
+        "igfb_agent/**",
+        "config/**",
+        "state/**",
+        "docs/**",
+        "tests/**",
+        ".github/workflows/**",
+      ]
+  push:
+    branches: [main]
+    paths:
+      [
+        "web/**",
+        "igfb_agent/**",
+        "config/**",
+        "state/**",
+        "docs/**",
+        "tests/**",
+        ".github/workflows/**",
+      ]
+  workflow_dispatch:
+  # Commits feitos por GITHUB_TOKEN não disparam outro workflow por push.
+  workflow_run:
+    workflows: ["IGFB - coleta experimental"]
+    types: [completed]
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: igfb-web-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  validate-build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_run' && 'main' || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+          cache-dependency-path: web/package-lock.json
+      - name: Validar núcleo e auditoria documental
+        run: |
+          python -m compileall -q igfb_agent tests
+          python -m unittest discover -s tests -v
+          python -m igfb_agent.project_audit
+          python -m igfb_agent.source_readiness
+          python -m igfb_agent.review_queue
+      - name: Exportar snapshot público
+        run: python -m igfb_agent.public_export --output web/public/data
+      - name: Instalar frontend
+        working-directory: web
+        run: npm ci
+      - name: Conferir schemas, contrato e testes
+        working-directory: web
+        run: |
+          npm run schemas
+          git diff --exit-code -- public/schemas
+          npm run data:validate
+          npm test
+          npm run build
+      - name: Navegadores de teste
+        working-directory: web
+        run: npx playwright install --with-deps chromium
+      - name: Validar interface desktop e mobile
+        working-directory: web
+        run: npm run test:e2e
+      - name: Guardar relatório de testes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: igfb-web-test-results
+          path: web/test-results/
+          retention-days: 14
+      - name: Guardar produção compilada
+        uses: actions/upload-artifact@v4
+        with:
+          name: igfb-web-dist
+          path: web/dist/
+          retention-days: 30
+      - name: Preparar artefato de Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+  deploy:
+    # OFF por padrão. Só habilitar após autorização expressa do proprietário.
+    if: >-
+      vars.IGFB_PAGES_ENABLED == 'true' &&
+      github.event_name != 'pull_request' &&
+      (github.ref == 'refs/heads/main' || github.event_name == 'workflow_run')
+    needs: validate-build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar snapshot validado
+        id: deployment
+        uses: actions/deploy-pages@v4
