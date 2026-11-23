@@ -104,6 +104,12 @@ O módulo [`robustness.py`](igfb_agent/robustness.py) calcula ranking com empate
 
 O [protocolo de auditoria](docs/PROTOCOLO_AUDITORIA.md) estabelece estados de evidência, chaves canônicas, invariantes históricas e requisitos para publicar classificações. Os novos testes estão em [`tests/test_registry_robustness.py`](tests/test_registry_robustness.py).
 
+### Medição objetiva de cobertura
+
+O módulo [`coverage.py`](igfb_agent/coverage.py) mede quantas edições **cadastradas** possuem registros e quantas possuem ao menos um resultado aprovado, separando registros pendentes de aprovados. Seu denominador é o catálogo disponível, **não todas as edições históricas existentes**. Portanto, essa taxa não deve ser apresentada como progresso global do IGFB.
+
+Testes de cobertura e integridade: [`tests/test_coverage.py`](tests/test_coverage.py). A estimativa antiga de 38% continua não auditada.
+
 ## Pipeline de dados
 
 ```mermaid
