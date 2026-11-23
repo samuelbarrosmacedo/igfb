@@ -60,7 +60,7 @@ def weighted_totals(results, weights=None):
     for r in records:
         if not r.approved:
             raise ValueError("Evidência não aprovada")
-        key = (r.club.strip(), r.edition_id or f"{r.competition}:{r.year}", r.outcome)
+        key = (r.club.strip(), r.competition, r.year, r.edition_id or f"{r.competition}:{r.year}", r.outcome)
         if key in seen:
             continue
         seen.add(key)
