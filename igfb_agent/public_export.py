@@ -31,6 +31,7 @@ def build_public_data(*, candidates=None, status_path=None):
             "schema_version": SCHEMA_VERSION,
             "stage": "prototype",
             "progress": audit["legacy_progress"],
+            "measured_progress": audit["measured_progress"],
             "approved_results": 0,
             "scope": audit["scope"],
         },
