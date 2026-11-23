@@ -24,3 +24,4 @@ jobs:
           python -m igfb_agent.candidates
           python -m igfb_agent.review_queue
           python -m igfb_agent.source_readiness
+          python -m igfb_agent.project_audit
