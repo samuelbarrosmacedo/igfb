@@ -16,10 +16,12 @@ def validate_leads(payload):
     for source in payload.get("sources", []):
         sid = source.get("source_id")
         url = source.get("url", "")
+        if not isinstance(url, str):
+            raise ValueError('URL inválida')
         parsed = urlparse(url)
         if not isinstance(sid, str) or not sid.strip() or sid in seen:
             raise ValueError("Identificador de fonte inválido ou duplicado")
-        if parsed.scheme != "https" or not parsed.hostname:
+        if parsed.scheme != "https" or parsed.hostname not in {"cbf.com.br", "www.cbf.com.br"} or parsed.username or parsed.password:
             raise ValueError("Fonte deve usar HTTPS")
         if source.get("publisher") != "CBF" or source.get("source_type") != "official":
             raise ValueError("Tipo de fonte inesperado")
@@ -29,6 +31,8 @@ def validate_leads(payload):
         years = source.get("claim_years")
         if not isinstance(years, list) or not years:
             raise ValueError("Anos de referência ausentes")
+        if len(years) != len(set(years)):
+            raise ValueError('Ano duplicado')
         seen.add(sid)
         for year in years:
             if type(year) is not int or year in EXCLUDED or not FIRST <= year <= LAST:
