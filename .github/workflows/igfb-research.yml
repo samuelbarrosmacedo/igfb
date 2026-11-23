@@ -23,6 +23,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Verificar sintaxe
         run: python -m compileall -q igfb_agent
+      - name: Testar invariantes históricos
+        run: python -m unittest discover -s tests -v
       - name: Coletar fontes pendentes
         env:
           IGFB_FETCH_LIMIT: '2'
