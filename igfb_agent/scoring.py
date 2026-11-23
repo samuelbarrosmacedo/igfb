@@ -44,17 +44,20 @@ def validate_result(r):
         raise ValueError("Identificador de edição inválido")
 
 def score_results(results, *, require_approved=True):
-    seen, totals = set(), defaultdict(list)
-    for r in results:
+    """Pontuação experimental; para homologação use registry.score_verified."""
+    records = tuple(results)
+    for r in records:
         validate_result(r)
         if require_approved and not r.approved:
             raise ValueError("Evidência não aprovada")
-        identity = (r.club.strip(), r.competition, r.year, r.edition_id or f"{r.competition}:{r.year}", r.outcome)
-        if identity in seen:
-            continue
-        seen.add(identity)
-        totals[identity[0]].append(WEIGHTS[r.competition][r.outcome])
-    return {club:fsum(values) for club,values in sorted(totals.items())}
+    if require_approved:
+        from .audit import weighted_totals
+        return weighted_totals(records)
+    # Simulações com registros pendentes: não confundir com homologação.
+    from dataclasses import replace
+    from .audit import weighted_totals
+    return weighted_totals((replace(r, approved=True) for r in records))
+
 
 def temporal_consistency(annual_nonnegative_scores):
     values = tuple(float(x) for x in annual_nonnegative_scores)
