@@ -67,6 +67,16 @@ Pesos **experimentais**, sujeitos à calibração e à análise de sensibilidade
 
 A aplicação de pesos pressupõe registros verificados. **Uma página coletada não equivale a um resultado confirmado.**
 
+## Núcleo matemático (em desenvolvimento)
+
+A implementação em [`igfb_agent/scoring.py`](igfb_agent/scoring.py) calcula pesos experimentais exclusivamente sobre registros aprovados, elimina duplicações do mesmo resultado e disponibiliza três transformações estatísticas independentes:
+
+- **Consistência temporal (índice de Jain):** `C = (Σpₜ)² / (T·Σpₜ²)`, com pontuações anuais não negativas e anos sem resultado representados por zero.
+- **Padronização por temporada:** `Z = (p − μₜ) / σₜ`, com retorno zero para variância nula.
+- **Transformação logística estável:** `I(z) = 100 / (1 + exp(−z))`, para representar um índice calibrado entre 0 e 100.
+
+Esses componentes **não formam ainda o índice definitivo**. Falta definir o universo de comparação, tratar assimetrias históricas, calibrar coeficientes e testar robustez, incerteza e sensibilidade dos pesos. Não há pontuação de clubes homologada nesta fase. Os testes estão em [`tests/test_scoring.py`](tests/test_scoring.py).
+
 ## Pipeline de dados
 
 ```mermaid
@@ -81,7 +91,7 @@ flowchart LR
     E --> H
 ```
 
-O processamento é incremental e conserva registros entre execuções. Fontes já coletadas não são baixadas novamente sem necessidade; falhas entram em espera para nova tentativa. A coleta utiliza [HTTPX](https://www.python-httpx.org/) e [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/); o agendamento e o histórico ficam no [GitHub Actions](https://docs.github.com/actions) e no Git.
+A coleta experimental pode ser acionada manualmente; não há execução periódica ativa. O processamento conserva registros entre execuções. Fontes já coletadas não são baixadas novamente sem necessidade; falhas entram em espera para nova tentativa. A coleta utiliza [HTTPX](https://www.python-httpx.org/) e [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/); o agendamento e o histórico ficam no [GitHub Actions](https://docs.github.com/actions) e no Git.
 
 > [!NOTE]
 > A implementação atual cobre a **etapa inicial de coleta e rastreabilidade**. Conferência histórica abrangente, pontuação integral e publicação do ranking ainda dependem de desenvolvimento e auditoria.
@@ -96,7 +106,7 @@ O processamento é incremental e conserva registros entre execuções. Fontes j�
 | Calendário do Brasileiro 1971–2025 | Integrado à fila de coleta |
 | Revisão cruzada de resultados | Pendente |
 | Rebaixamentos e formatos especiais | Pendente |
-| Cálculo integral e testes históricos | Pendente |
+| Núcleo matemático e testes unitários | Implementação inicial; calibração e auditoria pendentes |
 | Visualização final | Pendente |
 
 Consulte [o estado do projeto](state/status.json), [o histórico de coleta](state/events.jsonl) e [as execuções](https://github.com/samuelbarrosmacedo/igfb/actions/workflows/igfb-research.yml).
@@ -122,7 +132,7 @@ python -m pip install -r requirements.txt
 python -m igfb_agent
 ```
 
-No Windows PowerShell, a ativação do ambiente é `.venv\Scripts\Activate.ps1`. O processamento agendado ocorre no GitHub Actions, sujeito à disponibilidade e aos limites do serviço.
+No Windows PowerShell, a ativação do ambiente é `.venv\Scripts\Activate.ps1`. A execução experimental é manual pelo GitHub Actions. A revisão matemática e documental ocorre por etapas, com mudanças versionadas.
 
 ## Política de evidências
 
