@@ -31,6 +31,8 @@ def validate_leads(payload):
         years = source.get("claim_years")
         if not isinstance(years, list) or not years:
             raise ValueError("Anos de referência ausentes")
+        if any(type(y) is not int for y in years):
+            raise ValueError("Ano inválido")
         if len(years) != len(set(years)):
             raise ValueError('Ano duplicado')
         seen.add(sid)
@@ -43,6 +45,8 @@ def validate_leads(payload):
                 "year": year,
                 "edition_id": f"brasileirao:{year}",
                 "outcome_claim": "champion",
+                "claim_verification": "unverified",
+                "source_archived": False,
                 "source_id": sid,
                 "source_url": url,
                 "status": "candidate_requires_review",
