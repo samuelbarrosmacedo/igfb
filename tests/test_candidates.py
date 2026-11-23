@@ -56,6 +56,32 @@ class CandidatesTests(unittest.TestCase):
         self.assertEqual(record["claim_verification"], "unverified")
         self.assertIs(record["source_archived"], False)
 
+    def test_malformed_ipv6_url_rejected(self):
+        payload = lead([1971])
+        payload["sources"][0]["url"] = "https://[invalid/record"
+        with self.assertRaises(ValueError):
+            validate_leads(payload)
+
+    def test_nonstandard_port_rejected(self):
+        payload = lead([1971])
+        payload["sources"][0]["url"] = "https://www.cbf.com.br:444/record"
+        with self.assertRaises(ValueError):
+            validate_leads(payload)
+
+    def test_checked_page_does_not_approve_claim(self):
+        payload = lead([1971])
+        payload["sources"][0]["source_check_status"] = "page_content_checked_not_archived"
+        candidate = validate_leads(payload)[0]
+        self.assertTrue(candidate["source_page_checked"])
+        self.assertFalse(candidate["source_archived"])
+        self.assertEqual(candidate["claim_verification"], "unverified")
+
+    def test_invalid_source_status(self):
+        payload = lead([1971])
+        payload["sources"][0]["source_check_status"] = "homologated"
+        with self.assertRaises(ValueError):
+            validate_leads(payload)
+
     def test_valid_1971(self):
         records = validate_leads(lead([1971]))
         self.assertEqual(records[0]["edition_id"], "brasileirao:1971")
