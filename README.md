@@ -77,6 +77,10 @@ A implementação em [`igfb_agent/scoring.py`](igfb_agent/scoring.py) calcula pe
 
 Esses componentes **não formam ainda o índice definitivo**. Falta definir o universo de comparação, tratar assimetrias históricas, calibrar coeficientes e testar robustez, incerteza e sensibilidade dos pesos. Não há pontuação de clubes homologada nesta fase. Os testes estão em [`tests/test_scoring.py`](tests/test_scoring.py).
 
+### Identidade das edições
+
+Os registros de pontuação aceitam um identificador opcional `edition_id` para distinguir torneios diferentes realizados no mesmo ano. Registros legados continuam válidos com a identidade provisória `competição:ano`. **Para homologação histórica, edições potencialmente ambíguas exigem identificação explícita** (por exemplo, competição, federação e temporada). O identificador não é evidência documental por si só; deve ser vinculado às fontes de cada resultado.
+
 ### Auditoria de conflitos e sensibilidade
 
 O módulo [`igfb_agent/audit.py`](igfb_agent/audit.py) verifica resultados incompatíveis dentro de uma edição e sinaliza múltiplos campeões da mesma competição. Ele **não resolve automaticamente disputas históricas**; essas ocorrências exigem análise documental e convenções explícitas. A detecção é conservadora: não substitui regras específicas de formatos excepcionais.
