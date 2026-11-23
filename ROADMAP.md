@@ -1,6 +1,6 @@
 # ROADMAP — IGFB
 
-Atualizado em 2026-11-23. Fonte de verdade: código, configuração e evidências versionadas neste repositório. **Não confundir cobertura documental com conclusão do projeto.**
+Atualizado em 2026-11-23 (continuidade: relatório operacional de pesquisa). Fonte de verdade: código, configuração e evidências versionadas neste repositório. **Não confundir cobertura documental com conclusão do projeto.**
 
 ## Painel de métricas
 
@@ -36,10 +36,16 @@ Uma tarefa só é marcada concluída quando o artefato correspondente existe e f
 
 **Contagem de metas integralmente concluídas e validadas: 0/10.** Isso não significa que o trabalho executado seja zero: três metas estão implementadas, mas dependem de confirmação da CI. O percentual `0/10` é apenas um controle de aceite estrito e **não** é o percentual global do IGFB.
 
+## Entrega incremental recente
+
+- Adicionado `igfb_agent/research_report.py`: transforma a fila de 55 temporadas em relatório Markdown ordenado por prioridade, sem inventar fontes nem aprovações.
+- Adicionados testes de formato e recorte; CI configurada para gerar `/tmp/igfb-research-plan.md`.
+- Pesquisa externa nesta etapa não encontrou evidência institucional nova suficientemente identificada para cadastro. **Cobertura permanece 20/55 (36,36%)**; nenhuma meta recebeu aceite sem testes executados.
+
 ## Próxima fila de execução
 
 1. **P0 — Confirmar CI:** executar `python -m unittest discover -s tests -v`, `python -m igfb_agent.public_export --output /tmp/igfb-public-data` e `verify_public_data`; corrigir qualquer falha antes de declarar verde.
-2. **P0 — Pesquisa histórica:** usar `python -m igfb_agent.research_backlog` para priorizar as 35 temporadas sem pistas. Adicionar somente fontes efetivamente identificadas; nunca inventar URLs ou campeões.
+2. **P0 — Pesquisa histórica:** usar `python -m igfb_agent.research_report --output /tmp/igfb-research-plan.md` para priorizar as 35 temporadas sem pistas. Adicionar somente fontes efetivamente identificadas; nunca inventar URLs ou campeões.
 3. **P0 — Arquivamento:** guardar bytes da evidência, SHA-256, data, URL e vínculo com a edição, antes de homologar.
 4. **P1 — Experiência pública:** iniciar frontend de pesquisa/metodologia com indicação explícita de ranking indisponível.
 5. **P1 — Metodologia:** definir denominadores, pesos e critérios de aceite do progresso global, sem misturar métricas incomparáveis.
