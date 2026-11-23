@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "scope": "Campeonato Brasileiro de 1971 a 2025, excluídos 1937, Taça Brasil e Robertão",
+  "status": "source_leads_not_homologated",
+  "sources": [
+    {
+      "source_id": "cbf-atletico-2021",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/a/campeonato-brasileiro-serie-a/atletico-mg-conquista-o-brasileirao-assai-2021",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1971,
+        2021
+      ],
+      "claim_club": "atletico_mg",
+      "note": "Notícia de 2021 menciona bicampeonato em 1971 e 2021."
+    },
+    {
+      "source_id": "cbf-palmeiras-110",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/detalhes/competicoes-campeonato-brasileiro-serie-a/palmeiras-celebra-110-anos-de-muita-tradicao-e-glorias",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1972,
+        1973,
+        1993,
+        1994,
+        2016,
+        2018
+      ],
+      "claim_club": "palmeiras",
+      "note": "Contém também títulos pré-1971, que ficam explicitamente fora do IGFB."
+    },
+    {
+      "source_id": "cbf-inter-gaucho",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/dupla-gre-nal-detem-recordes-de-titulos",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1975,
+        1976
+      ],
+      "claim_club": "internacional",
+      "note": "Notícia sobre estadual também menciona bicampeonato brasileiro."
+    },
+    {
+      "source_id": "cbf-gremio-121",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/detalhes/competicoes-campeonato-brasileiro-serie-a/gremio-completa-121-anos-de-fundacao",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1981,
+        1996
+      ],
+      "claim_club": "gremio",
+      "note": "CBF lista títulos brasileiros de 1981 e 1996."
+    },
+    {
+      "source_id": "cbf-1987-resolution-2011",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/cbf-reconhece-titulo-do-fla",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1987
+      ],
+      "claim_club": "flamengo",
+      "note": "Fonte histórica de 2011; não representa necessariamente posição jurídica atual. Convenção IGFB preservada; exige análise de documentos posteriores."
+    }
+  ]
+}
