@@ -33,6 +33,8 @@ def validate_catalog(editions, evidence):
             raise ValueError("Organizador obrigatório")
         if e.competition == "estadual" and not e.jurisdiction.strip():
             raise ValueError("Estadual exige federação ou jurisdição")
+        if e.single_champion is not True:
+            raise ValueError("Edições com campeões compartilhados exigem regra específica")
         if e.edition_id in editions_by_id:
             raise ValueError("Edição duplicada")
         editions_by_id[e.edition_id] = e
