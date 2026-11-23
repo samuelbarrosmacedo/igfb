@@ -32,7 +32,7 @@ class Result:
     edition_id: str = ""
 
 def validate_result(r):
-    if not r.club.strip() or not r.evidence_id.strip():
+    if not isinstance(r.club, str) or not isinstance(r.evidence_id, str) or not r.club.strip() or not r.evidence_id.strip():
         raise ValueError("Clube e evidência obrigatórios")
     if type(r.year) is not int or not BASELINE_YEAR <= r.year <= THROUGH_YEAR:
         raise ValueError("Ano fora do recorte")
@@ -49,7 +49,7 @@ def score_results(results, *, require_approved=True):
         validate_result(r)
         if require_approved and not r.approved:
             raise ValueError("Evidência não aprovada")
-        identity = (r.club.strip(), r.edition_id or f"{r.competition}:{r.year}", r.outcome)
+        identity = (r.club.strip(), r.competition, r.year, r.edition_id or f"{r.competition}:{r.year}", r.outcome)
         if identity in seen:
             continue
         seen.add(identity)
