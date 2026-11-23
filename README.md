@@ -122,6 +122,18 @@ python -m igfb_agent.baseline_report
 
 Esse relatório registra 55 edições cadastradas e zero resultados aprovados, sem converter essa contagem em porcentagem de conclusão do projeto. Os testes de regressão ficam em [`tests/test_calendar.py`](tests/test_calendar.py).
 
+### Primeiras pistas históricas documentadas
+
+O arquivo [`historical_source_leads.json`](config/historical_source_leads.json) registra referências institucionais da CBF para resultados de 1971, 1972, 1973, 1975, 1976, 1981, 1987, 1993, 1994, 1996, 2016, 2018 e 2021. **São afirmações de fontes, não registros homologados**, e 1987 requer atenção especial à evolução institucional e jurídica da controvérsia.
+
+A rotina [`candidates.py`](igfb_agent/candidates.py) gera candidatos explícitos com `approved: false` e `candidate_requires_review`, sem pontuar clubes:
+
+```bash
+python -m igfb_agent.candidates
+```
+
+A conferência ainda deve examinar o documento original, verificar integridade/hash, identidade do clube e decisões de homologação. Os testes ficam em [`tests/test_candidates.py`](tests/test_candidates.py).
+
 ## Pipeline de dados
 
 ```mermaid
