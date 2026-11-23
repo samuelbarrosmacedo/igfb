@@ -37,6 +37,21 @@ class AuditTests(unittest.TestCase):
         records = iter([result("A", "champion")])
         self.assertEqual(sensitivity_envelope(records, [WEIGHTS, scenario])["A"], {"min":450.0,"max":500.0})
 
+    def test_distinct_editions_same_year(self):
+        a = Result("A", 2000, "estadual", "champion", "doc1", True, "estadual:rj:2000")
+        b = Result("A", 2000, "estadual", "champion", "doc2", True, "estadual:sp:2000")
+        self.assertEqual(weighted_totals([a, b]), {"A":50.0})
+
+    def test_same_edition_conflict(self):
+        a = Result("A", 2000, "libertadores", "champion", "doc1", True, "lib:2000")
+        b = Result("B", 2000, "libertadores", "champion", "doc2", True, "lib:2000")
+        self.assertEqual(detect_conflicts([a, b])[0].kind, "multiple_champions")
+
+    def test_distinct_editions_no_false_conflict(self):
+        a = Result("A", 2000, "libertadores", "champion", "doc1", True, "lib:2000:a")
+        b = Result("B", 2000, "libertadores", "champion", "doc2", True, "lib:2000:b")
+        self.assertEqual(detect_conflicts([a, b]), [])
+
     def test_empty_scenarios(self):
         with self.assertRaises(ValueError):
             sensitivity_envelope([],[])
