@@ -1,6 +1,6 @@
 # ROADMAP — IGFB
 
-Atualizado em 2026-11-23 (continuidade: reconciliação documental integrada à exportação pública). Fonte de verdade: código, configuração e evidências versionadas neste repositório. **Não confundir cobertura documental com conclusão do projeto.**
+Atualizado em 2026-11-23 (continuidade: validação rigorosa de procedência e artefatos de CI). Fonte de verdade: código, configuração e evidências versionadas neste repositório. **Não confundir cobertura documental com conclusão do projeto.**
 
 ## Painel de métricas
 
@@ -37,6 +37,13 @@ Uma tarefa só é marcada concluída quando o artefato correspondente existe e f
 **Contagem de metas integralmente concluídas e validadas: 0/10.** Isso não significa que o trabalho executado seja zero: três metas estão implementadas, mas dependem de confirmação da CI. O percentual `0/10` é apenas um controle de aceite estrito e **não** é o percentual global do IGFB.
 
 ## Entrega incremental recente
+
+- Inventário documental agora exige `source_id` não vazio e `retrieved_at` ISO 8601 com fuso; impede registrar documentos sem origem identificável ou data ambígua.
+- Testes atualizados com três cenários negativos: fonte ausente, data inválida e data sem fuso.
+- Workflow passa a publicar os relatórios Markdown, CSV e os JSON públicos verificados como artefato `igfb-audit-reports` por 14 dias **apenas após sucesso**.
+- **Validação pendente:** commits confirmados, mas sem execução de CI comprovada nesta etapa; não atribuir aceite às metas M01–M04.
+- Indicadores de conteúdo permanecem **20/55 (36,36%)**, 35 temporadas sem pistas, 0 arquivos reais e 0 homologações. O progresso global segue sem métrica auditada.
+
 
 - Implementada reconciliação `igfb_agent/evidence_reconciliation.py` entre documentos SHA-256 verificados e pistas por `source_id`, edição e URL. Documentos não correspondentes são rejeitados.
 - `public_export.py` passou a refletir a reconciliação em `coverage.json` e na fila pública de pesquisa, com `verified_archives` e `archived_candidate_count` separados de homologações.
