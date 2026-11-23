@@ -8,6 +8,8 @@ def source_readiness(candidates=None):
     years = {e.year for e in brasileirao_editions()}
     by_year = defaultdict(set)
     by_club = Counter()
+    checked_source_ids = set()
+    unarchived_source_ids = set()
     for item in records:
         if not isinstance(item, dict):
             raise ValueError("Candidato inválido")
@@ -22,6 +24,10 @@ def source_readiness(candidates=None):
             raise ValueError("Fonte inválida")
         if not isinstance(item.get("club_id"), str) or not item["club_id"].strip():
             raise ValueError("Clube inválido")
+        if item.get("source_page_checked") is True:
+            checked_source_ids.add(item["source_id"])
+        if item.get("source_archived") is not True:
+            unarchived_source_ids.add(item["source_id"])
         by_year[year].add(item["source_id"])
         by_club[item["club_id"]] += 1
     return {
@@ -31,6 +37,8 @@ def source_readiness(candidates=None):
         "years_without_leads": sorted(years-set(by_year)),
         "sources_per_year": {str(y):len(ids) for y,ids in sorted(by_year.items())},
         "candidate_counts_by_club": dict(sorted(by_club.items())),
+        "checked_source_pages": len(checked_source_ids),
+        "source_ids_without_archived_bytes": len(unarchived_source_ids),
         "approved_results": 0,
         "warning": "Contagem de pistas não mede cobertura histórica homologada.",
     }
