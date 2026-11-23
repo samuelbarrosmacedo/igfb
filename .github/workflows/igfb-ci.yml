@@ -26,6 +26,7 @@ jobs:
           python -m igfb_agent.source_readiness
           python -m igfb_agent.project_audit
           python -m igfb_agent.research_backlog
+          python -m igfb_agent.research_report --output /tmp/igfb-research-plan.md
       - name: Validar exportação pública do frontend
         run: |
           python -m igfb_agent.public_export --output /tmp/igfb-public-data
