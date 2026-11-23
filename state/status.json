@@ -3,5 +3,8 @@
   "progress_percent_estimate": 38,
   "progress_audited": false,
   "approved_records": 0,
-  "notes": "Estimativa histórica, não indicador automatizado."
+  "notes": "Estimativa histórica, não indicador automatizado.",
+  "last_run_utc": "2026-11-23T03:28:11.666796+00:00",
+  "last_batch_collected": 2,
+  "last_batch_attempted": 2
 }
