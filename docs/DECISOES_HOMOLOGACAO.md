@@ -13,3 +13,9 @@ Uma decisão `approved` só pode produzir um `Result(approved=True)` quando o ca
 **Limitação atual:** a implementação valida a estrutura e a integridade referencial das decisões, mas não comprova identidade real do revisor, autenticidade de documentos, independência das fontes nem assinatura criptográfica. A validação de hash contra bytes arquivados e a revisão humana continuam obrigatórias.
 
 Para executar os testes: `python -m unittest discover -s tests -v`. Os exemplos em `tests/test_decisions.py` são **sintéticos** e não constituem resultados históricos.
+
+## Verificação de integridade dos arquivos
+
+O módulo `igfb_agent.archive.verify_archive` compara o SHA-256 calculado dos bytes armazenados em `<archive_root>/<evidence_id>.bin` com o valor registrado no catálogo. O modo estrito falha diante de arquivos ausentes ou alterados; o modo `strict=False` retorna estados `verified`, `missing` ou `mismatch`. O módulo não baixa arquivos e não verifica a veracidade das afirmações esportivas.
+
+A integridade do arquivo é condição necessária, mas **não suficiente**, para homologação: o revisor precisa examinar a fonte, a data, o contexto e a edição. O sistema de decisões e a verificação do arquivo ainda são componentes separados; até serem integrados num fluxo único, a chamada de `materialize_approved` não confirma por si só que o arquivo foi verificado.
