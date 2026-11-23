@@ -1,6 +1,7 @@
 """Inventário verificável de evidências arquivadas, sem homologação automática."""
 import hashlib
 import json
+from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -27,6 +28,9 @@ def validate_evidence_inventory(payload, root):
             raise ValueError("Arquivo ausente ou fora do inventário")
         if not isinstance(digest, str) or len(digest) != 64 or any(c not in "0123456789abcdef" for c in digest):
             raise ValueError("SHA-256 inválido")
+        source_id = entry.get("source_id")
+        if not isinstance(source_id, str) or not source_id.strip():
+            raise ValueError("ID da fonte de origem ausente")
         url = entry.get("source_url")
         if not isinstance(url, str):
             raise ValueError("URL de origem inválida")
@@ -38,8 +42,15 @@ def validate_evidence_inventory(payload, root):
             raise ValueError("Ano fora do recorte")
         if entry.get("edition_id") != f"brasileirao:{year}":
             raise ValueError("Edição inválida")
-        if not isinstance(entry.get("retrieved_at"), str) or not entry["retrieved_at"].strip():
+        retrieved = entry.get("retrieved_at")
+        if not isinstance(retrieved, str):
             raise ValueError("Data de coleta ausente")
+        try:
+            collected_at = datetime.fromisoformat(retrieved.replace("Z", "+00:00"))
+        except ValueError as exc:
+            raise ValueError("Data de coleta inválida") from exc
+        if collected_at.tzinfo is None or collected_at.utcoffset() is None:
+            raise ValueError("Data de coleta precisa de fuso horário")
         if entry.get("approved") is not False:
             raise ValueError("Arquivamento não é homologação")
         actual = hashlib.sha256(target.read_bytes()).hexdigest()
