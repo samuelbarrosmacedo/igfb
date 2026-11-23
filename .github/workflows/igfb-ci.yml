@@ -22,3 +22,4 @@ jobs:
         run: |
           python -m igfb_agent.baseline_report
           python -m igfb_agent.candidates
+          python -m igfb_agent.review_queue
