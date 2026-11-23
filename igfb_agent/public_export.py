@@ -81,6 +81,30 @@ def export_public_data(output_dir, *, candidates=None, status_path=None):
         temporary.replace(target)
     return tuple(documents)
 
+def verify_public_data(directory):
+    """Verifica manifesto e bytes de todos os datasets, sem confiar nos nomes recebidos."""
+    folder = Path(directory)
+    manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
+    files = manifest.get("files")
+    hashes = manifest.get("sha256")
+    if manifest.get("schema_version") != SCHEMA_VERSION or not isinstance(files, list) or not isinstance(hashes, dict):
+        raise ValueError("Manifesto público inválido")
+    if len(files) != len(set(files)) or set(files) != set(hashes):
+        raise ValueError("Arquivos e hashes inconsistentes")
+    for name in files:
+        if not isinstance(name, str) or not name.endswith(".json") or Path(name).name != name or name == "manifest.json":
+            raise ValueError("Nome de dataset inválido")
+        expected = hashes[name]
+        if not isinstance(expected, str) or len(expected) != 64 or any(c not in "0123456789abcdef" for c in expected):
+            raise ValueError("Hash inválido")
+        actual = sha256((folder / name).read_bytes()).hexdigest()
+        if actual != expected:
+            raise ValueError("Integridade de dataset comprometida: " + name)
+    ranking = json.loads((folder / "ranking.json").read_text(encoding="utf-8"))
+    if ranking.get("ranking") != [] or ranking.get("approved_results") != 0:
+        raise ValueError("Ranking não homologado não pode ser publicado")
+    return True
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Exportar dados públicos do IGFB sem homologação automática")
     parser.add_argument("--output", default=str(ROOT / "web" / "public" / "data"))
