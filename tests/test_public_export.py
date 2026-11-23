@@ -3,7 +3,7 @@ from hashlib import sha256
 import tempfile
 import unittest
 from pathlib import Path
-from igfb_agent.public_export import build_public_data, export_public_data
+from igfb_agent.public_export import build_public_data, export_public_data, verify_public_data
 
 class PublicExportTests(unittest.TestCase):
     def setUp(self):
@@ -46,6 +46,30 @@ class PublicExportTests(unittest.TestCase):
         self.assertGreater(files["coverage.json"]["source_leads"], 0)
         self.assertGreater(files["coverage.json"]["lead_coverage_percent"], 0)
         self.assertEqual(files["ranking.json"]["ranking"], [])
+
+    def test_verified_export(self):
+        folder = self.root / "data"
+        export_public_data(folder, candidates=[], status_path=self.status)
+        self.assertTrue(verify_public_data(folder))
+
+    def test_tampered_dataset_is_rejected(self):
+        folder = self.root / "data"
+        export_public_data(folder, candidates=[], status_path=self.status)
+        target = folder / "coverage.json"
+        target.write_bytes(target.read_bytes() + b" ")
+        with self.assertRaises(ValueError):
+            verify_public_data(folder)
+
+    def test_manifest_path_traversal_is_rejected(self):
+        folder = self.root / "data"
+        export_public_data(folder, candidates=[], status_path=self.status)
+        manifest_path = folder / "manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["files"][0] = "../outside.json"
+        manifest["sha256"]["../outside.json"] = manifest["sha256"].pop("project-status.json")
+        manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+        with self.assertRaises(ValueError):
+            verify_public_data(folder)
 
     def test_invalid_audited_status_blocks_export(self):
         self.status.write_text(json.dumps({
