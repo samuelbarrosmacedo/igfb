@@ -20,11 +20,22 @@ O IGFB estuda a trajetória dos clubes brasileiros a partir de **conquistas, cam
 
 </div>
 
-## Dados públicos para o futuro site
+## Observatório web e dados públicos
 
-O exportador `python -m igfb_agent.public_export --output web/public/data` gera um contrato JSON estático com manifesto, estado do projeto, cobertura de pistas, pesos experimentais, fila de revisão e ranking indisponível. A exportação é **conservadora**: não transforma pistas em resultados homologados nem cria pontuações. `ranking.json` contém `ranking: []` enquanto não houver homologação e pipeline de aprovação devidamente integrado.
+O frontend em [`web/`](web/README.md) implementa a experiência editorial do IGFB,
+com home, clubes, comparação documental, laboratório sintético, linha do tempo,
+metodologia e central de pesquisa. O ranking histórico permanece bloqueado.
 
-O frontend poderá consumir esses arquivos locais em produção, sem chamadas da API do GitHub em cada visualização. A CI valida a geração em diretório temporário. A publicação automática e a futura exportação de registros aprovados exigem implementação e validação próprias.
+O exportador `python -m igfb_agent.public_export --output web/public/data` amplia
+o contrato existente para v2, com nove documentos JSON, commit de origem,
+snapshots e SHA-256. Não transforma pistas em resultados homologados nem cria
+pontuações reais. Dados ausentes são explícitos; a estimativa de 38% continua
+não auditada. O frontend não exige edição manual quando novas pistas entram.
+
+O workflow [`igfb-web.yml`](.github/workflows/igfb-web.yml) valida o contrato,
+testa e compila o site. **Publicação desligada por padrão**, condicionada a
+aprovação e à variável `IGFB_PAGES_ENABLED`. Ver [execução e publicação](web/README.md),
+[auditoria inicial](docs/WEB_AUDIT.md) e [validação](docs/WEB_VALIDATION.md).
 
 ## Visão geral
 
@@ -196,7 +207,7 @@ A coleta experimental pode ser acionada manualmente; não há execução periód
 | Revisão cruzada de resultados | Protocolo definido; dados ainda pendentes |
 | Rebaixamentos e formatos especiais | Pendente |
 | Núcleo matemático e testes unitários | Pontuação, catálogos e cenários implementados; calibração e auditoria pendentes |
-| Visualização final | Pendente |
+| Visualização web | Implementada; ranking histórico condicionado à homologação e autorização |
 
 Consulte [o estado do projeto](state/status.json), [o histórico de coleta](state/events.jsonl) e [as execuções](https://github.com/samuelbarrosmacedo/igfb/actions/workflows/igfb-research.yml).
 
