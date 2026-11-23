@@ -52,6 +52,20 @@ class AuditTests(unittest.TestCase):
         b = Result("B", 2000, "libertadores", "champion", "doc2", True, "lib:2000:b")
         self.assertEqual(detect_conflicts([a, b]), [])
 
+    def test_semifinal_is_not_added_to_title(self):
+        records = [result("A", "semifinal", "libertadores"),
+                   result("A", "champion", "libertadores")]
+        self.assertEqual(detect_conflicts(records), [])
+        self.assertEqual(weighted_totals(records), {"A":700.0})
+
+    def test_semifinal_is_not_added_to_runner_up(self):
+        records = [result("A", "runner_up", "libertadores"),
+                   result("A", "semifinal", "libertadores")]
+        self.assertEqual(weighted_totals(records), {"A":250.0})
+
+    def test_semifinal_alone_scores(self):
+        self.assertEqual(weighted_totals([result("A", "semifinal", "libertadores")]), {"A":90.0})
+
     def test_empty_scenarios(self):
         with self.assertRaises(ValueError):
             sensitivity_envelope([],[])
