@@ -1,7 +1,7 @@
 import copy
 import unittest
 from igfb_agent.scoring import Result, WEIGHTS
-from igfb_agent.registry import Edition, Evidence, validate_dataset, validate_catalog
+from igfb_agent.registry import Edition, Evidence, validate_dataset, validate_catalog, score_verified
 from igfb_agent.robustness import rank_scores, scenario_stability
 
 HASH = "a"*64
@@ -14,6 +14,13 @@ def r(club, outcome="champion", edition="br:2000", year=2000, approved=True):
 class RegistryRobustnessTests(unittest.TestCase):
     def test_valid_dataset(self):
         self.assertEqual(validate_dataset([r("A")], [ED], [E]), (r("A"),))
+
+    def test_verified_scoring(self):
+        self.assertEqual(score_verified([r("A")], [ED], [E]), {"A":450.0})
+
+    def test_verified_scoring_rejects_missing_evidence(self):
+        with self.assertRaises(ValueError):
+            score_verified([r("A")], [ED], [])
 
     def test_missing_edition(self):
         with self.assertRaises(ValueError):
