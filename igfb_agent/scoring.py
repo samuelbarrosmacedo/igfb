@@ -29,6 +29,7 @@ class Result:
     outcome: str
     evidence_id: str
     approved: bool = False
+    edition_id: str = ""
 
 def validate_result(r):
     if not r.club.strip() or not r.evidence_id.strip():
@@ -39,6 +40,8 @@ def validate_result(r):
         raise ValueError("Resultado desconhecido")
     if type(r.approved) is not bool:
         raise ValueError("Aprovação inválida")
+    if not isinstance(r.edition_id, str) or (r.edition_id and not r.edition_id.strip()):
+        raise ValueError("Identificador de edição inválido")
 
 def score_results(results, *, require_approved=True):
     seen, totals = set(), defaultdict(list)
@@ -46,7 +49,7 @@ def score_results(results, *, require_approved=True):
         validate_result(r)
         if require_approved and not r.approved:
             raise ValueError("Evidência não aprovada")
-        identity = (r.club.strip(), r.year, r.competition, r.outcome)
+        identity = (r.club.strip(), r.edition_id or f"{r.competition}:{r.year}", r.outcome)
         if identity in seen:
             continue
         seen.add(identity)
