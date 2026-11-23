@@ -1,0 +1,40 @@
+import unittest
+from igfb_agent.candidates import build_candidates, validate_leads
+
+def lead(years):
+    return {"schema_version": 1, "status": "source_leads_not_homologated",
+            "sources": [{"source_id": "source1", "url": "https://www.cbf.com.br/record",
+                         "publisher": "CBF", "source_type": "official",
+                         "claim_club": "clube", "claim_years": years}]}
+
+class CandidatesTests(unittest.TestCase):
+    def test_real_leads_are_unapproved(self):
+        records = build_candidates()
+        self.assertGreater(len(records), 0)
+        self.assertTrue(all(r["approved"] is False for r in records))
+        self.assertTrue(all(r["status"] == "candidate_requires_review" for r in records))
+
+    def test_no_earlier_seasons(self):
+        for year in (1937, 1959, 1967, 1970, 2026):
+            with self.subTest(year=year), self.assertRaises(ValueError):
+                validate_leads(lead([year]))
+
+    def test_duplicate_source(self):
+        payload = lead([1971])
+        payload["sources"].append(payload["sources"][0].copy())
+        with self.assertRaises(ValueError):
+            validate_leads(payload)
+
+    def test_invalid_scheme(self):
+        payload = lead([1971])
+        payload["sources"][0]["url"] = "http://www.cbf.com.br/record"
+        with self.assertRaises(ValueError):
+            validate_leads(payload)
+
+    def test_valid_1971(self):
+        records = validate_leads(lead([1971]))
+        self.assertEqual(records[0]["edition_id"], "brasileirao:1971")
+        self.assertFalse(records[0]["approved"])
+
+if __name__ == "__main__":
+    unittest.main()
