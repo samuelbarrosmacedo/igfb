@@ -20,6 +20,10 @@ O IGFB estuda a trajetória dos clubes brasileiros a partir de **conquistas, cam
 
 </div>
 
+## Indicadores recalculados
+
+O comando `python -m igfb_agent.project_audit` recalcula a **cobertura de pistas documentais por temporada**: número de temporadas com pelo menos uma pista dividido pelas 55 temporadas de 1971 a 2025. No conjunto de pistas registrado em 23/11/2026, são **20 de 55 temporadas (36,36%)**. Este número mede apenas a presença de pistas, não sua veracidade, documentação arquivada, homologação ou percentual de conclusão do IGFB. A estimativa histórica de 38% continua separada e não auditada. A exportação pública também recalcula a cobertura em `coverage.json`.
+
 ## Dados públicos para o futuro site
 
 O exportador `python -m igfb_agent.public_export --output web/public/data` gera um contrato JSON estático com manifesto, estado do projeto, cobertura de pistas, pesos experimentais, fila de revisão e ranking indisponível. A exportação é **conservadora**: não transforma pistas em resultados homologados nem cria pontuações. `ranking.json` contém `ranking: []` enquanto não houver homologação e pipeline de aprovação devidamente integrado.
