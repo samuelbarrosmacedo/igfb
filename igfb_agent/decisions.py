@@ -65,14 +65,23 @@ def validate_decisions(decisions, editions, evidence):
         seen[d.decision_id] = d
     return seen
 
-def materialize_approved(decisions, editions, evidence):
+def materialize_approved(decisions, editions, evidence, *, archive_root=None):
     """Produz resultados aprovados apenas a partir de decisões válidas e ativas."""
     editions = tuple(editions)
     evidence = tuple(evidence)
     decisions = tuple(decisions)
-    validated = validate_decisions(decisions, editions, evidence)
+    validate_decisions(decisions, editions, evidence)
     revoked = {d.supersedes for d in decisions if d.status == "revoked"}
-    catalog, _ = validate_catalog(editions, evidence)
+    catalog, documents = validate_catalog(editions, evidence)
+    # A existência de um hash cadastrado não comprova os bytes do documento.
+    active_evidence_ids = {d.evidence_id for d in decisions
+                           if d.status == "approved" and d.decision_id not in revoked}
+    if active_evidence_ids:
+        if archive_root is None:
+            raise ValueError("Arquivo de evidências obrigatório para homologação")
+        from .archive import verify_archive
+        verify_archive((documents[eid] for eid in sorted(active_evidence_ids)),
+                       archive_root, strict=True)
     results = []
     for d in decisions:
         if d.status != "approved" or d.decision_id in revoked:
