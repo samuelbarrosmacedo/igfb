@@ -1,6 +1,6 @@
 # ROADMAP — IGFB
 
-Atualizado em 2026-11-23 (continuidade: relatório operacional de pesquisa). Fonte de verdade: código, configuração e evidências versionadas neste repositório. **Não confundir cobertura documental com conclusão do projeto.**
+Atualizado em 2026-11-23 (continuidade: exportação CSV de prioridades e teste de progresso dinâmico). Fonte de verdade: código, configuração e evidências versionadas neste repositório. **Não confundir cobertura documental com conclusão do projeto.**
 
 ## Painel de métricas
 
@@ -37,6 +37,12 @@ Uma tarefa só é marcada concluída quando o artefato correspondente existe e f
 **Contagem de metas integralmente concluídas e validadas: 0/10.** Isso não significa que o trabalho executado seja zero: três metas estão implementadas, mas dependem de confirmação da CI. O percentual `0/10` é apenas um controle de aceite estrito e **não** é o percentual global do IGFB.
 
 ## Entrega incremental recente
+
+- Exportação CSV da fila de pesquisa (`python -m igfb_agent.research_report --format csv --output /tmp/igfb-research-plan.csv`), com 55 linhas, IDs das fontes e prioridades, útil para revisão em planilhas.
+- Corrigido teste que exigia 36,36% fixos: agora compara com o valor recalculado e não quebra quando novas fontes forem cadastradas.
+- Dois testes para CSV e geração de ambos os formatos no workflow; commits confirmados, mas execução da suíte e CI **ainda não comprovadas**.
+- GitHub retornou listas vazias para status e execuções associadas ao commit anterior; isso **não comprova sucesso nem falha** da CI.
+
 
 - Adicionado `igfb_agent/research_report.py`: transforma a fila de 55 temporadas em relatório Markdown ordenado por prioridade, sem inventar fontes nem aprovações.
 - Adicionados testes de formato e recorte; CI configurada para gerar `/tmp/igfb-research-plan.md`.
