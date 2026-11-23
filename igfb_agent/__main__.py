@@ -19,8 +19,19 @@ MAX_BYTES = 2_000_000
 
 def main():
     sources = json.loads(SOURCES.read_text(encoding="utf-8"))
+    rules = json.loads((ROOT / "config" / "project_rules.json").read_text(encoding="utf-8"))
+    for year in range(rules["baseline_year"], rules["through_year"] + 1):
+        sources.append({"url": f"https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_de_{year}",
+                        "trust": "exploratory", "topic": "brasileirao", "edition": year})
     events = [json.loads(line) for line in EVENTS.read_text(encoding="utf-8").splitlines() if line.strip()]
     latest = {event["url"]: event for event in events if "url" in event}
+    unique_sources = []
+    unique_urls = set()
+    for source in sources:
+        if source["url"] not in unique_urls:
+            unique_sources.append(source)
+            unique_urls.add(source["url"])
+    sources = unique_sources
     now = datetime.now(timezone.utc)
     limit = max(0, min(int(os.getenv("IGFB_FETCH_LIMIT", "2")), 5))
     processed = 0
@@ -60,6 +71,7 @@ def main():
                      "sha256": hashlib.sha256(page_text.encode()).hexdigest(),
                      "characters": len(page_text), "trust": source.get("trust", "unrated"),
                      "topic": source.get("topic", "unknown"),
+                     "edition": source.get("edition"),
                      "at": now.isoformat(), "approved": False}
             collected += 1
         except (httpx.HTTPError, ValueError) as exc:
