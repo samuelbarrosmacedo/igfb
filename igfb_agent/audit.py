@@ -13,7 +13,6 @@ COMPETITION_GROUPS = {
     "conmebol_mercosul": "conmebol_mercosul",
     "recopa": "recopa",
     "supercopa": "supercopa",
-    "estadual": "estadual",
 }
 
 @dataclass(frozen=True)
@@ -78,7 +77,8 @@ def sensitivity_envelope(results, scenarios):
     cases = tuple(scenarios)
     if not cases:
         raise ValueError("Ao menos um cenário é necessário")
-    scores = [weighted_totals(results, weights) for weights in cases]
+    records = tuple(results)
+    scores = [weighted_totals(records, weights) for weights in cases]
     clubs = set().union(*(set(case) for case in scores))
     return {club: {"min": min(case.get(club, 0) for case in scores),
                    "max": max(case.get(club, 0) for case in scores)}
