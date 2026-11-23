@@ -96,6 +96,14 @@ O envelope mostra a variação do resultado sob cenários metodológicos e **nã
 > [!CAUTION]
 > **Limite do esquema atual:** resultados estaduais ainda precisam identificar a federação e a edição específica. O auditor não considera campeões de estados diferentes um conflito global. Da mesma forma, categorias históricas com mais de um torneio por temporada exigem identificadores próprios antes de uma homologação completa.
 
+### Integridade referencial e robustez de posições
+
+O módulo [`registry.py`](igfb_agent/registry.py) introduz catálogos explícitos de edições e evidências, com validação de ano, organizador, jurisdição estadual, hash SHA-256 e integridade referencial. A função `score_verified` é a entrada recomendada para pontuar resultados homologados; registros legados sem edição explícita não passam nessa validação.
+
+O módulo [`robustness.py`](igfb_agent/robustness.py) calcula ranking com empates, extremos de pontuação, melhor/pior posição e estabilidade entre cenários explícitos de pesos. **Fração de cenários na primeira posição não representa probabilidade estatística**.
+
+O [protocolo de auditoria](docs/PROTOCOLO_AUDITORIA.md) estabelece estados de evidência, chaves canônicas, invariantes históricas e requisitos para publicar classificações. Os novos testes estão em [`tests/test_registry_robustness.py`](tests/test_registry_robustness.py).
+
 ## Pipeline de dados
 
 ```mermaid
@@ -123,9 +131,9 @@ A coleta experimental pode ser acionada manualmente; não há execução periód
 | Coleta incremental | Implementada em caráter inicial |
 | Registro de eventos | Implementado |
 | Calendário do Brasileiro 1971–2025 | Integrado à fila de coleta |
-| Revisão cruzada de resultados | Pendente |
+| Revisão cruzada de resultados | Protocolo definido; dados ainda pendentes |
 | Rebaixamentos e formatos especiais | Pendente |
-| Núcleo matemático e testes unitários | Implementação inicial; calibração e auditoria pendentes |
+| Núcleo matemático e testes unitários | Pontuação, catálogos e cenários implementados; calibração e auditoria pendentes |
 | Visualização final | Pendente |
 
 Consulte [o estado do projeto](state/status.json), [o histórico de coleta](state/events.jsonl) e [as execuções](https://github.com/samuelbarrosmacedo/igfb/actions/workflows/igfb-research.yml).
