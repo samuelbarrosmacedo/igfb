@@ -1,7 +1,7 @@
 """Catálogo de edições e validação de evidências, sem homologação automática."""
 from dataclasses import dataclass
 from urllib.parse import urlparse
-from .scoring import Result, validate_result
+from .scoring import Result, WEIGHTS, validate_result
 
 @dataclass(frozen=True)
 class Edition:
@@ -25,7 +25,7 @@ def validate_catalog(editions, evidence):
     for e in editions:
         if not isinstance(e.edition_id, str) or not e.edition_id.strip() or e.edition_id != e.edition_id.strip():
             raise ValueError("ID de edição inválido")
-        if e.competition not in __import__("igfb_agent.scoring", fromlist=["WEIGHTS"]).WEIGHTS:
+        if e.competition not in WEIGHTS:
             raise ValueError("Competição desconhecida")
         if type(e.year) is not int or not 1971 <= e.year <= 2025:
             raise ValueError("Edição fora do recorte")
@@ -78,3 +78,9 @@ def validate_dataset(results, editions, evidence, *, require_approved=True):
     if any(len(clubs) > 1 for clubs in champions.values()):
         raise ValueError("Múltiplos campeões na mesma edição")
     return records
+
+def score_verified(results, editions, evidence, *, weights=None):
+    """Entrada pública recomendada: valida catálogo e evidências antes de pontuar."""
+    from .audit import weighted_totals
+    records = validate_dataset(results, editions, evidence, require_approved=True)
+    return weighted_totals(records, weights)
