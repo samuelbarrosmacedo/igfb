@@ -1,6 +1,6 @@
 # ROADMAP — IGFB
 
-Atualizado em 2026-11-23 (continuidade: verificação real de bytes arquivados e procedência). Fonte de verdade: código, configuração e evidências versionadas neste repositório. **Não confundir cobertura documental com conclusão do projeto.**
+Atualizado em 2026-11-23 (continuidade: reconciliação documental integrada à exportação pública). Fonte de verdade: código, configuração e evidências versionadas neste repositório. **Não confundir cobertura documental com conclusão do projeto.**
 
 ## Painel de métricas
 
@@ -37,6 +37,12 @@ Uma tarefa só é marcada concluída quando o artefato correspondente existe e f
 **Contagem de metas integralmente concluídas e validadas: 0/10.** Isso não significa que o trabalho executado seja zero: três metas estão implementadas, mas dependem de confirmação da CI. O percentual `0/10` é apenas um controle de aceite estrito e **não** é o percentual global do IGFB.
 
 ## Entrega incremental recente
+
+- Implementada reconciliação `igfb_agent/evidence_reconciliation.py` entre documentos SHA-256 verificados e pistas por `source_id`, edição e URL. Documentos não correspondentes são rejeitados.
+- `public_export.py` passou a refletir a reconciliação em `coverage.json` e na fila pública de pesquisa, com `verified_archives` e `archived_candidate_count` separados de homologações.
+- Cinco testes sintéticos novos e execução do reconciliador adicionada à CI. A execução real da CI ainda precisa ser confirmada.
+- Métricas conferidas contra inventário vazio e 20 anos distintos de pistas: **20/55 (36,36%) → 20/55 (36,36%)**; **0 documentos arquivados**; **0 resultados homologados**. Progresso global permanece indisponível.
+
 
 - Criado `igfb_agent/evidence_inventory.py`: valida arquivo local existente, SHA-256 dos bytes, URL HTTPS, ano e edição canônicos, data de coleta, IDs únicos e impede homologação automática.
 - Criado `config/evidence_inventory.json` com inventário **vazio**: não representa evidências existentes.
