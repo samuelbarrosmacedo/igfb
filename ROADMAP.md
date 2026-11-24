@@ -131,3 +131,6 @@ Textos indexados da CBF consultados: Grêmio 15/09/2024 (1981, 1996), Fluminense
 
 ### Conferência Atlético-MG e integração web — 24/11/2026
 CBF 02/12/2021, texto recuperado e lido, confirma 1971 e 2021. Commit 34539f3dbef22de778b2da6d46a698fc2d5e84a7; contagem registrada 33/55 → 35/55. Originais não arquivados; registros anteriores não revalidados. Frontend já incorporado à main (comparação anterior à alteração: branch feat/observatorio-web 0 commits à frente, 3 atrás). docs/WEB_VALIDATION.md registra 150 testes Python e 14 frontend locais e oito E2E em execução anterior. A URL pública não pôde ser acessada nesta verificação; configuração IGFB_PAGES_ENABLED e deploy atual não confirmados. Próximo: verificar os checks da main, confirmar configuração Pages e terminar as 20 temporadas restantes. Testes da alteração atual não executados.
+
+### Conferência documental — 24/11/2026
+CBF: Vasco 127 anos (21/08/2025), Vasco e São Paulo já decidiram o Brasileirão de 89, e Presidente da CBF parabeniza Botafogo (08/12/2024). Textos recuperados e lidos nesta execução. Oito temporadas adicionais: 1974, 1989, 1990, 1991, 1995, 1997, 2000, 2024. Cobertura marcada 35/55 → 43/55. Commit 4ed008e0254ce2c64d9fb142623e0590845848a7. Releitura JSON confirmada; testes Python e arquivamento pendentes. Registros anteriores não reconferidos. Próximo: 12 temporadas restantes.
