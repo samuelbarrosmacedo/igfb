@@ -39,6 +39,13 @@ class PublicExportTests(unittest.TestCase):
         self.assertEqual(coverage["verified_archives"], 1)
         self.assertEqual(coverage["archived_candidate_count"], 1)
         self.assertEqual(coverage["approved_results"], 0)
+        sources = json.loads((folder / "sources.json").read_text())["sources"]
+        self.assertEqual(sources[0]["archives"][0]["sha256"], sha256(blob).hexdigest())
+        self.assertEqual(sources[0]["state"], "archived_pending_review")
+        self.assertFalse(sources[0]["approved"])
+        backlog = json.loads((folder / "research-backlog.json").read_text())
+        task = next(t for t in backlog["tasks"] if t["year"] == candidate["year"])
+        self.assertEqual(task["stage"], "manual_historical_review")
 
     def test_empty_export_never_publishes_ranking(self):
         files = build_public_data(candidates=[], status_path=self.status, inventory_path=self.inventory, evidence_root=self.root)
@@ -58,14 +65,14 @@ class PublicExportTests(unittest.TestCase):
     def test_export_files_match_manifest(self):
         folder = self.root / "data"
         exported = export_public_data(folder, candidates=[], status_path=self.status, inventory_path=self.inventory, evidence_root=self.root)
-        self.assertEqual(len(exported), 7)
+        self.assertEqual(len(exported), 10)
         manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
         self.assertEqual(set(manifest["files"]), set(exported) - {"manifest.json"})
         for filename, expected in manifest["sha256"].items():
             self.assertEqual(sha256((folder / filename).read_bytes()).hexdigest(), expected)
         self.assertEqual(set(manifest["sha256"]), set(manifest["files"]))
         for filename in exported:
-            self.assertEqual(json.loads((folder / filename).read_text(encoding="utf-8"))["schema_version"], 1)
+            self.assertEqual(json.loads((folder / filename).read_text(encoding="utf-8"))["schema_version"], 2)
 
     def test_real_leads_remain_unapproved(self):
         files = build_public_data(status_path=self.status)
@@ -115,6 +122,15 @@ class PublicExportTests(unittest.TestCase):
         manifest["files"].remove("ranking.json")
         manifest["sha256"].pop("ranking.json")
         path.write_text(json.dumps(manifest), encoding="utf-8")
+        with self.assertRaises(ValueError):
+            verify_public_data(folder)
+
+    def test_tampered_snapshot_is_rejected(self):
+        folder = self.root / "data"
+        export_public_data(folder, candidates=[], status_path=self.status)
+        manifest = json.loads((folder / "manifest.json").read_text())
+        snapshot = folder / manifest["datasets"]["coverage.json"]["path"]
+        snapshot.write_bytes(snapshot.read_bytes() + b" ")
         with self.assertRaises(ValueError):
             verify_public_data(folder)
 

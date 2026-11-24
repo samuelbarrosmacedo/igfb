@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "number",
+      "const": 2
+    },
+    "weights_status": {
+      "type": "string",
+      "const": "experimental"
+    },
+    "weights": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "propertyNames": {
+          "type": "string"
+        },
+        "additionalProperties": {
+          "type": "number"
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "first_year": {
+          "type": "number",
+          "const": 1971
+        },
+        "last_year": {
+          "type": "number",
+          "const": 2025
+        },
+        "seasons": {
+          "type": "number",
+          "const": 55
+        },
+        "excluded_pre_1971": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "required": [
+        "first_year",
+        "last_year",
+        "seasons",
+        "excluded_pre_1971"
+      ],
+      "additionalProperties": false
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "flamengo_1987": {
+      "type": "string"
+    },
+    "competition_labels": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "outcome_labels": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https:\\/\\/"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "markdown": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "url",
+          "sha256",
+          "markdown"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "weights_status",
+    "weights",
+    "scope",
+    "exclusions",
+    "flamengo_1987",
+    "competition_labels",
+    "outcome_labels",
+    "documents"
+  ],
+  "additionalProperties": false
+}

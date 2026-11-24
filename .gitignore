@@ -3,3 +3,12 @@ __pycache__/
 *.pyc
 .env
 *.sqlite
+
+# Frontend: artefatos reproduzíveis pelo pipeline
+web/node_modules/
+web/dist/
+web/public/data/
+web/test-results/
+web/playwright-report/
+web/*.tsbuildinfo
+web/.vite/

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "number",
+      "const": 2
+    },
+    "status": {
+      "type": "string",
+      "const": "unavailable_pending_homologation"
+    },
+    "approved_results": {
+      "type": "number",
+      "const": 0
+    },
+    "publication_authorized": {
+      "type": "boolean",
+      "const": false
+    },
+    "ranking": {
+      "minItems": 0,
+      "maxItems": 0,
+      "type": "array",
+      "items": {
+        "not": {}
+      }
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "approved_results",
+    "publication_authorized",
+    "ranking",
+    "reason"
+  ],
+  "additionalProperties": false
+}
