@@ -88,3 +88,10 @@ As evidências arquivadas têm SHA-256 validado pelo núcleo existente antes da
 exportação. Seu estado continua pendente de revisão; arquivamento nunca promove
 um candidato a resultado aprovado. Nenhuma nova fonte histórica foi criada pelo
 trabalho de frontend.
+
+
+A consolidação final incorporou também a main
+`375ce1320307df97a06e0d678047ab03088a10bc`: 45 candidatos em 45 temporadas,
+10 lacunas, 17 referências em 16 URLs distintas e 13 identidades de clubes.
+Arquivos verificados e resultados homologados continuam em zero. As contagens
+anteriores acima são registros das respectivas auditorias, não valores fixos do site.

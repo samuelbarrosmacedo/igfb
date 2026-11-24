@@ -34,7 +34,9 @@ export function DataTable<T>({
       aria-label={caption}
     >
       <table>
-        <caption>{caption}</caption>
+        <caption>
+          <span>{caption}</span>
+        </caption>
         <thead>
           {table.getHeaderGroups().map((group) => (
             <tr key={group.id}>

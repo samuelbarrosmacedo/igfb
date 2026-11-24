@@ -36,7 +36,10 @@ export default function ContributionChart({
       grid: { left: 130, right: 20, top: 15, bottom: 30 },
       xAxis: {
         type: "value",
-        axisLabel: { color: "#bac4bb" },
+        axisLabel: {
+          color: "#bac4bb",
+          formatter: (value: number) => value.toLocaleString("pt-BR"),
+        },
         splitLine: { lineStyle: { color: "#303a32" } },
       },
       yAxis: {

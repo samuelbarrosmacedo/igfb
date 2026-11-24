@@ -1704,15 +1704,20 @@ small {
 }
 .skip-link {
   position: fixed;
-  top: -100px;
+  top: 10px;
   left: 20px;
   z-index: 100;
   background: var(--green);
   color: #111;
   padding: 16px;
 }
-.skip-link:focus {
-  top: 10px;
+.skip-link:not(:focus) {
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0;
 }
 .update-banner {
   background: #d2e5b7;
@@ -2825,4 +2830,11 @@ main[tabindex]:focus-visible {
   background: #34462c;
   border-color: var(--gold);
   color: var(--white);
+}
+
+/* Keep table descriptions readable before horizontal scrolling on phones. */
+.table-scroll caption span {
+  display: block;
+  max-width: calc(100vw - 6rem);
+  overflow-wrap: anywhere;
 }

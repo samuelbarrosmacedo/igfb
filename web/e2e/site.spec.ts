@@ -11,6 +11,16 @@ test("home, rotas, integridade visual e acessibilidade", async ({ page }) => {
     path: test.info().outputPath("home.png"),
     fullPage: true,
   });
+  if (await page.getByRole("button", { name: "Abrir menu" }).isVisible()) {
+    await page.getByRole("button", { name: "Abrir menu" }).click();
+    const menu = page.getByRole("dialog", { name: "Explore o IGFB" });
+    await expect(menu).toBeVisible();
+    await menu.getByRole("link", { name: "Clubes", exact: true }).click();
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      "Cada camisa, uma história.",
+    );
+    await expect(menu).toHaveCount(0);
+  }
   for (const [route, heading] of [
     ["/ranking", "A posição vem depois da prova."],
     ["/clubes", "Cada camisa, uma história."],
