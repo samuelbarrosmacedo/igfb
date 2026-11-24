@@ -47,7 +47,9 @@
         1976
       ],
       "claim_club": "internacional",
-      "note": "Notícia sobre estadual também menciona bicampeonato brasileiro."
+      "note": "CBF 02/02/2016 identifica bicampeonato brasileiro 1975/1976. Texto indexado consultado; original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-gremio-121",
@@ -155,7 +157,9 @@
         1978
       ],
       "claim_club": "guarani",
-      "note": "Perfil de Careca identifica a conquista de 1978. Conteúdo consultado via resultado indexado; bytes não arquivados."
+      "note": "CBF 09/04/2019 perfil de Careca confirma Guarani 1978. Texto indexado consultado; original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-ranking-pontos-cruzeiro",
@@ -306,7 +310,9 @@
       ],
       "publisher": "CBF",
       "source_type": "official",
-      "note": "Afirmação explícita no texto indexado consultado em 2026-11-24; não arquivado."
+      "note": "CBF 17/09/2024 confirma Corinthians 1998 e 1999. Texto indexado consultado; original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-bahia-94",
@@ -352,7 +358,9 @@
         1976,
         1979
       ],
-      "note": "Perfil de Batista identifica explicitamente os três títulos nacionais. Conteúdo indexado consultado; não arquivado."
+      "note": "CBF 26/10/2016 identifica os três títulos nacionais de Batista pelo Internacional. Texto indexado consultado; original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-saopaulo-pontos-2017",
@@ -366,6 +374,19 @@
       ],
       "claim_club": "sao_paulo",
       "note": "Texto indexado CBF de 15/11/2017 explicita os três títulos consecutivos do São Paulo. Original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
+    },
+    {
+      "source_id": "cbf-careca-1986",
+      "url": "https://www.cbf.com.br/a-cbf/noticias/informes-cbf/a/cbf-forma-conselho-de-craques-para-colaborar-com-o-futebol-brasileiro",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1986
+      ],
+      "claim_club": "sao_paulo",
+      "note": "Perfil de Careca CBF 09/04/2019 confirma São Paulo 1986. Texto indexado consultado; original não arquivado.",
       "source_check_status": "page_content_checked_not_archived",
       "source_checked_on": "2026-11-24"
     }
