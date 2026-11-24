@@ -111,3 +111,8 @@ Uma tarefa só é marcada concluída quando o artefato correspondente existe e f
 - Não converter pistas em resultados homologados automaticamente.
 - Atualizar tarefas, contagens e evidências após cada etapa; registrar commit e resultados dos testes.
 - Não afirmar sucesso de testes, deploy ou CI sem observar a execução.
+
+
+## Conferência documental — 24/11/2026
+
+Commit `9d6868cd1aad7ee3a38717f2f39d6a8fd8db22da`: conferidos os textos indexados da CBF relativos ao Santos em 2002 e 2004; substituída a URL de baixa confiança de 2004 por retrospectiva específica de 15/08/2020. Contagem de temporadas com fonte marcada conferida: 1 → 3 de 55 (a marca anterior de 2025 não foi reconferida). Cobertura de pistas permanece 55/55. Conferência textual não equivale a arquivamento original nem homologação. Próximo lote: conferir fontes restantes e arquivar originais com hashes. Testes Python não executados nesta etapa.
