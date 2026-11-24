@@ -134,3 +134,6 @@ CBF 02/12/2021, texto recuperado e lido, confirma 1971 e 2021. Commit 34539f3dbe
 
 ### Conferência documental — 24/11/2026
 CBF: Vasco 127 anos (21/08/2025), Vasco e São Paulo já decidiram o Brasileirão de 89, e Presidente da CBF parabeniza Botafogo (08/12/2024). Textos recuperados e lidos nesta execução. Oito temporadas adicionais: 1974, 1989, 1990, 1991, 1995, 1997, 2000, 2024. Cobertura marcada 35/55 → 43/55. Commit 4ed008e0254ce2c64d9fb142623e0590845848a7. Releitura JSON confirmada; testes Python e arquivamento pendentes. Registros anteriores não reconferidos. Próximo: 12 temporadas restantes.
+
+### Conferência documental 24/11/2026 — Internacional, Guarani, São Paulo e Corinthians
+Textos indexados CBF efetivamente consultados: Batista (26/10/2016), Internacional (02/02/2016), Conselho de Craques (09/04/2019), Edílson (17/09/2024). Cobertura marcada 43/55 → 50/55; commit 6ceecf308dc4abe89a2616ed795c5a581cab7097. Releitura JSON confirmada. Originais e testes Python pendentes. Restam 1977, 1985, 1987, 1988, 2001; registros anteriores não revalidados.
