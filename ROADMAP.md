@@ -119,3 +119,6 @@ Commit `9d6868cd1aad7ee3a38717f2f39d6a8fd8db22da`: conferidos os textos indexado
 
 ### Palmeiras — conferência de 24/11/2026
 Fonte CBF de 26/08/2024 conferida: 1972, 1973, 1993, 1994, 2016, 2018, 2022 e 2023. Registro textual 3/55 → 11/55; pistas 55/55. Commit 36e5a84ea3654feb3672f7e5c808304d5b073915. Sem arquivamento ou homologação; testes Python não executados.
+
+### Flamengo — conferência de 24/11/2026
+Texto CBF de 25/02/2021 conferido: 1980, 1982, 1983, 1992, 2009, 2019, 2020; 1987 identificado separadamente como Copa União, sem homologação nesta etapa. Conferência registrada 11/55 → 18/55. Commit 97a2f83a3f9de222955200a77051e1b207f373e3. Sem arquivamento original nem testes Python. Próximo lote: fontes dos campeões restantes, preservando recorte 1971–2025.
