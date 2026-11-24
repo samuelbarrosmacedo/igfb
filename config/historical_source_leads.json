@@ -218,7 +218,8 @@
         2004
       ],
       "claim_club": "santos",
-      "note": "Anos explicitamente identificados no texto indexado da CBF em 24/11/2026; somente lacunas do recorte 1971–2025. Bytes não arquivados."
+      "note": "Referência de baixa confiança: URL aponta para notícia de Flamengo em 2026. Não utilizar como prova sem conferir conteúdo; há pista independente cbf-santos-112 para 2004.",
+      "source_check_status": "unverified"
     },
     {
       "source_id": "cbf-coritiba-1985",
