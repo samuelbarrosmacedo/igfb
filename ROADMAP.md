@@ -38,6 +38,9 @@ Uma tarefa só é marcada concluída quando o artefato correspondente existe e f
 
 ## Entrega incremental recente
 
+- 2026-11-24: commits `65d07d0f7d313a391147a220b346d412f648ace5` e `098a9c9416daf380862c6c813800761c3ca39b9f` integram a reconciliação de evidências à fila de pesquisa e auditoria padrão; relatórios Markdown/CSV passam a consumir a fila reconciliada. Candidatos explicitamente injetados permanecem isolados. Testes Python e CI ainda não comprovados; nenhuma evidência histórica real adicionada. Cobertura 55/55, homologações 0, metas validadas 0/10.
+
+
 - 2026-11-24: `8eb7ad8fcf5feafe3091ffc68c61461f0ad7aba4` permite injetar inventário e raiz de evidências na exportação pública, preservando os padrões de produção; `7e9edf96b8e46a3cebc16d69d00f5ac890c9c8bb` isola fixtures e acrescenta teste de exportação com arquivo sintético e hash real, sem homologação. Suíte não executada nesta etapa; cobertura de pistas 55/55, arquivos históricos reais 0, homologações 0. Próxima prioridade permanece arquivamento real e execução da CI.
 
 
