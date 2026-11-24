@@ -38,6 +38,9 @@ Uma tarefa só é marcada concluída quando o artefato correspondente existe e f
 
 ## Entrega incremental recente
 
+- 2026-11-24: `86d9a0f2ac09aefe5669820f1f5fabfadfb9b0ce` sinaliza a referência cbf-santos-2004 como não verificada e de baixa confiança por apontar para notícia de outro clube/ano. Mantida para rastreabilidade, sem valor probatório; existe pista alternativa cbf-santos-112. Releitura confirmou 55 anos, 26 registros e 58 afirmações. Clone local bloqueado por resolução DNS; conector GitHub operacional. Testes Python e arquivamento original não realizados.
+
+
 - 2026-11-24: commits `65d07d0f7d313a391147a220b346d412f648ace5` e `098a9c9416daf380862c6c813800761c3ca39b9f` integram a reconciliação de evidências à fila de pesquisa e auditoria padrão; relatórios Markdown/CSV passam a consumir a fila reconciliada. Candidatos explicitamente injetados permanecem isolados. Testes Python e CI ainda não comprovados; nenhuma evidência histórica real adicionada. Cobertura 55/55, homologações 0, metas validadas 0/10.
 
 
