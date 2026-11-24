@@ -74,7 +74,7 @@
         1987
       ],
       "claim_club": "flamengo",
-      "note": "Fonte histórica de 2011; não representa necessariamente posição jurídica atual. Convenção IGFB preservada; exige análise de documentos posteriores."
+      "note": "Texto CBF 21/02/2011 consultado: reconhecimento conjunto revogado pela RDP 06/2011 de 15/06/2011 (https://www.cbf.com.br/a-cbf/noticias/juridico/a/resolucao-da-presidencia-062011), também consultada, que reconhece Sport exclusivamente. Não marcar a reivindicação Flamengo como confirmada; convenção IGFB pendente."
     },
     {
       "source_id": "cbf-corinthians-2017",
@@ -251,14 +251,16 @@
     },
     {
       "source_id": "cbf-coritiba-1985",
-      "url": "https://www.cbf.com.br/a-cbf/arbitragem/escala-campeonato-brasileiro-serie-a/2024/reparacao-historica-campeoes-do-coritiba-sao-homenageados-pela-cbf",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/detalhes/competicoes-campeonato-brasileiro-serie-b/coritiba-celebra-115-anos",
       "publisher": "CBF",
       "source_type": "official",
       "claim_years": [
         1985
       ],
       "claim_club": "coritiba",
-      "note": "CBF registra homenagem e título de 1985. Texto indexado consultado em 2026-11-24; não arquivado."
+      "note": "CBF 12/10/2024 confirma título de 1985. Texto recuperado na busca; original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-corinthians-1990",
@@ -323,18 +325,22 @@
       ],
       "publisher": "CBF",
       "source_type": "official",
-      "note": "Afirmação explícita no texto indexado consultado em 2026-11-24; não arquivado."
+      "note": "CBF 01/01/2025 confirma título de 1988. Texto recuperado na busca; original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-kleberson-46",
-      "url": "https://www.cbf.com.br/selecao-brasileira/noticias/selecao-masculina/neymar-jr-esta-desconvocado-da-selecao-brasileira/campeao-mundial-em-2002-kleberson-completa-46-anos-nesta-quinta",
+      "url": "https://www.cbf.com.br/selecao-brasileira/noticias/selecao-masculina/venda-de-ingressos-para-a-partida-entre-brasil-e-argentina-no-maracana/campeao-mundial-em-2002-kleberson-completa-46-anos-nesta-quinta",
       "claim_club": "athletico_pr",
       "claim_years": [
         2001
       ],
       "publisher": "CBF",
       "source_type": "official",
-      "note": "Afirmação explícita no texto indexado consultado em 2026-11-24; não arquivado."
+      "note": "CBF 19/06/2025 confirma título de 2001. Texto recuperado na busca; original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-retrospecto-1977",
