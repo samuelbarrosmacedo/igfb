@@ -2820,4 +2820,9 @@ main[tabindex]:focus-visible {
   }
 }
 
-.year-grid button.archived_pending_review,.coverage-grid .archived_pending_review{background:#34462c;border-color:var(--gold);color:var(--white)}
+.year-grid button.archived_pending_review,
+.coverage-grid .archived_pending_review {
+  background: #34462c;
+  border-color: var(--gold);
+  color: var(--white);
+}

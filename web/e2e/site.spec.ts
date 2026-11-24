@@ -70,10 +70,19 @@ test("simulação separada, restauração e teclado", async ({ page }) => {
   await page
     .getByRole("button", { name: "Guardar cenário nesta sessão" })
     .click();
-  await expect(page.getByRole("status")).toContainText("Cenário guardado");
+  await expect(
+    page.getByRole("status", { name: "Cenário guardado" }),
+  ).toContainText("Cenário guardado");
   await page.getByRole("button", { name: "Restaurar pesos do modelo" }).click();
   await expect(slider).toHaveAttribute("aria-valuenow", "700");
   await expect(page.getByText("Modo: pesquisa documental")).toHaveCount(0);
+  await expect(
+    page.getByRole("img", { name: /Contribuições por critério/ }),
+  ).toBeVisible();
+  await page.screenshot({
+    path: test.info().outputPath("laboratorio-ativo.png"),
+    fullPage: true,
+  });
   const axe = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
     .analyze();

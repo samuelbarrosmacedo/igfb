@@ -27,7 +27,10 @@ export function Research({ data }: { data: PublicData }) {
           },
           {
             value: coverage.checked_source_pages,
-            label: "página conferida",
+            label:
+              coverage.checked_source_pages === 1
+                ? "página conferida"
+                : "páginas conferidas",
             note: "Conferência registrada na base",
           },
           {

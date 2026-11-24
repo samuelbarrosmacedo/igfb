@@ -188,7 +188,11 @@ export default function Laboratory({ data }: { data: PublicData }) {
                 Guardar cenário nesta sessão
               </button>
               {scenario && (
-                <div className="saved-scenario" role="status">
+                <div
+                  className="saved-scenario"
+                  role="status"
+                  aria-label="Cenário guardado"
+                >
                   <h3>Cenário guardado × cenário atual</h3>
                   <DataTable
                     caption="Comparação local de cenários sintéticos"

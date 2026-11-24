@@ -95,6 +95,15 @@ class PublicExportTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             verify_public_data(folder)
 
+    def test_tampered_snapshot_is_rejected(self):
+        folder = self.root / "data"
+        export_public_data(folder, candidates=[], status_path=self.status)
+        manifest = json.loads((folder / "manifest.json").read_text())
+        snapshot = folder / manifest["datasets"]["coverage.json"]["path"]
+        snapshot.write_bytes(snapshot.read_bytes() + b" ")
+        with self.assertRaises(ValueError):
+            verify_public_data(folder)
+
     def test_invalid_audited_status_blocks_export(self):
         self.status.write_text(json.dumps({
             "progress_percent_estimate": 38, "progress_audited": True,

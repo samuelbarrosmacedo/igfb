@@ -56,6 +56,18 @@ describe("Contrato público", () => {
     data.editions[0].year = 1970;
     expect(() => datasetSchemas["editions.json"].parse(data)).toThrow();
   });
+  it("rejeita anos sem pistas incorretos mesmo com a contagem certa", () => {
+    const data = fixture();
+    data["coverage.json"].seasons_without_leads[0] = data[
+      "editions.json"
+    ].editions.find((e) => e.evidence_state !== "no_lead")!.year;
+    expect(() => validateRelations(data)).toThrow();
+  });
+  it("rejeita avanço de pesquisa sem evidências correspondentes", () => {
+    const data = fixture();
+    data["coverage.json"].verified_archives += 1;
+    expect(() => validateRelations(data)).toThrow();
+  });
   it("rejeita contagens inconsistentes", () => {
     const data = fixture();
     data["coverage.json"].source_leads += 1;

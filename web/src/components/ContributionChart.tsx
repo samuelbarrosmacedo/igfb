@@ -24,7 +24,14 @@ export default function ContributionChart({
     chart.setOption({
       animation: !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
       animationDuration: 250,
-      aria: { enabled: true, decal: { show: true } },
+      aria: {
+        enabled: true,
+        label: {
+          description:
+            "Contribuições por critério nas três equipes fictícias. Valores positivos acrescentam pontos; penalidades subtraem. Os valores completos estão na tabela a seguir.",
+        },
+        decal: { show: true },
+      },
       color: ["#87cfa7", "#d0b776", "#dce5d6", "#b57d72"],
       grid: { left: 130, right: 20, top: 15, bottom: 30 },
       xAxis: {
