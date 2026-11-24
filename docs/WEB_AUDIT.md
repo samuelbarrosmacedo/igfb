@@ -95,3 +95,18 @@ A consolidação final incorporou também a main
 10 lacunas, 17 referências em 16 URLs distintas e 13 identidades de clubes.
 Arquivos verificados e resultados homologados continuam em zero. As contagens
 anteriores acima são registros das respectivas auditorias, não valores fixos do site.
+
+
+## Última reconciliação antes da revisão
+
+Main incorporada: `6c66c83989375a706b5005c6232cf22ce5ecb7ca`.
+Foram preservados os parâmetros de inventário explícito adicionados ao exportador
+e o uso da reconciliação na auditoria/fila. O teste de arquivo sintético também
+confere a procedência exportada e garante que arquivamento não homologa.
+
+Snapshot observado: 62 candidatos, 55 temporadas com pistas,
+27 referências em 23 URLs distintas, 16 identidades,
+7 páginas distintas marcadas como conferidas e zero resultados homologados.
+Mesmo com pistas em todas as temporadas, a pesquisa não está concluída.
+A contagem de páginas conferidas deduplica URLs; referências diferentes podem
+apontar para a mesma página.

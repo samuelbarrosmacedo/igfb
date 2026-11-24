@@ -1,10 +1,10 @@
 """Plano de pesquisa por lacunas; tarefas não representam resultados esportivos."""
 import json
 from .calendar import brasileirao_editions
-from .candidates import build_candidates
+from .evidence_reconciliation import reconcile_evidence
 
 def research_backlog(candidates=None):
-    records = tuple(build_candidates() if candidates is None else candidates)
+    records = tuple(reconcile_evidence()["candidates"] if candidates is None else candidates)
     years = {edition.year for edition in brasileirao_editions()}
     by_year = {year: [] for year in years}
     for item in records:

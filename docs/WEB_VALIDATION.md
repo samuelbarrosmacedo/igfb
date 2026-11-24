@@ -57,3 +57,11 @@ reais, nem teste físico em Galaxy A36. Sem pontuação Lighthouse inventada.
 
 Merge e deploy público não executados. Ranking histórico intencionalmente
 bloqueado. A conclusão da interface não significa conclusão da pesquisa.
+
+
+Após incorporar a main `6c66c83`, passaram localmente 150 testes Python,
+14 testes frontend, validação dos datasets e build. Os checks da cabeça atual
+do PR registram a execução remota correspondente. A execução anterior final
+[45407646222](https://github.com/samuelbarrosmacedo/igfb/actions/runs/45407646222)
+também passou nos oito testes de interface, incluindo o menu móvel, sem retries
+ou testes instáveis.

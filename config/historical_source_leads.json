@@ -31,7 +31,9 @@
         2023
       ],
       "claim_club": "palmeiras",
-      "note": "Contém também títulos pré-1971, que ficam explicitamente fora do IGFB."
+      "note": "Página CBF de 26/08/2024 consultada: lista explicitamente os oito títulos do Campeonato Brasileiro no recorte IGFB; Taça Brasil e Robertão excluídos. Original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-inter-gaucho",
@@ -80,7 +82,9 @@
         2017
       ],
       "claim_club": "corinthians",
-      "note": "Notícia CBF 15/11/2017 cita explicitamente quatro títulos do Corinthians na era de pontos corridos."
+      "note": "Texto indexado CBF de 15/11/2017 explicita 2005, 2011, 2015, 2017. Original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-flamengo-2025",
@@ -171,7 +175,9 @@
         2020
       ],
       "claim_club": "flamengo",
-      "note": "Anos explicitamente identificados no texto indexado da CBF em 24/11/2026; somente lacunas do recorte 1971–2025. Bytes não arquivados."
+      "note": "Texto CBF de 25/02/2021 consultado: lista os sete títulos brasileiros indicados e distingue 1987 como Copa União. Sem arquivo original.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-vasco-127",
@@ -191,11 +197,14 @@
       "publisher": "CBF",
       "source_type": "official",
       "claim_years": [
+        2003,
         2013,
         2014
       ],
       "claim_club": "cruzeiro",
-      "note": "Anos explicitamente identificados no texto indexado da CBF em 24/11/2026; somente lacunas do recorte 1971–2025. Bytes não arquivados."
+      "note": "Texto indexado CBF de 02/01/2025 explicita 2003, 2013, 2014; 1966 fora do recorte. Original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-botafogo-2024",
@@ -211,14 +220,136 @@
     },
     {
       "source_id": "cbf-santos-2004",
-      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/flamengo-conquista-brasileirao-2026",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/santos-e-athletico-pr-se-enfrentam-em-duelo-que-valeu-taca-em-2004",
       "publisher": "CBF",
       "source_type": "official",
       "claim_years": [
         2004
       ],
       "claim_club": "santos",
-      "note": "Anos explicitamente identificados no texto indexado da CBF em 24/11/2026; somente lacunas do recorte 1971–2025. Bytes não arquivados."
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24",
+      "note": "Retrospectiva CBF de 15/08/2020 confirma título do Santos e vice do Athletico em 2004. Substitui referência anterior de baixa confiança; sem arquivo original."
+    },
+    {
+      "source_id": "cbf-coritiba-1985",
+      "url": "https://www.cbf.com.br/a-cbf/arbitragem/escala-campeonato-brasileiro-serie-a/2024/reparacao-historica-campeoes-do-coritiba-sao-homenageados-pela-cbf",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1985
+      ],
+      "claim_club": "coritiba",
+      "note": "CBF registra homenagem e título de 1985. Texto indexado consultado em 2026-11-24; não arquivado."
+    },
+    {
+      "source_id": "cbf-corinthians-1990",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/copa-brasil-masculino/a/quando-vasco-e-sao-paulo-decidiram-o-brasileirao",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1990
+      ],
+      "claim_club": "corinthians",
+      "note": "Retrospectiva identifica vitória sobre São Paulo. Texto indexado consultado em 2026-11-24; não arquivado."
+    },
+    {
+      "source_id": "cbf-saopaulo-1991",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/copa-brasil-masculino/a/quando-vasco-e-sao-paulo-decidiram-o-brasileirao",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1991
+      ],
+      "claim_club": "sao_paulo",
+      "note": "Retrospectiva identifica terceiro título contra Bragantino. Texto indexado consultado em 2026-11-24; não arquivado."
+    },
+    {
+      "source_id": "cbf-santos-112",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-b/a/santos-comemora-112-anos-de-historia",
+      "claim_club": "santos",
+      "claim_years": [
+        2002,
+        2004
+      ],
+      "publisher": "CBF",
+      "source_type": "official",
+      "note": "Texto consultado: retrospectiva CBF de 14/04/2024 confirma títulos brasileiros de 2002 e 2004. Anos anteriores a 1971 excluídos. Sem arquivo original.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
+    },
+    {
+      "source_id": "cbf-edilson-53",
+      "url": "https://www.cbf.com.br/selecao-brasileira/noticias/detalhes/selecao-masculina/pentacampeao-em-2002-edilson-capetinha-comemora-53-anos-nesta-terca-feira",
+      "claim_club": "corinthians",
+      "claim_years": [
+        1998,
+        1999
+      ],
+      "publisher": "CBF",
+      "source_type": "official",
+      "note": "Afirmação explícita no texto indexado consultado em 2026-11-24; não arquivado."
+    },
+    {
+      "source_id": "cbf-bahia-94",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/detalhes/competicoes-campeonato-brasileiro-serie-a/bahia-completa-94-anos-de-historias",
+      "claim_club": "bahia",
+      "claim_years": [
+        1988
+      ],
+      "publisher": "CBF",
+      "source_type": "official",
+      "note": "Afirmação explícita no texto indexado consultado em 2026-11-24; não arquivado."
+    },
+    {
+      "source_id": "cbf-kleberson-46",
+      "url": "https://www.cbf.com.br/selecao-brasileira/noticias/selecao-masculina/neymar-jr-esta-desconvocado-da-selecao-brasileira/campeao-mundial-em-2002-kleberson-completa-46-anos-nesta-quinta",
+      "claim_club": "athletico_pr",
+      "claim_years": [
+        2001
+      ],
+      "publisher": "CBF",
+      "source_type": "official",
+      "note": "Afirmação explícita no texto indexado consultado em 2026-11-24; não arquivado."
+    },
+    {
+      "source_id": "cbf-retrospecto-1977",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/com-grandes-jogos-26-rodada-do-brasileirao-movimentara-fim-de-semana",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_club": "sao_paulo",
+      "claim_years": [
+        1977
+      ],
+      "note": "Retrospectiva de 04/09/2026 identifica vitória do São Paulo na final de 1977. Estatísticas agregadas pré-1971 não utilizadas."
+    },
+    {
+      "source_id": "cbf-batista-inter",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/copa-brasil-masculino/a/batista-destaca-forca-do-inter-no-beira-rio",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_club": "internacional",
+      "claim_years": [
+        1975,
+        1976,
+        1979
+      ],
+      "note": "Perfil de Batista identifica explicitamente os três títulos nacionais. Conteúdo indexado consultado; não arquivado."
+    },
+    {
+      "source_id": "cbf-saopaulo-pontos-2017",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/corinthians-campeao-brasileiro-de-2017",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        2006,
+        2007,
+        2008
+      ],
+      "claim_club": "sao_paulo",
+      "note": "Texto indexado CBF de 15/11/2017 explicita os três títulos consecutivos do São Paulo. Original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     }
   ]
 }

@@ -34,11 +34,12 @@ def source_commit():
     return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
 
 
-def build_public_data(*, candidates=None, status_path=None, commit_sha=None, generated_at=None):
+def build_public_data(*, candidates=None, status_path=None, commit_sha=None, generated_at=None, inventory_path=None, evidence_root=None):
     records = tuple(build_candidates() if candidates is None else candidates)
-    evidence = reconcile_evidence(candidates=records)
+    evidence = reconcile_evidence(candidates=records, inventory_path=inventory_path, root=evidence_root)
     records = tuple(evidence["candidates"])
-    inventory = json.loads((ROOT / "config/evidence_inventory.json").read_text(encoding="utf-8"))["evidence"]
+    inventory_file = Path(inventory_path) if inventory_path is not None else (Path(evidence_root) if evidence_root is not None else ROOT) / "config/evidence_inventory.json"
+    inventory = json.loads(inventory_file.read_text(encoding="utf-8"))["evidence"]
     audit = audit_project(status_path=status_path, candidates=records)
     readiness = source_readiness(records)
     queue = review_queue(records)
@@ -73,7 +74,7 @@ def build_public_data(*, candidates=None, status_path=None, commit_sha=None, gen
         last_collection_at=json.loads((Path(status_path) if status_path else ROOT / "state/status.json").read_text()).get("last_run_utc"),
         ranking_publication="blocked", publication_reason="Sem decisões homologadas e sem autorização expressa de publicação.")
     add("coverage", source_leads=readiness["total_candidates"], seasons_with_leads=readiness["distinct_years_with_leads"],
-        seasons_without_leads=readiness["years_without_leads"], checked_source_pages=len(checked),
+        seasons_without_leads=readiness["years_without_leads"], checked_source_pages=len({known_sources[sid]["url"] for sid in checked}),
         source_ids_without_archived_bytes=readiness["source_ids_without_archived_bytes"], approved_results=0,
         catalogued_sources=len(source_ids), distinct_source_urls=len({known_sources[sid]["url"] for sid in source_ids}),
         archived_evidence_documents=evidence["verified_archives"], verified_archives=evidence["verified_archives"],

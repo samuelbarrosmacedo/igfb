@@ -10,7 +10,12 @@
     "fluminense": "Fluminense",
     "vasco": "Vasco",
     "guarani": "Guarani",
-    "cruzeiro": "Cruzeiro"
+    "cruzeiro": "Cruzeiro",
+    "santos": "Santos",
+    "botafogo": "Botafogo",
+    "coritiba": "Coritiba",
+    "bahia": "Bahia",
+    "athletico_pr": "Athletico-PR"
   },
   "competitions": {
     "world_classic": "Mundial clássico",
