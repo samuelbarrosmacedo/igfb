@@ -173,7 +173,9 @@
         2020
       ],
       "claim_club": "flamengo",
-      "note": "Anos explicitamente identificados no texto indexado da CBF em 24/11/2026; somente lacunas do recorte 1971–2025. Bytes não arquivados."
+      "note": "Texto CBF de 25/02/2021 consultado: lista os sete títulos brasileiros indicados e distingue 1987 como Copa União. Sem arquivo original.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-vasco-127",
