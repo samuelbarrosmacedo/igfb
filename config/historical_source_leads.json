@@ -128,7 +128,9 @@
         1989
       ],
       "claim_club": "vasco",
-      "note": "Texto histórico identifica as duas conquistas vascaínas. Conteúdo consultado via resultado indexado; bytes não arquivados."
+      "note": "Retrospectiva CBF confirma ambos os títulos. Texto recuperado por busca; original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-conselho-saopaulo",
@@ -187,15 +189,19 @@
     },
     {
       "source_id": "cbf-vasco-127",
-      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro/feminino-sub-18/vasco-celebra-seu-127-aniversario",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/vasco-celebra-seu-127-aniversario",
       "publisher": "CBF",
       "source_type": "official",
       "claim_years": [
+        1974,
+        1989,
         1997,
         2000
       ],
       "claim_club": "vasco",
-      "note": "Anos explicitamente identificados no texto indexado da CBF em 24/11/2026; somente lacunas do recorte 1971–2025. Bytes não arquivados."
+      "note": "CBF 21/08/2025 lista quatro títulos. Texto recuperado por busca; original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-cruzeiro-104",
@@ -222,7 +228,9 @@
         2024
       ],
       "claim_club": "botafogo",
-      "note": "Anos explicitamente identificados no texto indexado da CBF em 24/11/2026; somente lacunas do recorte 1971–2025. Bytes não arquivados."
+      "note": "CBF 08/12/2024 confirma ambos os títulos; 1968 fora do recorte. Texto recuperado por busca; original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-santos-2004",
@@ -257,7 +265,9 @@
         1990
       ],
       "claim_club": "corinthians",
-      "note": "Retrospectiva identifica vitória sobre São Paulo. Texto indexado consultado em 2026-11-24; não arquivado."
+      "note": "Retrospectiva CBF identifica vitória sobre São Paulo em 1990. Texto recuperado por busca; original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-saopaulo-1991",
@@ -268,7 +278,9 @@
         1991
       ],
       "claim_club": "sao_paulo",
-      "note": "Retrospectiva identifica terceiro título contra Bragantino. Texto indexado consultado em 2026-11-24; não arquivado."
+      "note": "Retrospectiva CBF identifica título diante do Bragantino em 1991. Texto recuperado por busca; original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-santos-112",
