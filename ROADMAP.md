@@ -125,3 +125,6 @@ Texto CBF de 25/02/2021 conferido: 1980, 1982, 1983, 1992, 2009, 2019, 2020; 198
 
 ### Conferência documental — Corinthians, Cruzeiro e São Paulo (24/11/2026)
 Dois textos indexados da CBF efetivamente consultados: 15/11/2017 (Corinthians e São Paulo) e 02/01/2025 (Cruzeiro). Dez temporadas adicionais, 18/55 → 28/55 marcadas conferidas. Commit cffc884245460b42d10fa761d5651f0b78630dfb. Releitura JSON confirmada; registros anteriores não revalidados, testes Python não executados, originais não arquivados. Próximo: 27 temporadas restantes.
+
+### Conferência documental — Grêmio e Fluminense (24/11/2026)
+Textos indexados da CBF consultados: Grêmio 15/09/2024 (1981, 1996), Fluminense 21/07/2025 (1984, 2010, 2012). URLs corrigidas para as versões retornadas pela busca. Marcadas 28/55 → 33/55 temporadas; originais não arquivados, registros anteriores não revalidados. Commit 8e4c0caeede38a3d08160e180a5d1060adbd37c0. A RDP 06/2011 também foi localizada e lida: https://www.cbf.com.br/a-cbf/noticias/juridico/a/resolucao-da-presidencia-062011 revoga a RDP 02/2011 e reconhece Sport como único campeão oficial de 1987; manter divergência explícita e não homologar a convenção IGFB como fato oficial. Testes Python pendentes.
