@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PageHeading, SourceCard, StatusBadge } from "../components/Shared";
+import { DataTable } from "../components/ui/DataTable";
 import type { PublicData } from "../lib/contracts";
 import { dateLabel } from "../lib/data";
 export function Research({ data }: { data: PublicData }) {
@@ -61,7 +62,7 @@ export function Research({ data }: { data: PublicData }) {
               key={edition.id}
               to={`/linha-do-tempo?ano=${edition.year}`}
               className={edition.evidence_state}
-              aria-label={`${edition.year}: ${edition.evidence_state === "lead_found" ? "com pistas" : "sem pistas"}`}
+              aria-label={`${edition.year}: ${edition.evidence_state !== "no_lead" ? "com pistas" : "sem pistas"}`}
             >
               {edition.year}
             </Link>
@@ -83,6 +84,8 @@ export function Research({ data }: { data: PublicData }) {
         <section>
           <h2>Da referência à evidência</h2>
           <dl className="research-dl">
+            <dt>URLs distintas</dt>
+            <dd>{coverage.distinct_source_urls}</dd>
             <dt>Referências cadastradas</dt>
             <dd>{coverage.catalogued_sources}</dd>
             <dt>Candidatos a resultado</dt>
@@ -92,7 +95,7 @@ export function Research({ data }: { data: PublicData }) {
             <dt>Referências sem bytes arquivados</dt>
             <dd>{coverage.source_ids_without_archived_bytes}</dd>
             <dt>Documentos no catálogo de evidências</dt>
-            <dd>Catálogo ainda indisponível</dd>
+            <dd>{coverage.archived_evidence_documents}</dd>
             <dt>Edições com afirmações concorrentes</dt>
             <dd>{coverage.competing_claim_editions.length}</dd>
           </dl>
@@ -124,9 +127,38 @@ export function Research({ data }: { data: PublicData }) {
         </aside>
       </div>
       <section className="section">
+        <h2>Próximos passos por temporada</h2>
+        <p>
+          A fila vem da pesquisa Python. Prioridade documental não representa
+          importância esportiva.
+        </p>
+        <details className="method-document">
+          <summary>Ver as 55 tarefas da fila de pesquisa</summary>
+          <DataTable
+            caption="Fila de pesquisa — tarefas sem homologação automática"
+            data={data["research-backlog.json"].tasks}
+            columns={[
+              { accessorKey: "year", header: "Ano" },
+              { accessorKey: "priority", header: "Prioridade" },
+              {
+                accessorKey: "stage",
+                header: "Próxima etapa",
+                cell: ({ getValue }) =>
+                  ({
+                    discover_official_source: "Localizar fonte oficial",
+                    archive_and_verify_source: "Arquivar e verificar",
+                    manual_historical_review: "Revisão histórica humana",
+                  })[String(getValue())] || String(getValue()),
+              },
+              { accessorKey: "candidate_count", header: "Pistas" },
+            ]}
+          />
+        </details>
+      </section>
+      <section className="section">
         <div className="section-heading">
           <h2>Referências abertas à revisão</h2>
-          <span>{coverage.catalogued_sources} fontes</span>
+          <span>{coverage.catalogued_sources} referências</span>
         </div>
         {data["sources.json"].sources.map((source) => (
           <SourceCard key={source.id} source={source} />

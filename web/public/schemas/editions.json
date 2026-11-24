@@ -37,7 +37,8 @@
             "type": "string",
             "enum": [
               "lead_found",
-              "no_lead"
+              "no_lead",
+              "archived_pending_review"
             ]
           },
           "source_ids": {

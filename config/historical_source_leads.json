@@ -94,6 +94,67 @@
       "note": "Página CBF acessada e conteúdo conferido em 23/11/2026: texto de 22/01/2026 identifica Flamengo como campeão do Brasileirão 2025. O número de participações inclui 1967–1970 e NÃO pode ser usado no IGFB. Documento ainda não arquivado com SHA-256 nem homologado.",
       "source_checked_on": "2026-11-23",
       "source_check_status": "page_content_checked_not_archived"
+    },
+    {
+      "source_id": "cbf-fluminense-123",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro/feminino-sub-17/fluminense-comemora-123-anos-de-historia",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1984,
+        2010,
+        2012
+      ],
+      "claim_club": "fluminense",
+      "note": "Notícia de 21/07/2025 lista títulos nacionais; excluído 1970. Conteúdo consultado via resultado indexado; bytes não arquivados."
+    },
+    {
+      "source_id": "cbf-vasco-final-1989",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/copa-brasil-masculino/a/quando-vasco-e-sao-paulo-decidiram-o-brasileirao",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1974,
+        1989
+      ],
+      "claim_club": "vasco",
+      "note": "Texto histórico identifica as duas conquistas vascaínas. Conteúdo consultado via resultado indexado; bytes não arquivados."
+    },
+    {
+      "source_id": "cbf-conselho-saopaulo",
+      "url": "https://www.cbf.com.br/a-cbf/noticias/informes-cbf/a/cbf-forma-conselho-de-craques-para-colaborar-com-o-futebol-brasileiro",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1986,
+        2006,
+        2007,
+        2008
+      ],
+      "claim_club": "sao_paulo",
+      "note": "Perfis de Careca e Muricy identificam os títulos. Conteúdo consultado via resultado indexado; bytes não arquivados."
+    },
+    {
+      "source_id": "cbf-conselho-guarani",
+      "url": "https://www.cbf.com.br/a-cbf/noticias/informes-cbf/a/cbf-forma-conselho-de-craques-para-colaborar-com-o-futebol-brasileiro",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1978
+      ],
+      "claim_club": "guarani",
+      "note": "Perfil de Careca identifica a conquista de 1978. Conteúdo consultado via resultado indexado; bytes não arquivados."
+    },
+    {
+      "source_id": "cbf-ranking-pontos-cruzeiro",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro/serie-a/sao-paulo-x-flamengo-vale-a-lideranca-do-ranking-dos-pontos-corridos",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        2003
+      ],
+      "claim_club": "cruzeiro",
+      "note": "Texto identifica Cruzeiro campeão de 2003. Conteúdo consultado via resultado indexado; bytes não arquivados."
     }
   ]
 }

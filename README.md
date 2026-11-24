@@ -20,6 +20,12 @@ O IGFB estuda a trajetória dos clubes brasileiros a partir de **conquistas, cam
 
 </div>
 
+**[ROADMAP E METAS](ROADMAP.md)** — prioridades, critérios de aceite e indicadores separados por dimensão.
+
+## Indicadores recalculados
+
+O comando `python -m igfb_agent.project_audit` recalcula a **cobertura de pistas documentais por temporada**: número de temporadas com pelo menos uma pista dividido pelas 55 temporadas de 1971 a 2025. No conjunto de pistas registrado em 23/11/2026, são **20 de 55 temporadas (36,36%)**. Este número mede apenas a presença de pistas, não sua veracidade, documentação arquivada, homologação ou percentual de conclusão do IGFB. A estimativa histórica de 38% continua separada e não auditada. A exportação pública também recalcula a cobertura em `coverage.json`.
+
 ## Observatório web e dados públicos
 
 O frontend em [`web/`](web/README.md) implementa a experiência editorial do IGFB,
@@ -27,8 +33,8 @@ com home, clubes, comparação documental, laboratório sintético, linha do tem
 metodologia e central de pesquisa. O ranking histórico permanece bloqueado.
 
 O exportador `python -m igfb_agent.public_export --output web/public/data` amplia
-o contrato existente para v2, com nove documentos JSON, commit de origem,
-snapshots e SHA-256. Não transforma pistas em resultados homologados nem cria
+o contrato existente para v2, com dez documentos JSON, commit de origem,
+snapshots e SHA-256. Preserva a fila de pesquisa, a reconciliação do inventário e os indicadores recalculados da pesquisa. Não transforma pistas em resultados homologados nem cria
 pontuações reais. Dados ausentes são explícitos; a estimativa de 38% continua
 não auditada. O frontend não exige edição manual quando novas pistas entram.
 

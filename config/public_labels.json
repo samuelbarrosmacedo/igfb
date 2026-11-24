@@ -1,5 +1,41 @@
 {
-  "clubs": {"atletico_mg":"Atlético-MG", "corinthians":"Corinthians", "flamengo":"Flamengo", "gremio":"Grêmio", "internacional":"Internacional", "palmeiras":"Palmeiras"},
-  "competitions": {"world_classic":"Mundial clássico", "world_fifa_annual":"Mundial FIFA anual", "world_expanded":"Mundial expandido", "libertadores":"Libertadores", "brasileirao":"Campeonato Brasileiro", "copa_do_brasil":"Copa do Brasil", "sul_americana":"Copa Sul-Americana", "conmebol_mercosul":"CONMEBOL / Mercosul", "recopa":"Recopa", "supercopa":"Supercopa", "estadual":"Campeonato estadual", "serie_a_participation":"Permanência na Série A", "relegation_a_b":"Rebaixamento A → B", "relegation_b_c":"Rebaixamento B → C", "relegation_c_d":"Rebaixamento C → D"},
-  "outcomes": {"champion":"Título", "runner_up":"Vice", "semifinal":"Semifinal", "third":"3º lugar", "fourth":"4º lugar", "participated":"Participação", "relegated":"Rebaixamento"}
+  "clubs": {
+    "atletico_mg": "Atlético-MG",
+    "corinthians": "Corinthians",
+    "flamengo": "Flamengo",
+    "gremio": "Grêmio",
+    "internacional": "Internacional",
+    "palmeiras": "Palmeiras",
+    "sao_paulo": "São Paulo",
+    "fluminense": "Fluminense",
+    "vasco": "Vasco",
+    "guarani": "Guarani",
+    "cruzeiro": "Cruzeiro"
+  },
+  "competitions": {
+    "world_classic": "Mundial clássico",
+    "world_fifa_annual": "Mundial FIFA anual",
+    "world_expanded": "Mundial expandido",
+    "libertadores": "Libertadores",
+    "brasileirao": "Campeonato Brasileiro",
+    "copa_do_brasil": "Copa do Brasil",
+    "sul_americana": "Copa Sul-Americana",
+    "conmebol_mercosul": "CONMEBOL / Mercosul",
+    "recopa": "Recopa",
+    "supercopa": "Supercopa",
+    "estadual": "Campeonato estadual",
+    "serie_a_participation": "Permanência na Série A",
+    "relegation_a_b": "Rebaixamento A → B",
+    "relegation_b_c": "Rebaixamento B → C",
+    "relegation_c_d": "Rebaixamento C → D"
+  },
+  "outcomes": {
+    "champion": "Título",
+    "runner_up": "Vice",
+    "semifinal": "Semifinal",
+    "third": "3º lugar",
+    "fourth": "4º lugar",
+    "participated": "Participação",
+    "relegated": "Rebaixamento"
+  }
 }

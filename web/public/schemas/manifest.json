@@ -63,8 +63,8 @@
       "const": "research_state_checked_results_not_homologated"
     },
     "files": {
-      "minItems": 8,
-      "maxItems": 8,
+      "minItems": 9,
+      "maxItems": 9,
       "type": "array",
       "items": {
         "type": "string",
@@ -76,9 +76,42 @@
           "ranking.json",
           "clubs.json",
           "editions.json",
-          "sources.json"
+          "sources.json",
+          "research-backlog.json"
         ]
       }
+    },
+    "sha256": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "enum": [
+          "project-status.json",
+          "coverage.json",
+          "methodology.json",
+          "review-queue.json",
+          "ranking.json",
+          "clubs.json",
+          "editions.json",
+          "sources.json",
+          "research-backlog.json"
+        ]
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "required": [
+        "project-status.json",
+        "coverage.json",
+        "methodology.json",
+        "review-queue.json",
+        "ranking.json",
+        "clubs.json",
+        "editions.json",
+        "sources.json",
+        "research-backlog.json"
+      ]
     },
     "datasets": {
       "type": "object",
@@ -92,7 +125,8 @@
           "ranking.json",
           "clubs.json",
           "editions.json",
-          "sources.json"
+          "sources.json",
+          "research-backlog.json"
         ]
       },
       "additionalProperties": {
@@ -129,7 +163,8 @@
         "ranking.json",
         "clubs.json",
         "editions.json",
-        "sources.json"
+        "sources.json",
+        "research-backlog.json"
       ]
     }
   },
@@ -144,6 +179,7 @@
     "scope",
     "audit_status",
     "files",
+    "sha256",
     "datasets"
   ],
   "additionalProperties": false

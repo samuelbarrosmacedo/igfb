@@ -59,7 +59,7 @@ O exportador v2 produz:
 - `manifest.json`: schema, commit, geração UTC, recorte, auditoria, disponibilidade,
   digest do conjunto e paths/hashes de cada dataset.
 - `project-status.json`, `coverage.json`, `methodology.json`, `review-queue.json`,
-  `ranking.json`, `clubs.json`, `editions.json`, `sources.json`.
+  `ranking.json`, `clubs.json`, `editions.json`, `sources.json`, `research-backlog.json`.
 
 Os mesmos documentos são gravados sob `snapshots/<sha256>/`. O manifesto só é
 substituído após escrever o snapshot. O frontend busca apenas esses caminhos

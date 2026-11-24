@@ -16,7 +16,10 @@ export function Timeline({ data }: { data: PublicData }) {
   const visible = editions.filter(
     (e) =>
       (decade === "all" || Math.floor(e.year / 10) * 10 === Number(decade)) &&
-      (state === "all" || e.evidence_state === state),
+      (state === "all" ||
+        (state === "lead_found"
+          ? e.evidence_state !== "no_lead"
+          : e.evidence_state === state)),
   );
   function selectYear(year: number) {
     setParams({ ano: String(year) });
@@ -86,11 +89,11 @@ export function Timeline({ data }: { data: PublicData }) {
                   className={`${edition.evidence_state} ${edition.year === selected.year ? "selected" : ""}`}
                   onClick={() => setParams({ ano: String(edition.year) })}
                   aria-pressed={edition.year === selected.year}
-                  aria-label={`${edition.year}: ${edition.evidence_state === "lead_found" ? "com pistas" : "sem pistas cadastradas"}`}
+                  aria-label={`${edition.year}: ${edition.evidence_state !== "no_lead" ? "com pistas" : "sem pistas cadastradas"}`}
                 >
                   <strong>{edition.year}</strong>
                   <span>
-                    {edition.evidence_state === "lead_found"
+                    {edition.evidence_state !== "no_lead"
                       ? "Com pistas"
                       : "Sem pistas"}
                   </span>
@@ -116,11 +119,9 @@ export function Timeline({ data }: { data: PublicData }) {
           <section className="year-detail" aria-live="polite">
             <div className="year-display">{selected.year}</div>
             <StatusBadge
-              kind={
-                selected.evidence_state === "lead_found" ? "green" : "neutral"
-              }
+              kind={selected.evidence_state !== "no_lead" ? "green" : "neutral"}
             >
-              {selected.evidence_state === "lead_found"
+              {selected.evidence_state !== "no_lead"
                 ? "Pistas aguardando revisão"
                 : "Pesquisa pendente"}
             </StatusBadge>

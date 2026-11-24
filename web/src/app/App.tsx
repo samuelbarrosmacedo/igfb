@@ -57,13 +57,10 @@ function RouteFocus() {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
-    const id = window.setTimeout(() => {
-      const title = document.querySelector("h1");
-      title?.focus({ preventScroll: true });
-      if (title)
-        document.title = `${title.innerText.replace(/\s+/g, " ")} · IGFB`;
-    }, 120);
-    return () => clearTimeout(id);
+    const title = document.querySelector("h1");
+    title?.focus({ preventScroll: true });
+    if (title)
+      document.title = `${title.innerText.replace(/\s+/g, " ")} · IGFB`;
   }, [pathname]);
   return null;
 }
@@ -179,7 +176,6 @@ export default function App() {
         </div>
       )}
       <main id="conteudo" className="container" tabIndex={-1}>
-        <RouteFocus />
         {data.isPending ? (
           <div className="load-state" role="status">
             <span className="loading-line" />
@@ -246,6 +242,7 @@ export default function App() {
                   }
                 />
               </Routes>
+              <RouteFocus />
             </Suspense>
           </PageBoundary>
         )}

@@ -77,7 +77,7 @@ export function Compare({ data }: { data: PublicData }) {
             caption="Comparação de cobertura documental — não é uma classificação esportiva"
             data={[
               { metric: "Pistas cadastradas", key: "lead_count" },
-              { metric: "Fontes distintas", key: "source_ids" },
+              { metric: "Referências cadastradas", key: "source_ids" },
               { metric: "Temporadas com pistas", key: "years_with_leads" },
               {
                 metric: "Títulos, pontuação e participações",

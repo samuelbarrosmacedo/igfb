@@ -22,6 +22,7 @@ const fileNames = [
   "clubs.json",
   "editions.json",
   "sources.json",
+  "research-backlog.json",
 ] as const;
 export const manifestSchema = z.object({
   schema_version: version,
@@ -33,7 +34,8 @@ export const manifestSchema = z.object({
   dataset_id: hash,
   scope: scopeSchema,
   audit_status: z.literal("research_state_checked_results_not_homologated"),
-  files: z.array(z.enum(fileNames)).length(8),
+  files: z.array(z.enum(fileNames)).length(fileNames.length),
+  sha256: z.record(z.enum(fileNames), hash),
   datasets: z.record(
     z.enum(fileNames),
     z.object({
@@ -51,6 +53,14 @@ const statusSchema = z.object({
     audited: z.literal(false),
     usable_as_completion_metric: z.literal(false),
   }),
+  measured_progress: z.object({
+    metric: z.literal("seasons_with_documentary_leads"),
+    numerator: nonnegative,
+    denominator: z.literal(55),
+    percent: z.number().min(0).max(100),
+    audited_completion: z.literal(false),
+    warning: z.string(),
+  }),
   approved_results: z.literal(0),
   scope: scopeSchema,
   audit_status: z.string(),
@@ -67,8 +77,13 @@ const coverageSchema = z.object({
   source_ids_without_archived_bytes: nonnegative,
   approved_results: z.literal(0),
   catalogued_sources: nonnegative,
-  archived_evidence_documents: z.null(),
-  archive_status: z.literal("no_evidence_catalog"),
+  archived_evidence_documents: nonnegative,
+  verified_archives: nonnegative,
+  archived_candidate_count: nonnegative,
+  distinct_source_urls: nonnegative,
+  lead_coverage_percent: z.number().min(0).max(100),
+  coverage_metric: z.string(),
+  archive_status: z.literal("inventory_verified"),
   review_editions: nonnegative,
   competing_claim_editions: z.array(year),
   denominator: z.string(),
@@ -141,7 +156,7 @@ export const editionSchema = z.object({
   id: z.string(),
   year,
   competition: z.literal("brasileirao"),
-  evidence_state: z.enum(["lead_found", "no_lead"]),
+  evidence_state: z.enum(["lead_found", "no_lead", "archived_pending_review"]),
   source_ids: z.array(z.string()),
   has_competing_claims: z.boolean(),
   approved_results: z.literal(0),
@@ -159,7 +174,20 @@ export const sourceSchema = z.object({
   publisher: z.string(),
   note: z.string(),
   checked_on: z.string().nullable(),
-  state: z.enum(["page_checked_not_archived", "unverified_lead"]),
+  state: z.enum([
+    "page_checked_not_archived",
+    "unverified_lead",
+    "partially_archived",
+    "archived_pending_review",
+  ]),
+  archives: z.array(
+    z.object({
+      evidence_id: z.string(),
+      year,
+      sha256: hash,
+      retrieved_at: z.iso.datetime({ offset: true }),
+    }),
+  ),
   archived_sha256: z.null(),
   approved: z.literal(false),
   club_ids: z.array(z.string()),
@@ -170,6 +198,35 @@ const sourcesSchema = z.object({
   status: z.literal("source_leads_not_homologated"),
   sources: z.array(sourceSchema),
 });
+const backlogSchema = z.object({
+  schema_version: version,
+  scope: z.object({ first_year: z.literal(1971), last_year: z.literal(2025) }),
+  total_seasons: z.literal(55),
+  seasons_without_leads: nonnegative,
+  seasons_with_leads: nonnegative,
+  lead_coverage_percent: z.number().min(0).max(100),
+  ranking_approved: z.literal(false),
+  warning: z.string(),
+  tasks: z
+    .array(
+      z.object({
+        year,
+        edition_id: z.string(),
+        priority: z.number().int().min(1).max(3),
+        stage: z.enum([
+          "discover_official_source",
+          "archive_and_verify_source",
+          "manual_historical_review",
+        ]),
+        candidate_count: nonnegative,
+        source_ids: z.array(z.string()),
+        checked_source_count: nonnegative,
+        archived_source_count: nonnegative,
+        approved: z.literal(false),
+      }),
+    )
+    .length(55),
+});
 export const datasetSchemas = {
   "project-status.json": statusSchema,
   "coverage.json": coverageSchema,
@@ -179,6 +236,7 @@ export const datasetSchemas = {
   "clubs.json": clubsSchema,
   "editions.json": editionsSchema,
   "sources.json": sourcesSchema,
+  "research-backlog.json": backlogSchema,
 };
 export type FileName = keyof typeof datasetSchemas;
 export type Manifest = z.infer<typeof manifestSchema>;
@@ -190,11 +248,14 @@ export type PublicData = { manifest: Manifest } & {
 };
 export function validateRelations(data: PublicData) {
   const { manifest } = data;
-  if (new Set(manifest.files).size !== 8)
+  if (new Set(manifest.files).size !== fileNames.length)
     throw new Error("Manifesto contém duplicidades");
   for (const file of manifest.files) {
     const entry = manifest.datasets[file];
-    if (entry.path !== `snapshots/${manifest.dataset_id}/${file}`)
+    if (
+      entry.path !== `snapshots/${manifest.dataset_id}/${file}` ||
+      entry.sha256 !== manifest.sha256[file]
+    )
       throw new Error("Snapshot inconsistente");
   }
   const editions = data["editions.json"].editions;
@@ -213,7 +274,7 @@ export function validateRelations(data: PublicData) {
     if (source.club_ids.some((id) => !clubIds.has(id)))
       throw new Error("Clube não cadastrado");
   const coverage = data["coverage.json"];
-  const withLeads = editions.filter((e) => e.evidence_state === "lead_found");
+  const withLeads = editions.filter((e) => e.evidence_state !== "no_lead");
   if (
     withLeads.length !== coverage.seasons_with_leads ||
     new Set(coverage.seasons_without_leads).size + withLeads.length !== 55
@@ -228,9 +289,59 @@ export function validateRelations(data: PublicData) {
     editions.some(
       (e) =>
         e.id !== `brasileirao:${e.year}` ||
-        e.source_ids.length > 0 !== (e.evidence_state === "lead_found"),
+        e.source_ids.length > 0 !== (e.evidence_state !== "no_lead"),
     )
   )
     throw new Error("Edição inconsistente");
+  const missing = editions
+    .filter((e) => e.evidence_state === "no_lead")
+    .map((e) => e.year)
+    .sort();
+  if (
+    JSON.stringify([...coverage.seasons_without_leads].sort()) !==
+    JSON.stringify(missing)
+  )
+    throw Error("Anos sem pistas inconsistentes");
+  const measured = data["project-status.json"].measured_progress;
+  const expected = Math.round((withLeads.length / 55) * 10000) / 100;
+  if (
+    coverage.lead_coverage_percent !== expected ||
+    measured.percent !== expected ||
+    measured.numerator !== withLeads.length
+  )
+    throw Error("Indicador medido inconsistente");
+  const backlog = data["research-backlog.json"];
+  if (
+    new Set(backlog.tasks.map((t) => t.year)).size !== 55 ||
+    backlog.seasons_with_leads !== withLeads.length ||
+    backlog.lead_coverage_percent !== expected
+  )
+    throw Error("Fila de pesquisa inconsistente");
+  for (const task of backlog.tasks) {
+    if (
+      task.edition_id !== `brasileirao:${task.year}` ||
+      task.source_ids.some((id) => !sources.has(id))
+    )
+      throw Error("Referência de tarefa inválida");
+  }
+  for (const item of data["review-queue.json"].items) {
+    if (item.edition_id !== `brasileirao:${item.year}`)
+      throw Error("Revisão inconsistente");
+    for (const claim of item.claims) {
+      if (
+        !clubIds.has(claim.club_id) ||
+        claim.source_ids.some((id) => !sources.has(id)) ||
+        claim.source_count !== new Set(claim.source_ids).size
+      )
+        throw Error("Afirmação sem referência");
+    }
+  }
+  if (
+    coverage.distinct_source_urls !==
+      new Set(data["sources.json"].sources.map((s) => s.url)).size ||
+    coverage.verified_archives !==
+      data["sources.json"].sources.reduce((n, s) => n + s.archives.length, 0)
+  )
+    throw Error("Inventário inconsistente");
   return data;
 }

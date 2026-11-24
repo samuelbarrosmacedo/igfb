@@ -57,6 +57,8 @@ jobs:
           python -m compileall -q igfb_agent tests
           python -m unittest discover -s tests -v
           python -m igfb_agent.project_audit
+          python -m igfb_agent.evidence_inventory config/evidence_inventory.json --root .
+          python -m igfb_agent.evidence_reconciliation
           python -m igfb_agent.source_readiness
           python -m igfb_agent.review_queue
       - name: Exportar snapshot público

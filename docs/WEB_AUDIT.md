@@ -69,3 +69,22 @@ Documentação consultada em 23/11/2026:
 
 A licença de software de um repositório de logos não foi tratada como
 comprovação de autorização sobre todas as marcas. O fallback utiliza texto.
+
+
+## Reconciliação em 24/11/2026
+
+A branch de implementação incorporou `main` até
+`a1bcea3551dacaac4c7d25eb039090d4a984c8c8`, preservando inventário de evidências,
+reconciliação de arquivos, fila e relatório de pesquisa recém-introduzidos.
+O contrato v2 passou a ter dez documentos (manifesto + nove datasets).
+
+Estado medido: 31 candidatos em 31 temporadas, 24 temporadas sem pistas,
+12 referências cadastradas em 11 URLs distintas, 11 identidades de clubes,
+uma página marcada como conferida, zero arquivos no inventário verificado e
+zero resultados homologados. A cobertura de pistas (31/55) não representa
+conclusão, qualidade documental ou grandeza esportiva.
+
+As evidências arquivadas têm SHA-256 validado pelo núcleo existente antes da
+exportação. Seu estado continua pendente de revisão; arquivamento nunca promove
+um candidato a resultado aprovado. Nenhuma nova fonte histórica foi criada pelo
+trabalho de frontend.

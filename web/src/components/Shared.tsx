@@ -46,15 +46,18 @@ export function EmptyMetrics() {
     </div>
   );
 }
+const sourceStates: Record<Source["state"], string> = {
+  unverified_lead: "Pista ainda não conferida",
+  page_checked_not_archived: "Página conferida; bytes não arquivados",
+  partially_archived: "Parte das edições com arquivo verificado",
+  archived_pending_review: "Bytes verificados; revisão histórica pendente",
+};
 export function SourceCard({ source }: { source: Source }) {
   return (
     <article className="source-row">
       <div>
         <span className="eyebrow">
-          {source.publisher} ·{" "}
-          {source.state === "page_checked_not_archived"
-            ? "Página conferida no cadastro"
-            : "Pista documental"}
+          {source.publisher} · {sourceStates[source.state]}
         </span>
         <h3>{source.id}</h3>
         <p>{source.note}</p>
@@ -79,15 +82,23 @@ export function SourceCard({ source }: { source: Source }) {
             <p>{source.note}</p>
             <dl>
               <dt>Estado da evidência</dt>
-              <dd>
-                {source.state === "page_checked_not_archived"
-                  ? "Página conferida; bytes não arquivados"
-                  : "Pista ainda não conferida"}
-              </dd>
+              <dd>{sourceStates[source.state]}</dd>
               <dt>Conferência registrada</dt>
               <dd>{source.checked_on || "Não registrada"}</dd>
               <dt>SHA-256 dos bytes</dt>
-              <dd>Ainda não arquivado no catálogo de evidências</dd>
+              <dd>
+                {source.archives.length
+                  ? source.archives.map((archive) => (
+                      <div key={archive.evidence_id}>
+                        <span>
+                          {archive.year} · {archive.evidence_id}
+                        </span>
+                        <br />
+                        <code>{archive.sha256}</code>
+                      </div>
+                    ))
+                  : "Ainda não arquivado no catálogo de evidências"}
+              </dd>
               <dt>Resultado homologado</dt>
               <dd>Não</dd>
             </dl>
@@ -149,10 +160,7 @@ export function ClubMark({
 }) {
   return (
     <div aria-hidden="true" className={`club-mark ${large ? "large" : ""}`}>
-      {name
-        .replace("Atlético", "Atlético")
-        .slice(0, 3)
-        .toLocaleUpperCase("pt-BR")}
+      {name.slice(0, 3).toLocaleUpperCase("pt-BR")}
     </div>
   );
 }

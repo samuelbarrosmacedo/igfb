@@ -25,7 +25,23 @@ jobs:
           python -m igfb_agent.review_queue
           python -m igfb_agent.source_readiness
           python -m igfb_agent.project_audit
+          python -m igfb_agent.evidence_inventory config/evidence_inventory.json --root .
+          python -m igfb_agent.evidence_reconciliation
+          python -m igfb_agent.research_backlog
+          python -m igfb_agent.research_report --output /tmp/igfb-research-plan.md
+          python -m igfb_agent.research_report --format csv --output /tmp/igfb-research-plan.csv
       - name: Validar exportação pública do frontend
         run: |
           python -m igfb_agent.public_export --output /tmp/igfb-public-data
-          python -c "import json,pathlib; p=pathlib.Path('/tmp/igfb-public-data'); m=json.loads((p/'manifest.json').read_text()); assert all((p/f).is_file() for f in m['files']); r=json.loads((p/'ranking.json').read_text()); assert r['ranking']==[] and r['approved_results']==0"
+          python -c "from igfb_agent.public_export import verify_public_data; assert verify_public_data('/tmp/igfb-public-data')"
+      - name: Publicar relatórios para auditoria
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: igfb-audit-reports
+          retention-days: 14
+          path: |
+            /tmp/igfb-research-plan.md
+            /tmp/igfb-research-plan.csv
+            /tmp/igfb-public-data/
+          if-no-files-found: error

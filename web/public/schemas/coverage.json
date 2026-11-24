@@ -44,11 +44,36 @@
       "maximum": 9007199254740991
     },
     "archived_evidence_documents": {
-      "type": "null"
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "verified_archives": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "archived_candidate_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "distinct_source_urls": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "lead_coverage_percent": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "coverage_metric": {
+      "type": "string"
     },
     "archive_status": {
       "type": "string",
-      "const": "no_evidence_catalog"
+      "const": "inventory_verified"
     },
     "review_editions": {
       "type": "integer",
@@ -77,6 +102,11 @@
     "approved_results",
     "catalogued_sources",
     "archived_evidence_documents",
+    "verified_archives",
+    "archived_candidate_count",
+    "distinct_source_urls",
+    "lead_coverage_percent",
+    "coverage_metric",
     "archive_status",
     "review_editions",
     "competing_claim_editions",

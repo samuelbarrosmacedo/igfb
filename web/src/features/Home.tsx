@@ -35,7 +35,7 @@ export function Home({ data }: { data: PublicData }) {
           </div>
           <div className="hero-footnote">
             <span className="live-dot" />
-            Pesquisa aberta · resultados em homologação
+            Pesquisa aberta · homologação pendente
           </div>
         </div>
         <div className="hero-art">

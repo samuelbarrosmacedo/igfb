@@ -19,5 +19,5 @@ for (const name of manifest.files) {
 }
 validateRelations(data as PublicData);
 console.log(
-  `Contrato v${manifest.schema_version}: 8 datasets válidos, integridade e relações conferidas.`,
+  `Contrato v${manifest.schema_version}: 9 datasets válidos, integridade e relações conferidas.`,
 );

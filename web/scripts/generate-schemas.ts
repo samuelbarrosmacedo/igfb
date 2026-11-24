@@ -10,4 +10,4 @@ for (const [name, schema] of Object.entries({
     `public/schemas/${name}`,
     JSON.stringify(z.toJSONSchema(schema), null, 2) + "\n",
   );
-console.log("9 JSON Schemas gerados da fonte Zod.");
+console.log("10 JSON Schemas gerados da fonte Zod.");
