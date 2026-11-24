@@ -49,7 +49,7 @@
     },
     {
       "source_id": "cbf-gremio-121",
-      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/detalhes/competicoes-campeonato-brasileiro-serie-a/gremio-completa-121-anos-de-fundacao",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/gremio-completa-121-anos-de-fundacao",
       "publisher": "CBF",
       "source_type": "official",
       "claim_years": [
@@ -57,7 +57,9 @@
         1996
       ],
       "claim_club": "gremio",
-      "note": "CBF lista títulos brasileiros de 1981 e 1996."
+      "note": "CBF 15/09/2024: texto indexado lista os Brasileiros de 1981 e 1996. Original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-1987-resolution-2011",
@@ -101,7 +103,7 @@
     },
     {
       "source_id": "cbf-fluminense-123",
-      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro/feminino-sub-17/fluminense-comemora-123-anos-de-historia",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/competicoes-copa-nordeste-masculino/a/fluminense-comemora-123-anos-de-historia",
       "publisher": "CBF",
       "source_type": "official",
       "claim_years": [
@@ -110,7 +112,9 @@
         2012
       ],
       "claim_club": "fluminense",
-      "note": "Notícia de 21/07/2025 lista títulos nacionais; excluído 1970. Conteúdo consultado via resultado indexado; bytes não arquivados."
+      "note": "CBF 21/07/2025: texto indexado lista 1970, 1984, 2010 e 2012; 1970 fora do recorte. Original não arquivado.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-vasco-final-1989",
