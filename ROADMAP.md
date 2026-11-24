@@ -116,3 +116,6 @@ Uma tarefa só é marcada concluída quando o artefato correspondente existe e f
 ## Conferência documental — 24/11/2026
 
 Commit `9d6868cd1aad7ee3a38717f2f39d6a8fd8db22da`: conferidos os textos indexados da CBF relativos ao Santos em 2002 e 2004; substituída a URL de baixa confiança de 2004 por retrospectiva específica de 15/08/2020. Contagem de temporadas com fonte marcada conferida: 1 → 3 de 55 (a marca anterior de 2025 não foi reconferida). Cobertura de pistas permanece 55/55. Conferência textual não equivale a arquivamento original nem homologação. Próximo lote: conferir fontes restantes e arquivar originais com hashes. Testes Python não executados nesta etapa.
+
+### Palmeiras — conferência de 24/11/2026
+Fonte CBF de 26/08/2024 conferida: 1972, 1973, 1993, 1994, 2016, 2018, 2022 e 2023. Registro textual 3/55 → 11/55; pistas 55/55. Commit 36e5a84ea3654feb3672f7e5c808304d5b073915. Sem arquivamento ou homologação; testes Python não executados.
