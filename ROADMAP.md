@@ -137,3 +137,6 @@ CBF: Vasco 127 anos (21/08/2025), Vasco e São Paulo já decidiram o Brasileirã
 
 ### Conferência documental 24/11/2026 — Internacional, Guarani, São Paulo e Corinthians
 Textos indexados CBF efetivamente consultados: Batista (26/10/2016), Internacional (02/02/2016), Conselho de Craques (09/04/2019), Edílson (17/09/2024). Cobertura marcada 43/55 → 50/55; commit 6ceecf308dc4abe89a2616ed795c5a581cab7097. Releitura JSON confirmada. Originais e testes Python pendentes. Restam 1977, 1985, 1987, 1988, 2001; registros anteriores não revalidados.
+
+### Conferência documental — 24/11/2026
+Textos CBF consultados nesta execução confirmam Coritiba 1985, Bahia 1988 e Athletico-PR 2001. Cobertura registrada 50/55 → 53/55. Resoluções conflitantes de 1987 consultadas; reconhecimento conjunto revogado pela RDP 06/2011, Sport único campeão oficial; reivindicação Flamengo permanece pendente. Restam 1977 e 1987. Commit 5d6a5d25bcde782a52d28c34207c37a05a7826fc. JSON conferido por releitura; testes Python e arquivos originais pendentes; registros anteriores não revalidados.
