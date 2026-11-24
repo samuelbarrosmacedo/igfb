@@ -2,7 +2,7 @@
 import json
 from pathlib import Path
 from .calendar import brasileirao_editions
-from .candidates import build_candidates
+from .evidence_reconciliation import reconcile_evidence
 from .source_readiness import source_readiness
 from .review_queue import review_queue
 
@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def audit_project(*, status_path=None, candidates=None):
     path = Path(status_path) if status_path is not None else ROOT / "state" / "status.json"
     status = json.loads(path.read_text(encoding="utf-8"))
-    records = tuple(build_candidates() if candidates is None else candidates)
+    records = tuple(reconcile_evidence()["candidates"] if candidates is None else candidates)
     readiness = source_readiness(records)
     queue = review_queue(records)
     years = {e.year for e in brasileirao_editions()}
