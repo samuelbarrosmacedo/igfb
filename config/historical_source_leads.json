@@ -211,15 +211,16 @@
     },
     {
       "source_id": "cbf-santos-2004",
-      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/flamengo-conquista-brasileirao-2026",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/santos-e-athletico-pr-se-enfrentam-em-duelo-que-valeu-taca-em-2004",
       "publisher": "CBF",
       "source_type": "official",
       "claim_years": [
         2004
       ],
       "claim_club": "santos",
-      "note": "Referência de baixa confiança: URL aponta para notícia de Flamengo em 2026. Não utilizar como prova sem conferir conteúdo; há pista independente cbf-santos-112 para 2004.",
-      "source_check_status": "unverified"
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24",
+      "note": "Retrospectiva CBF de 15/08/2020 confirma título do Santos e vice do Athletico em 2004. Substitui referência anterior de baixa confiança; sem arquivo original."
     },
     {
       "source_id": "cbf-coritiba-1985",
@@ -264,7 +265,9 @@
       ],
       "publisher": "CBF",
       "source_type": "official",
-      "note": "Afirmação explícita no texto indexado consultado em 2026-11-24; não arquivado."
+      "note": "Texto consultado: retrospectiva CBF de 14/04/2024 confirma títulos brasileiros de 2002 e 2004. Anos anteriores a 1971 excluídos. Sem arquivo original.",
+      "source_check_status": "page_content_checked_not_archived",
+      "source_checked_on": "2026-11-24"
     },
     {
       "source_id": "cbf-edilson-53",
