@@ -15,9 +15,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_VERSION = 1
 PUBLIC_FILES = ("project-status.json", "coverage.json", "methodology.json", "review-queue.json", "research-backlog.json", "ranking.json")
 
-def build_public_data(*, candidates=None, status_path=None):
+def build_public_data(*, candidates=None, status_path=None, inventory_path=None, evidence_root=None):
     records = tuple(build_candidates() if candidates is None else candidates)
-    evidence = reconcile_evidence(candidates=records)
+    evidence = reconcile_evidence(candidates=records, inventory_path=inventory_path, root=evidence_root)
     records = tuple(evidence["candidates"])
     audit = audit_project(status_path=status_path, candidates=records)
     readiness = source_readiness(records)
@@ -72,9 +72,9 @@ def build_public_data(*, candidates=None, status_path=None):
         },
     }
 
-def export_public_data(output_dir, *, candidates=None, status_path=None):
+def export_public_data(output_dir, *, candidates=None, status_path=None, inventory_path=None, evidence_root=None):
     destination = Path(output_dir)
-    documents = build_public_data(candidates=candidates, status_path=status_path)
+    documents = build_public_data(candidates=candidates, status_path=status_path, inventory_path=inventory_path, evidence_root=evidence_root)
     # Serialize before writing, and publish the checksum manifest last.
     payloads = {name: (json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8")
                 for name, data in documents.items()}
