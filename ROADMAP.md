@@ -122,3 +122,6 @@ Fonte CBF de 26/08/2024 conferida: 1972, 1973, 1993, 1994, 2016, 2018, 2022 e 20
 
 ### Flamengo — conferência de 24/11/2026
 Texto CBF de 25/02/2021 conferido: 1980, 1982, 1983, 1992, 2009, 2019, 2020; 1987 identificado separadamente como Copa União, sem homologação nesta etapa. Conferência registrada 11/55 → 18/55. Commit 97a2f83a3f9de222955200a77051e1b207f373e3. Sem arquivamento original nem testes Python. Próximo lote: fontes dos campeões restantes, preservando recorte 1971–2025.
+
+### Conferência documental — Corinthians, Cruzeiro e São Paulo (24/11/2026)
+Dois textos indexados da CBF efetivamente consultados: 15/11/2017 (Corinthians e São Paulo) e 02/01/2025 (Cruzeiro). Dez temporadas adicionais, 18/55 → 28/55 marcadas conferidas. Commit cffc884245460b42d10fa761d5651f0b78630dfb. Releitura JSON confirmada; registros anteriores não revalidados, testes Python não executados, originais não arquivados. Próximo: 27 temporadas restantes.
