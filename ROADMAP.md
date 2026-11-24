@@ -38,6 +38,9 @@ Uma tarefa só é marcada concluída quando o artefato correspondente existe e f
 
 ## Entrega incremental recente
 
+- 2026-11-24: `8eb7ad8fcf5feafe3091ffc68c61461f0ad7aba4` permite injetar inventário e raiz de evidências na exportação pública, preservando os padrões de produção; `7e9edf96b8e46a3cebc16d69d00f5ac890c9c8bb` isola fixtures e acrescenta teste de exportação com arquivo sintético e hash real, sem homologação. Suíte não executada nesta etapa; cobertura de pistas 55/55, arquivos históricos reais 0, homologações 0. Próxima prioridade permanece arquivamento real e execução da CI.
+
+
 - 2026-11-24: commit `495144e01349496f9d33d29066dcc7321b06b806` fecha as lacunas de 1977 e 1979 com retrospectiva oficial CBF da final de 1977 e perfil de Batista (títulos do Internacional de 1975, 1976 e 1979). Releitura do JSON e validação programática: 55 anos distintos, 26 IDs únicos, 23 URLs distintas, 58 afirmações, nenhum ano fora do recorte. Cobertura de pistas 96,36% → 100%; não equivale à verificação de todos os documentos. Nenhuma homologação, arquivo original ou execução Python comprovada. M05 permanece pendente de revisão documental integral.
 
 
