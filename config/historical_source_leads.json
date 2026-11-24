@@ -155,6 +155,70 @@
       ],
       "claim_club": "cruzeiro",
       "note": "Texto identifica Cruzeiro campeão de 2003. Conteúdo consultado via resultado indexado; bytes não arquivados."
+    },
+    {
+      "source_id": "cbf-flamengo-2020",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/com-bicampeonato-flamengo-quebra-tabu-de-38-anos-no-brasileirao-assai",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1980,
+        1982,
+        1983,
+        1992,
+        2009,
+        2019,
+        2020
+      ],
+      "claim_club": "flamengo",
+      "note": "Anos explicitamente identificados no texto indexado da CBF em 24/11/2026; somente lacunas do recorte 1971–2025. Bytes não arquivados."
+    },
+    {
+      "source_id": "cbf-vasco-127",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro/feminino-sub-18/vasco-celebra-seu-127-aniversario",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1997,
+        2000
+      ],
+      "claim_club": "vasco",
+      "note": "Anos explicitamente identificados no texto indexado da CBF em 24/11/2026; somente lacunas do recorte 1971–2025. Bytes não arquivados."
+    },
+    {
+      "source_id": "cbf-cruzeiro-104",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/detalhes/competicoes-campeonato-brasileiro-serie-a/cruzeiro-comemora-104-anos-de-historia",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        2013,
+        2014
+      ],
+      "claim_club": "cruzeiro",
+      "note": "Anos explicitamente identificados no texto indexado da CBF em 24/11/2026; somente lacunas do recorte 1971–2025. Bytes não arquivados."
+    },
+    {
+      "source_id": "cbf-botafogo-2024",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/detalhes/campeonato-brasileiro-serie-a/presidente-da-cbf-parabeniza-botafogo-pelo-titulo-do-brasileirao-betano-2024",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1995,
+        2024
+      ],
+      "claim_club": "botafogo",
+      "note": "Anos explicitamente identificados no texto indexado da CBF em 24/11/2026; somente lacunas do recorte 1971–2025. Bytes não arquivados."
+    },
+    {
+      "source_id": "cbf-santos-2004",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/flamengo-conquista-brasileirao-2026",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        2004
+      ],
+      "claim_club": "santos",
+      "note": "Anos explicitamente identificados no texto indexado da CBF em 24/11/2026; somente lacunas do recorte 1971–2025. Bytes não arquivados."
     }
   ]
 }
