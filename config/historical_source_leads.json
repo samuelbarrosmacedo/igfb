@@ -219,6 +219,39 @@
       ],
       "claim_club": "santos",
       "note": "Anos explicitamente identificados no texto indexado da CBF em 24/11/2026; somente lacunas do recorte 1971–2025. Bytes não arquivados."
+    },
+    {
+      "source_id": "cbf-coritiba-1985",
+      "url": "https://www.cbf.com.br/a-cbf/arbitragem/escala-campeonato-brasileiro-serie-a/2024/reparacao-historica-campeoes-do-coritiba-sao-homenageados-pela-cbf",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1985
+      ],
+      "claim_club": "coritiba",
+      "note": "CBF registra homenagem e título de 1985. Texto indexado consultado em 2026-11-24; não arquivado."
+    },
+    {
+      "source_id": "cbf-corinthians-1990",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/copa-brasil-masculino/a/quando-vasco-e-sao-paulo-decidiram-o-brasileirao",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1990
+      ],
+      "claim_club": "corinthians",
+      "note": "Retrospectiva identifica vitória sobre São Paulo. Texto indexado consultado em 2026-11-24; não arquivado."
+    },
+    {
+      "source_id": "cbf-saopaulo-1991",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/copa-brasil-masculino/a/quando-vasco-e-sao-paulo-decidiram-o-brasileirao",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_years": [
+        1991
+      ],
+      "claim_club": "sao_paulo",
+      "note": "Retrospectiva identifica terceiro título contra Bragantino. Texto indexado consultado em 2026-11-24; não arquivado."
     }
   ]
 }
