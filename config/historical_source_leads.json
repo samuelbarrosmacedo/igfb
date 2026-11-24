@@ -298,6 +298,30 @@
       "publisher": "CBF",
       "source_type": "official",
       "note": "Afirmação explícita no texto indexado consultado em 2026-11-24; não arquivado."
+    },
+    {
+      "source_id": "cbf-retrospecto-1977",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/campeonato-brasileiro-serie-a/a/com-grandes-jogos-26-rodada-do-brasileirao-movimentara-fim-de-semana",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_club": "sao_paulo",
+      "claim_years": [
+        1977
+      ],
+      "note": "Retrospectiva de 04/09/2026 identifica vitória do São Paulo na final de 1977. Estatísticas agregadas pré-1971 não utilizadas."
+    },
+    {
+      "source_id": "cbf-batista-inter",
+      "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/copa-brasil-masculino/a/batista-destaca-forca-do-inter-no-beira-rio",
+      "publisher": "CBF",
+      "source_type": "official",
+      "claim_club": "internacional",
+      "claim_years": [
+        1975,
+        1976,
+        1979
+      ],
+      "note": "Perfil de Batista identifica explicitamente os três títulos nacionais. Conteúdo indexado consultado; não arquivado."
     }
   ]
 }
