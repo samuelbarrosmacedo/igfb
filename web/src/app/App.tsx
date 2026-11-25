@@ -6,6 +6,17 @@ import { Menu, X, ExternalLink, RefreshCw } from "lucide-react";
 import { usePublicData, useLatestManifest, dateLabel } from "../lib/data";
 import { Home } from "../features/Home";
 
+const Competitions = lazy(() =>
+  import("../features/Competitions").then((m) => ({ default: m.Competitions })),
+);
+const CompetitionProfile = lazy(() =>
+  import("../features/Competitions").then((m) => ({
+    default: m.CompetitionProfile,
+  })),
+);
+const Season = lazy(() =>
+  import("../features/Competitions").then((m) => ({ default: m.Season })),
+);
 const Clubs = lazy(() =>
   import("../features/Clubs").then((m) => ({ default: m.Clubs })),
 );
@@ -28,6 +39,8 @@ const Methodology = lazy(() => import("../features/Methodology"));
 const Laboratory = lazy(() => import("../features/Laboratory"));
 declare const __BUILD_TIME__: string;
 const links = [
+  ["/temporada", "Temporada"],
+  ["/competicoes", "Competições"],
   ["/ranking", "Ranking"],
   ["/clubes", "Clubes"],
   ["/comparador", "Comparador"],
@@ -204,6 +217,22 @@ export default function App() {
             >
               <Routes>
                 <Route path="/" element={<Home data={data.data} />} />
+                <Route
+                  path="/temporada"
+                  element={<Season data={data.data} />}
+                />
+                <Route
+                  path="/competicoes"
+                  element={<Competitions data={data.data} />}
+                />
+                <Route
+                  path="/competicoes/:id"
+                  element={<CompetitionProfile data={data.data} />}
+                />
+                <Route
+                  path="/competicoes/:id/edicoes/:editionId"
+                  element={<CompetitionProfile data={data.data} />}
+                />
                 <Route path="/ranking" element={<Ranking data={data.data} />} />
                 <Route path="/clubes" element={<Clubs data={data.data} />} />
                 <Route

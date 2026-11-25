@@ -1,5 +1,10 @@
 import { z } from "zod";
-const version = z.literal(2);
+import {
+  identitySchema,
+  observatorySchema,
+  validateObservatory,
+} from "./observatory-contract";
+const version = z.literal(3);
 const nonnegative = z.number().int().nonnegative();
 const year = z.number().int().min(1971).max(2025);
 const hash = z.string().regex(/^[a-f0-9]{64}$/);
@@ -23,6 +28,7 @@ const fileNames = [
   "editions.json",
   "sources.json",
   "research-backlog.json",
+  "observatory.json",
 ] as const;
 export const manifestSchema = z.object({
   schema_version: version,
@@ -133,11 +139,8 @@ export const rankingSchema = z.object({
   ranking: z.array(z.never()).length(0),
   reason: z.string(),
 });
-export const clubSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  identity_status: z.literal("source_lead_identity"),
-  crest: z.null(),
+export const clubSchema = identitySchema.extend({
+  identity_status: z.literal("catalogued"),
   lead_count: nonnegative,
   source_ids: z.array(z.string()),
   years_with_leads: z.array(year),
@@ -148,7 +151,7 @@ export const clubSchema = z.object({
 });
 const clubsSchema = z.object({
   schema_version: version,
-  status: z.literal("identities_from_source_leads"),
+  status: z.literal("canonical_catalog"),
   scope_note: z.string(),
   clubs: z.array(clubSchema),
 });
@@ -228,6 +231,7 @@ const backlogSchema = z.object({
     .length(55),
 });
 export const datasetSchemas = {
+  "observatory.json": observatorySchema,
   "project-status.json": statusSchema,
   "coverage.json": coverageSchema,
   "methodology.json": methodologySchema,
@@ -248,6 +252,15 @@ export type PublicData = { manifest: Manifest } & {
 };
 export function validateRelations(data: PublicData) {
   const { manifest } = data;
+  validateObservatory(
+    data["observatory.json"],
+    Object.keys(data["methodology.json"].weights),
+  );
+  if (
+    JSON.stringify(data["observatory.json"].clubs.map((c) => c.id).sort()) !==
+    JSON.stringify(data["clubs.json"].clubs.map((c) => c.id).sort())
+  )
+    throw Error("Catálogos de clubes divergentes");
   if (new Set(manifest.files).size !== fileNames.length)
     throw new Error("Manifesto contém duplicidades");
   for (const file of manifest.files) {

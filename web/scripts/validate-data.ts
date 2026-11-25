@@ -6,6 +6,10 @@ import {
   validateRelations,
   type PublicData,
 } from "../src/lib/contracts.ts";
+import { catalogInputSchema } from "../src/lib/observatory-contract.ts";
+catalogInputSchema.parse(
+  JSON.parse(readFileSync("../config/observatory.json", "utf8")),
+);
 const manifest = manifestSchema.parse(
   JSON.parse(readFileSync("public/data/manifest.json", "utf8")),
 );
@@ -19,5 +23,5 @@ for (const name of manifest.files) {
 }
 validateRelations(data as PublicData);
 console.log(
-  `Contrato v${manifest.schema_version}: 9 datasets válidos, integridade e relações conferidas.`,
+  `Contrato v${manifest.schema_version}: ${manifest.files.length} datasets válidos, integridade e relações conferidas.`,
 );

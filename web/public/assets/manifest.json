@@ -1,14 +1,73 @@
 {
   "schema_version": 1,
   "assets": [
-    {"path":"pitch.svg", "origin":"Arte vetorial original criada para o projeto IGFB nesta implementação", "author":"Projeto IGFB / implementação assistida", "license":"Licenciamento do projeto ainda não definido; sem assets de terceiros", "attribution_required":false},
-    {"path":"mark.svg", "origin":"Marca geométrica original do frontend IGFB", "author":"Projeto IGFB / implementação assistida", "license":"Licenciamento do projeto ainda não definido", "attribution_required":false},
-    {"path":"social.svg", "origin":"Composição tipográfica original IGFB", "author":"Projeto IGFB / implementação assistida", "license":"Licenciamento do projeto ainda não definido", "attribution_required":false}
+    {
+      "path": "pitch.svg",
+      "origin": "Arte vetorial original criada para o projeto IGFB nesta implementação",
+      "author": "Projeto IGFB / implementação assistida",
+      "license": "Licenciamento do projeto ainda não definido; sem assets de terceiros",
+      "attribution_required": false
+    },
+    {
+      "path": "mark.svg",
+      "origin": "Marca geométrica original do frontend IGFB",
+      "author": "Projeto IGFB / implementação assistida",
+      "license": "Licenciamento do projeto ainda não definido",
+      "attribution_required": false
+    },
+    {
+      "path": "social.svg",
+      "origin": "Composição tipográfica original IGFB",
+      "author": "Projeto IGFB / implementação assistida",
+      "license": "Licenciamento do projeto ainda não definido",
+      "attribution_required": false
+    }
   ],
   "fonts": [
-    {"family":"Barlow Condensed", "author":"Jeremy Tribby", "source":"https://fontsource.org/fonts/barlow-condensed/about", "license":"OFL-1.1", "license_file":"licenses/barlow-condensed.txt"},
-    {"family":"Montserrat", "author":"Julieta Ulanovsky and contributors", "source":"https://fontsource.org/fonts/montserrat/about", "license":"OFL-1.1", "license_file":"licenses/montserrat.txt"},
-    {"family":"JetBrains Mono", "author":"JetBrains, Philipp Nurullin, Konstantin Bulenkov", "source":"https://fontsource.org/fonts/jetbrains-mono/about", "license":"OFL-1.1", "license_file":"licenses/jetbrains-mono.txt"}
+    {
+      "family": "Barlow Condensed",
+      "author": "Jeremy Tribby",
+      "source": "https://fontsource.org/fonts/barlow-condensed/about",
+      "license": "OFL-1.1",
+      "license_file": "licenses/barlow-condensed.txt"
+    },
+    {
+      "family": "Montserrat",
+      "author": "Julieta Ulanovsky and contributors",
+      "source": "https://fontsource.org/fonts/montserrat/about",
+      "license": "OFL-1.1",
+      "license_file": "licenses/montserrat.txt"
+    },
+    {
+      "family": "JetBrains Mono",
+      "author": "JetBrains, Philipp Nurullin, Konstantin Bulenkov",
+      "source": "https://fontsource.org/fonts/jetbrains-mono/about",
+      "license": "OFL-1.1",
+      "license_file": "licenses/jetbrains-mono.txt"
+    }
   ],
-  "club_crests": {"included":false, "reason":"Nenhum escudo com autorização específica comprovada nesta entrega. Usado fallback tipográfico.", "reviewed_sources":["https://github.com/sportsdataverse/sdvplot", "https://github.com/JoseArroyave/football-logos", "https://www.footylogos.com/logo-usage-right"], "finding":"Licença do código de um repositório não comprova direitos de redistribuição de cada marca."}
+  "club_crests": {
+    "included": true,
+    "catalog": "../../../config/observatory.json",
+    "public_catalog": "../data/observatory.json",
+    "policy": "Identificação editorial com procedência e condições declaradas pelo distribuidor. Nenhum vínculo ou endosso dos clubes. Fallback para demais clubes.",
+    "assets": [
+      {
+        "path": "assets/identities/flamengo-a84dc1d0e608.svg",
+        "sha256": "a84dc1d0e608bc05e4ecc971a642055df96b4fef1c4af9329d1effe41839b0af",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Clube_de_Regatas_do_Flamengo_logo.svg",
+        "license": "PD-textlogo — classificação do Wikimedia Commons",
+        "attribution": "Clube de Regatas do Flamengo; vetor distribuído pelo Wikimedia Commons",
+        "usage_note": "Uso editorial para identificação do clube. Marca pertence ao clube; não implica parceria ou endosso. Arquivo sem alterações."
+      },
+      {
+        "path": "assets/identities/botafogo-fe8fa7a78697.svg",
+        "sha256": "fe8fa7a786973d9c4997609417fb2fbb206d1ec6fee598856decdd4707c110b9",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Botafogo_de_Futebol_e_Regatas_logo.svg",
+        "license": "PD-textlogo — classificação do Wikimedia Commons",
+        "attribution": "Botafogo de Futebol e Regatas; vetor distribuído pelo Wikimedia Commons",
+        "usage_note": "Uso editorial para identificação do clube. Marca pertence ao clube; não implica parceria ou endosso. Arquivo sem alterações."
+      }
+    ]
+  }
 }

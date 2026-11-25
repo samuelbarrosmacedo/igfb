@@ -1,4 +1,11 @@
 import { test, expect } from "@playwright/test";
+import { readFileSync } from "node:fs";
+const exportedSeason = JSON.parse(
+  readFileSync("public/data/observatory.json", "utf8"),
+).current_season;
+const convention = JSON.parse(
+  readFileSync("public/data/methodology.json", "utf8"),
+).flamengo_1987;
 import AxeBuilder from "@axe-core/playwright";
 test("home, rotas, integridade visual e acessibilidade", async ({ page }) => {
   const errors: string[] = [];
@@ -22,6 +29,8 @@ test("home, rotas, integridade visual e acessibilidade", async ({ page }) => {
     await expect(menu).toHaveCount(0);
   }
   for (const [route, heading] of [
+    ["/temporada", `O futebol em ${exportedSeason}.`],
+    ["/competicoes", "Cada disputa tem seu lugar."],
     ["/ranking", "A posição vem depois da prova."],
     ["/clubes", "Cada camisa, uma história."],
     ["/comparador", "Compare o que sabemos."],
@@ -63,7 +72,9 @@ test("clubes, comparação e filtros do almanaque", async ({ page }) => {
   await expect(page.getByRole("table")).toBeVisible();
   await expect(page.getByText("Modo: pesquisa documental")).toBeVisible();
   await page.goto("./#/linha-do-tempo?ano=1987");
-  await expect(page.getByText(/Flamengo campeão por convenção/)).toBeVisible();
+  await expect(
+    page.getByText(convention, { exact: true }).first(),
+  ).toBeVisible();
   await page.getByRole("combobox", { name: "Competição" }).click();
   await page.getByRole("option", { name: "Libertadores", exact: true }).click();
   await expect(page.getByRole("status")).toContainText(

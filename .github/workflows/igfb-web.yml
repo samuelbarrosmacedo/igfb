@@ -10,6 +10,8 @@ on:
         "docs/**",
         "tests/**",
         ".github/workflows/**",
+        "README.md",
+        "ROADMAP.md",
       ]
   push:
     branches: [main]
@@ -22,7 +24,11 @@ on:
         "docs/**",
         "tests/**",
         ".github/workflows/**",
+        "README.md",
+        "ROADMAP.md",
       ]
+  schedule:
+    - cron: "15 4 * * *" # Atualiza a temporada; não coleta nem homologa resultados.
   workflow_dispatch:
   # Commits feitos por GITHUB_TOKEN não disparam outro workflow por push.
   workflow_run:
@@ -115,3 +121,16 @@ jobs:
       - name: Publicar snapshot validado
         id: deployment
         uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_run' && 'main' || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: igfb-web-dist
+          path: published-artifact
+      - name: Conferir snapshot efetivamente publicado
+        run: python -m igfb_agent.verify_publication --manifest published-artifact/data/manifest.json --attempts 12

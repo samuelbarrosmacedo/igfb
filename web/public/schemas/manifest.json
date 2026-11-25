@@ -4,7 +4,7 @@
   "properties": {
     "schema_version": {
       "type": "number",
-      "const": 2
+      "const": 3
     },
     "dataset_status": {
       "type": "string",
@@ -63,8 +63,8 @@
       "const": "research_state_checked_results_not_homologated"
     },
     "files": {
-      "minItems": 9,
-      "maxItems": 9,
+      "minItems": 10,
+      "maxItems": 10,
       "type": "array",
       "items": {
         "type": "string",
@@ -77,7 +77,8 @@
           "clubs.json",
           "editions.json",
           "sources.json",
-          "research-backlog.json"
+          "research-backlog.json",
+          "observatory.json"
         ]
       }
     },
@@ -94,7 +95,8 @@
           "clubs.json",
           "editions.json",
           "sources.json",
-          "research-backlog.json"
+          "research-backlog.json",
+          "observatory.json"
         ]
       },
       "additionalProperties": {
@@ -110,7 +112,8 @@
         "clubs.json",
         "editions.json",
         "sources.json",
-        "research-backlog.json"
+        "research-backlog.json",
+        "observatory.json"
       ]
     },
     "datasets": {
@@ -126,7 +129,8 @@
           "clubs.json",
           "editions.json",
           "sources.json",
-          "research-backlog.json"
+          "research-backlog.json",
+          "observatory.json"
         ]
       },
       "additionalProperties": {
@@ -164,7 +168,8 @@
         "clubs.json",
         "editions.json",
         "sources.json",
-        "research-backlog.json"
+        "research-backlog.json",
+        "observatory.json"
       ]
     }
   },

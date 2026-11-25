@@ -29,9 +29,9 @@ export function Research({ data }: { data: PublicData }) {
             value: coverage.checked_source_pages,
             label:
               coverage.checked_source_pages === 1
-                ? "página conferida"
-                : "páginas conferidas",
-            note: "Conferência registrada na base",
+                ? "página com conferência declarada"
+                : "páginas com conferência declarada",
+            note: "Estado declarado na base; não é comprovação independente",
           },
           {
             value: coverage.approved_results,

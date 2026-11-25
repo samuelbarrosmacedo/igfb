@@ -65,7 +65,7 @@ export function Compare({ data }: { data: PublicData }) {
           >
             {chosen.map((club) => (
               <div key={club.id}>
-                <ClubMark name={club.name} large />
+                <ClubMark name={club.name} crest={club.crest} large />
                 <h2>{club.name}</h2>
                 <Link to={`/clubes/${club.id}`} className="text-link">
                   Abrir dossiê
