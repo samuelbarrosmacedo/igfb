@@ -132,11 +132,10 @@ export function Timeline({ data }: { data: PublicData }) {
               <strong>dados ainda não homologados.</strong>
             </p>
             {selected.year === 1987 && (
-              <p className="convention">
-                1987: Flamengo campeão por convenção metodológica explícita do
-                IGFB, sem alegação de consenso institucional ou jurídico. A
-                convenção não substitui a homologação documental.
-              </p>
+              <div className="convention">
+                <h3>Vencedores provisórios · aguardando revisão</h3>
+                <p>{data["methodology.json"].flamengo_1987}</p>
+              </div>
             )}
             <SourcesList data={data} ids={selected.source_ids} />
           </section>
