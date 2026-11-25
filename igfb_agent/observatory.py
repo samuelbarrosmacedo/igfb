@@ -101,8 +101,64 @@ def validate_catalog(catalog, *, root=ROOT):
     return catalog
 
 
+def include_historical_results(catalog, *, root=ROOT):
+    """Translate the researched 1971–2025 cross-check into *provisional* display records.
+
+    Do not assign IGFB scores, approvals or official_final status. This is
+    derived from a versioned research document, not silently promoted evidence.
+    """
+    path = Path(root) / "docs/evidence/brasileirao-reconciliation-2025.json"
+    evidence = json.loads(path.read_text(encoding="utf-8"))
+    years = evidence.get("years", [])
+    if evidence.get("status") != "secondary_crosscheck_not_homologated" or len(years) != 55:
+        raise ValueError("Reconciliação histórica incompleta ou homologação inesperada")
+    if {row["year"] for row in years} != set(range(BASELINE_YEAR, THROUGH_YEAR + 1)):
+        raise ValueError("Calendário do cruzamento histórico inválido")
+    if [(row["year"], row["club"]) for row in years if row["conflict"]] != [(1987, "sport")]:
+        raise ValueError("Controvérsia histórica alterada: exige revisão")
+    club_ids = {c["id"] for c in catalog["clubs"]}
+    source_ids = {s["id"] for s in catalog["sources"]}
+    if not {"espn-brasileirao-lista-2025", "flamengo-titulos-1987"} <= source_ids:
+        raise ValueError("Fontes do cruzamento ausentes do catálogo")
+    existing_editions = {e["id"] for e in catalog["editions"]}
+    existing_records = {r["id"] for r in catalog["records"]}
+    for row in sorted(years, key=lambda r: r["year"]):
+        year = row["year"]
+        disputed = year == 1987
+        clubs = ["sport", "flamengo"] if disputed else [row["club"]]
+        if not set(clubs) <= club_ids:
+            raise ValueError(f"Clube histórico ausente do catálogo: {year}")
+        sources = ["espn-brasileirao-lista-2025", "flamengo-titulos-1987"] if disputed else ["espn-brasileirao-lista-2025"]
+        edition_id = f"brasileirao:{year}"
+        if edition_id not in existing_editions:
+            catalog["editions"].append({
+                "id": edition_id, "competition_id": "brasileirao", "year": year,
+                "label": str(year), "status": "finished", "format": "mixed",
+                "participant_ids": [], "source_ids": sources,
+                "updated_at": "2026-11-25T23:00:00Z",
+            })
+        record_id = f"{edition_id}:champion-crosscheck"
+        if record_id not in existing_records:
+            catalog["records"].append({
+                "id": record_id, "edition_id": edition_id, "kind": "result",
+                "status": "disputed" if disputed else "provisional",
+                "club_ids": clubs, "source_ids": sources,
+                "label": ("Flamengo* e Sport* — aguardando revisão" if disputed
+                          else "Campeão indicado no cruzamento histórico"),
+                "phase": "Copa União (Módulo Verde) / atribuição oficial ao Sport" if disputed else None,
+                "position": 1 if not disputed else None,
+                "value": None, "unit": None,
+                "home_score": None, "away_score": None, "played_at": None,
+                "updated_at": "2026-11-25T23:00:00Z", "revision": 1,
+                "revision_note": "Cruzamento secundário, ainda não homologado; sem pontuação no IGFB.",
+            })
+    return catalog
+
+
 def build_observatory(*, catalog_path=None, current_year=None, root=ROOT):
     catalog = json.loads((Path(catalog_path) if catalog_path else ROOT / "config/observatory.json").read_text())
+    validate_catalog(catalog, root=root)
+    include_historical_results(catalog, root=root)
     validate_catalog(catalog, root=root)
     year = current_year if current_year is not None else datetime.now(ZoneInfo("America/Sao_Paulo")).year
     if type(year) is not int or not BASELINE_YEAR <= year <= 9999:
