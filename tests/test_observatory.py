@@ -57,7 +57,7 @@ class ObservatoryTests(unittest.TestCase):
         self.catalog['competitions'].append(comp)
         self.edition.update(id='fixture-cup:2027',competition_id=comp['id'],participant_ids=[club['id']])
         self.record['edition_id']=self.edition['id']
-        self.assertEqual(self.build()['editions'][-1]['competition_id'],'fixture-cup')
+        self.assertEqual(next(e for e in self.build()['editions'] if e['id']=='fixture-cup:2027')['competition_id'],'fixture-cup')
 
     def test_closed_edition_does_not_homologate_results(self):
         self.edition['status']='finished';self.record['status']='official_final'
