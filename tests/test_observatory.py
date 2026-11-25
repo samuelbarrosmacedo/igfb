@@ -23,6 +23,26 @@ class ObservatoryTests(unittest.TestCase):
             path=Path(folder)/'catalog.json';path.write_text(json.dumps(self.catalog))
             return build_observatory(catalog_path=path,current_year=year)
 
+    def test_github_reconciliation_populates_55_provisional_results(self):
+        # Use the committed research file as the source; do not manufacture titles.
+        import collections
+        catalog=build_observatory(current_year=2026)
+        history=[r for r in catalog["records"] if r["id"].endswith(":champion-crosscheck")]
+        self.assertEqual(len(history),55)
+        self.assertEqual(len({r["edition_id"] for r in history}),55)
+        self.assertEqual(collections.Counter(r["status"] for r in history),{"provisional":54,"disputed":1})
+        self.assertEqual(len([e for e in catalog["editions"] if e["competition_id"]=="brasileirao"]),55)
+        self.assertTrue(any(c["id"]=="sport" for c in catalog["clubs"]))
+        disputed=next(r for r in history if r["edition_id"]=="brasileirao:1987")
+        self.assertEqual(disputed["club_ids"],["sport","flamengo"])
+        self.assertIn("Flamengo* e Sport*",disputed["label"])
+        self.assertEqual(disputed["status"],"disputed")
+        self.assertTrue(all(r["value"] is None for r in history))
+        documents=build_public_data(current_year=2026)
+        self.assertEqual(documents["ranking.json"]["ranking"],[])
+        self.assertEqual(documents["ranking.json"]["approved_results"],0)
+        self.assertEqual(len(documents["observatory.json"]["records"]),55)
+
     def test_new_season_and_rollover_do_not_change_historical_scope(self):
         before=self.build(2026);after=self.build(2027)
         self.assertEqual(after['current_season'],2027)
