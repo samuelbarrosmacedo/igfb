@@ -1,0 +1,707 @@
+{
+  "status": "secondary_crosscheck_not_homologated",
+  "reference_blob": "c41c60cd21878a5742725b368ef4d3b13c998d49",
+  "candidates_blob": "105fc0d3736b3baece7a3f59b20569dbbf03592c",
+  "years": [
+    {
+      "year": 1971,
+      "club": "atletico_mg",
+      "claims": [
+        {
+          "club": "atletico_mg",
+          "source": "cbf-atletico-2021"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1972,
+      "club": "palmeiras",
+      "claims": [
+        {
+          "club": "palmeiras",
+          "source": "cbf-palmeiras-110"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1973,
+      "club": "palmeiras",
+      "claims": [
+        {
+          "club": "palmeiras",
+          "source": "cbf-palmeiras-110"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1974,
+      "club": "vasco",
+      "claims": [
+        {
+          "club": "vasco",
+          "source": "cbf-vasco-final-1989"
+        },
+        {
+          "club": "vasco",
+          "source": "cbf-vasco-127"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1975,
+      "club": "internacional",
+      "claims": [
+        {
+          "club": "internacional",
+          "source": "cbf-inter-gaucho"
+        },
+        {
+          "club": "internacional",
+          "source": "cbf-batista-inter"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1976,
+      "club": "internacional",
+      "claims": [
+        {
+          "club": "internacional",
+          "source": "cbf-inter-gaucho"
+        },
+        {
+          "club": "internacional",
+          "source": "cbf-batista-inter"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1977,
+      "club": "sao_paulo",
+      "claims": [
+        {
+          "club": "sao_paulo",
+          "source": "cbf-retrospecto-1977"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1978,
+      "club": "guarani",
+      "claims": [
+        {
+          "club": "guarani",
+          "source": "cbf-conselho-guarani"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1979,
+      "club": "internacional",
+      "claims": [
+        {
+          "club": "internacional",
+          "source": "cbf-batista-inter"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1980,
+      "club": "flamengo",
+      "claims": [
+        {
+          "club": "flamengo",
+          "source": "cbf-flamengo-2020"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1981,
+      "club": "gremio",
+      "claims": [
+        {
+          "club": "gremio",
+          "source": "cbf-gremio-121"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1982,
+      "club": "flamengo",
+      "claims": [
+        {
+          "club": "flamengo",
+          "source": "cbf-flamengo-2020"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1983,
+      "club": "flamengo",
+      "claims": [
+        {
+          "club": "flamengo",
+          "source": "cbf-flamengo-2020"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1984,
+      "club": "fluminense",
+      "claims": [
+        {
+          "club": "fluminense",
+          "source": "cbf-fluminense-123"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1985,
+      "club": "coritiba",
+      "claims": [
+        {
+          "club": "coritiba",
+          "source": "cbf-coritiba-1985"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1986,
+      "club": "sao_paulo",
+      "claims": [
+        {
+          "club": "sao_paulo",
+          "source": "cbf-conselho-saopaulo"
+        },
+        {
+          "club": "sao_paulo",
+          "source": "cbf-careca-1986"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1987,
+      "club": "sport",
+      "claims": [
+        {
+          "club": "flamengo",
+          "source": "cbf-1987-resolution-2011"
+        }
+      ],
+      "match": false,
+      "conflict": true
+    },
+    {
+      "year": 1988,
+      "club": "bahia",
+      "claims": [
+        {
+          "club": "bahia",
+          "source": "cbf-bahia-94"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1989,
+      "club": "vasco",
+      "claims": [
+        {
+          "club": "vasco",
+          "source": "cbf-vasco-final-1989"
+        },
+        {
+          "club": "vasco",
+          "source": "cbf-vasco-127"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1990,
+      "club": "corinthians",
+      "claims": [
+        {
+          "club": "corinthians",
+          "source": "cbf-corinthians-1990"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1991,
+      "club": "sao_paulo",
+      "claims": [
+        {
+          "club": "sao_paulo",
+          "source": "cbf-saopaulo-1991"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1992,
+      "club": "flamengo",
+      "claims": [
+        {
+          "club": "flamengo",
+          "source": "cbf-flamengo-2020"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1993,
+      "club": "palmeiras",
+      "claims": [
+        {
+          "club": "palmeiras",
+          "source": "cbf-palmeiras-110"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1994,
+      "club": "palmeiras",
+      "claims": [
+        {
+          "club": "palmeiras",
+          "source": "cbf-palmeiras-110"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1995,
+      "club": "botafogo",
+      "claims": [
+        {
+          "club": "botafogo",
+          "source": "cbf-botafogo-2024"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1996,
+      "club": "gremio",
+      "claims": [
+        {
+          "club": "gremio",
+          "source": "cbf-gremio-121"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1997,
+      "club": "vasco",
+      "claims": [
+        {
+          "club": "vasco",
+          "source": "cbf-vasco-127"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1998,
+      "club": "corinthians",
+      "claims": [
+        {
+          "club": "corinthians",
+          "source": "cbf-edilson-53"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 1999,
+      "club": "corinthians",
+      "claims": [
+        {
+          "club": "corinthians",
+          "source": "cbf-edilson-53"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2000,
+      "club": "vasco",
+      "claims": [
+        {
+          "club": "vasco",
+          "source": "cbf-vasco-127"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2001,
+      "club": "athletico_pr",
+      "claims": [
+        {
+          "club": "athletico_pr",
+          "source": "cbf-kleberson-46"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2002,
+      "club": "santos",
+      "claims": [
+        {
+          "club": "santos",
+          "source": "cbf-santos-112"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2003,
+      "club": "cruzeiro",
+      "claims": [
+        {
+          "club": "cruzeiro",
+          "source": "cbf-ranking-pontos-cruzeiro"
+        },
+        {
+          "club": "cruzeiro",
+          "source": "cbf-cruzeiro-104"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2004,
+      "club": "santos",
+      "claims": [
+        {
+          "club": "santos",
+          "source": "cbf-santos-2004"
+        },
+        {
+          "club": "santos",
+          "source": "cbf-santos-112"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2005,
+      "club": "corinthians",
+      "claims": [
+        {
+          "club": "corinthians",
+          "source": "cbf-corinthians-2017"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2006,
+      "club": "sao_paulo",
+      "claims": [
+        {
+          "club": "sao_paulo",
+          "source": "cbf-conselho-saopaulo"
+        },
+        {
+          "club": "sao_paulo",
+          "source": "cbf-saopaulo-pontos-2017"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2007,
+      "club": "sao_paulo",
+      "claims": [
+        {
+          "club": "sao_paulo",
+          "source": "cbf-conselho-saopaulo"
+        },
+        {
+          "club": "sao_paulo",
+          "source": "cbf-saopaulo-pontos-2017"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2008,
+      "club": "sao_paulo",
+      "claims": [
+        {
+          "club": "sao_paulo",
+          "source": "cbf-conselho-saopaulo"
+        },
+        {
+          "club": "sao_paulo",
+          "source": "cbf-saopaulo-pontos-2017"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2009,
+      "club": "flamengo",
+      "claims": [
+        {
+          "club": "flamengo",
+          "source": "cbf-flamengo-2020"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2010,
+      "club": "fluminense",
+      "claims": [
+        {
+          "club": "fluminense",
+          "source": "cbf-fluminense-123"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2011,
+      "club": "corinthians",
+      "claims": [
+        {
+          "club": "corinthians",
+          "source": "cbf-corinthians-2017"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2012,
+      "club": "fluminense",
+      "claims": [
+        {
+          "club": "fluminense",
+          "source": "cbf-fluminense-123"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2013,
+      "club": "cruzeiro",
+      "claims": [
+        {
+          "club": "cruzeiro",
+          "source": "cbf-cruzeiro-104"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2014,
+      "club": "cruzeiro",
+      "claims": [
+        {
+          "club": "cruzeiro",
+          "source": "cbf-cruzeiro-104"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2015,
+      "club": "corinthians",
+      "claims": [
+        {
+          "club": "corinthians",
+          "source": "cbf-corinthians-2017"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2016,
+      "club": "palmeiras",
+      "claims": [
+        {
+          "club": "palmeiras",
+          "source": "cbf-palmeiras-110"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2017,
+      "club": "corinthians",
+      "claims": [
+        {
+          "club": "corinthians",
+          "source": "cbf-corinthians-2017"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2018,
+      "club": "palmeiras",
+      "claims": [
+        {
+          "club": "palmeiras",
+          "source": "cbf-palmeiras-110"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2019,
+      "club": "flamengo",
+      "claims": [
+        {
+          "club": "flamengo",
+          "source": "cbf-flamengo-2020"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2020,
+      "club": "flamengo",
+      "claims": [
+        {
+          "club": "flamengo",
+          "source": "cbf-flamengo-2020"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2021,
+      "club": "atletico_mg",
+      "claims": [
+        {
+          "club": "atletico_mg",
+          "source": "cbf-atletico-2021"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2022,
+      "club": "palmeiras",
+      "claims": [
+        {
+          "club": "palmeiras",
+          "source": "cbf-palmeiras-110"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2023,
+      "club": "palmeiras",
+      "claims": [
+        {
+          "club": "palmeiras",
+          "source": "cbf-palmeiras-110"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2024,
+      "club": "botafogo",
+      "claims": [
+        {
+          "club": "botafogo",
+          "source": "cbf-botafogo-2024"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    },
+    {
+      "year": 2025,
+      "club": "flamengo",
+      "claims": [
+        {
+          "club": "flamengo",
+          "source": "cbf-flamengo-2025"
+        }
+      ],
+      "match": true,
+      "conflict": false
+    }
+  ]
+}
