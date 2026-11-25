@@ -135,10 +135,11 @@ export function Timeline({ data }: { data: PublicData }) {
             >
               Abrir edição e registros
             </Link>
-            {selected.year === 1987 && (
-              <p className="convention">
-                {data["methodology.json"].flamengo_1987}
-              </p>
+            {competition === "brasileirao" && selected.year === 1987 && (
+              <div className="convention">
+                <h3>Vencedores provisórios · aguardando revisão</h3>
+                <p>{data["methodology.json"].flamengo_1987}</p>
+              </div>
             )}
             <CatalogSources data={data} ids={selected.source_ids} />
             {history(selected.id) && (

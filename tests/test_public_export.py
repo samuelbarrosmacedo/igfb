@@ -55,6 +55,18 @@ class PublicExportTests(unittest.TestCase):
         self.assertEqual(files["coverage.json"]["lead_coverage_percent"], 0.0)
         self.assertEqual(files["coverage.json"]["seasons_without_leads"], list(range(1971, 2026)))
 
+    def test_1987_dispute_remains_visible_without_candidates(self):
+        files = build_public_data(candidates=[], status_path=self.status, inventory_path=self.inventory, evidence_root=self.root)
+        editions = files["editions.json"]["editions"]
+        self.assertEqual([e["year"] for e in editions if e["has_competing_claims"]], [1987])
+        edition = next(e for e in editions if e["year"] == 1987)
+        self.assertIsNone(edition["champion"])
+        self.assertEqual(edition["approved_results"], 0)
+        note = files["methodology.json"]["flamengo_1987"]
+        self.assertIn("Flamengo* e Sport*", note)
+        self.assertIn("aguardando revisão", note)
+        self.assertEqual(files["ranking.json"]["ranking"], [])
+
     def test_legacy_percentage_is_not_audited(self):
         files = build_public_data(candidates=[], status_path=self.status, inventory_path=self.inventory, evidence_root=self.root)
         self.assertEqual(files["project-status.json"]["progress"]["percent"], 38)

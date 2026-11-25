@@ -161,3 +161,13 @@ Comparação programática de 28 fontes candidatas com a referência secundária
 PR #2, implementação `ed11a192d479cb5cde959f05b4108a7244825c01`: contrato público v3, catálogo independente de clubes e competições, edições/temporada atual, páginas genéricas e estados esportivos separados da homologação. Escudos locais com procedência para Flamengo e Botafogo; fallback nos demais. Convenção de 1987 consumida da configuração, sem prefixo fixo na interface. Atualização diária do calendário e verificação dos hashes após deploy.
 
 Validação confirmada no Actions 45673811691: 161 Python + 20 Vitest + 16 Playwright, schemas, relações e build aprovados. Critérios de extensibilidade e limitações em [WEB_EVOLUTION_AUDIT.md](docs/WEB_EVOLUTION_AUDIT.md); cadastro e migração em [OBSERVATORY_CATALOG.md](docs/OBSERVATORY_CATALOG.md). Homologações permanecem zero. Publicação desta evolução ainda depende da integração e verificação em produção.
+
+### 25/11/2026 — retomada da execução
+Acesso GitHub confirmado por leitura da regra de 1987. Decisão vigente: Flamengo* e Sport*, vencedores provisórios IGFB aguardando revisão, Sport oficialmente reconhecido. A ausência de commits nas interações anteriores não demonstra falha do repositório. Critério operacional: cada ciclo deve produzir alteração verificável ou registrar erro concreto de ferramenta; não repetir planejamento como entrega. Próxima ação: validar integração da regra no exportador e testes, sem homologação automática.
+
+
+### Checkpoint — 25/11/2026: convenção de 1987
+
+- Backend: `f72b6b44` e teste `6ed22100`. CI [45708087910](https://github.com/samuelbarrosmacedo/igfb/actions/runs/45708087910): 151 testes aprovados, incluindo `test_1987_dispute_remains_visible_without_candidates`; logs conferidos.
+- Frontend: `5a0c8542` substitui texto obsoleto da linha do tempo pela regra do dataset metodológico. Gravação conferida; build, testes frontend e produção ainda pendentes.
+- Aceite restante: validar a interface de 1987, ambos os nomes com asterisco, distinção oficial e ausência de pontuação homologada. Depois retomar reconciliação reproduzível e arquivo documental do Brasileirão.

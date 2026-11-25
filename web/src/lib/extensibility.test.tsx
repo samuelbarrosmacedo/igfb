@@ -13,6 +13,7 @@ import {
   CompetitionProfile,
   Season,
 } from "../features/Competitions";
+import { Timeline } from "../features/Timeline";
 import { Clubs } from "../features/Clubs";
 import { ClubMark } from "../components/Shared";
 function fixture(): PublicData {
@@ -36,6 +37,17 @@ describe("Extensibilidade do catálogo sem componentes específicos", () => {
     expect(() =>
       catalogInputSchema.parse({ ...c, schema_version: 2 }),
     ).toThrow();
+  });
+  it("preserva a convenção vigente de 1987 apenas no Brasileirão", () => {
+    const d = fixture();
+    mount(<Timeline data={d} />, "/linha-do-tempo?competicao=brasileirao&ano=1987");
+    expect(screen.getByRole("heading", { name: "Vencedores provisórios · aguardando revisão" })).toBeTruthy();
+    expect(screen.getAllByText(d["methodology.json"].flamengo_1987).length).toBeGreaterThan(0);
+    expect(d["methodology.json"].flamengo_1987).toContain("Flamengo* e Sport*");
+    d["observatory.json"].editions.push({ ...d["observatory.json"].editions[0], id: "carioca:1987", competition_id: "carioca", year: 1987, label: "1987" });
+    mount(<Timeline data={d} />, "/linha-do-tempo?competicao=carioca&ano=1987");
+    expect(screen.queryByText(d["methodology.json"].flamengo_1987)).toBeNull();
+    expect(d["ranking.json"].ranking).toEqual([]);
   });
   it("novo clube aparece sem pistas de campeões", () => {
     const d = fixture();
