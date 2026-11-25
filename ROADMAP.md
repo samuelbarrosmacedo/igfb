@@ -155,3 +155,6 @@ Registro em [docs/evidence/brasileirao-crosscheck-2025.md](docs/evidence/brasile
 
 ### 25/11/2026 — cruzamento integral executado
 Comparação programática de 28 fontes candidatas com a referência secundária registrada: 55/55 edições comparadas, 54 concordantes, uma divergência (1987: Sport na referência, Flamengo no candidato), sem anos ausentes. Resultado versionado em [brasileirao-reconciliation-2025.json](docs/evidence/brasileirao-reconciliation-2025.json), com hashes dos blobs de entrada. Commit 49d3d1169fe898cd98f0f41dbbe1b556883d616e. Não equivale a homologação nem arquivamento original. Próximo: registrar separadamente a atribuição oficial de 1987 com fonte institucional recuperada e implementar comando reproduzível de reconciliação com testes.
+
+### 25/11/2026 — retomada da execução
+Acesso GitHub confirmado por leitura da regra de 1987. Decisão vigente: Flamengo* e Sport*, vencedores provisórios IGFB aguardando revisão, Sport oficialmente reconhecido. A ausência de commits nas interações anteriores não demonstra falha do repositório. Critério operacional: cada ciclo deve produzir alteração verificável ou registrar erro concreto de ferramenta; não repetir planejamento como entrega. Próxima ação: validar integração da regra no exportador e testes, sem homologação automática.
