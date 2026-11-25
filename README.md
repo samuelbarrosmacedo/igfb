@@ -10,6 +10,10 @@
 [![Pesquisa](https://img.shields.io/badge/Pesquisa-Em%20desenvolvimento-F59E0B?style=for-the-badge)](#andamento)
 [![Dados](https://img.shields.io/badge/Dados-Auditoria%20pendente-64748B?style=for-the-badge)](#andamento)
 
+### [ACESSE O SITE OFICIAL DO IGFB](https://samuelbarrosmacedo.github.io/igfb/)
+
+**Gratuito, pelo navegador, no celular ou computador. Não precisa instalar nada.**
+
 **[METODOLOGIA](#metodologia)** · **[CRITÉRIOS](#matriz-de-pontuação)** · **[PIPELINE](#pipeline-de-dados)** · **[ANDAMENTO](#andamento)**
 
 ---
@@ -22,9 +26,26 @@ O IGFB estuda a trajetória dos clubes brasileiros a partir de **conquistas, cam
 
 **[ROADMAP E METAS](ROADMAP.md)** — prioridades, critérios de aceite e indicadores separados por dimensão.
 
+## Como usar o IGFB
+
+O IGFB é um **site de pesquisa e análise do futebol brasileiro**, disponível em [samuelbarrosmacedo.github.io/igfb](https://samuelbarrosmacedo.github.io/igfb/). Basta abrir o endereço no navegador. Não é necessário baixar um HTML, instalar um aplicativo, criar conta ou executar código.
+
+| O que você quer fazer | Onde acessar |
+|:--|:--|
+| Explorar o observatório | [Abrir o site](https://samuelbarrosmacedo.github.io/igfb/) |
+| Conhecer os clubes e comparar informações | Menus Clubes e Comparador do site |
+| Entender os critérios | Menu Metodologia |
+| Experimentar pesos | Laboratório, com simulações fictícias |
+| Acompanhar a pesquisa | Linha do tempo e Pesquisa |
+| Consultar ou executar o código | Este repositório; veja [instruções técnicas](web/README.md) |
+
+**Estado atual:** o site está publicado, conforme confirmação do proprietário, mas a base histórica ainda está em construção. O ranking definitivo não está disponível. Escudos, dados históricos e acompanhamento da temporada 2026 serão incorporados progressivamente. Campos vazios não significam zero títulos ou zero pontos.
+
+O GitHub reúne o código-fonte, as referências, os testes e a metodologia que sustentam o site. A pasta `web/` contém o frontend; o núcleo Python processa e valida os dados. Esses arquivos são destinados a desenvolvedores e pesquisadores, não são requisitos para visitar o observatório.
+
 ## Indicadores recalculados
 
-O comando `python -m igfb_agent.project_audit` recalcula a **cobertura de pistas documentais por temporada**: número de temporadas com pelo menos uma pista dividido pelas 55 temporadas de 1971 a 2025. No conjunto de pistas registrado em 23/11/2026, são **20 de 55 temporadas (36,36%)**. Este número mede apenas a presença de pistas, não sua veracidade, documentação arquivada, homologação ou percentual de conclusão do IGFB. A estimativa histórica de 38% continua separada e não auditada. A exportação pública também recalcula a cobertura em `coverage.json`.
+O comando `python -m igfb_agent.project_audit` recalcula a **cobertura de pistas documentais por temporada**: número de temporadas com pelo menos uma pista dividido pelas 55 temporadas de 1971 a 2025. O indicador atualizado pode ser consultado no site ou recalculado pelo comando acima. Este número mede apenas a presença de pistas, não sua veracidade, documentação arquivada, homologação ou percentual de conclusão do IGFB. A estimativa histórica de 38% continua separada e não auditada. A exportação pública também recalcula a cobertura em `coverage.json`.
 
 ## Observatório web e dados públicos
 
@@ -39,8 +60,7 @@ pontuações reais. Dados ausentes são explícitos; a estimativa de 38% continu
 não auditada. O frontend não exige edição manual quando novas pistas entram.
 
 O workflow [`igfb-web.yml`](.github/workflows/igfb-web.yml) valida o contrato,
-testa e compila o site. **Publicação desligada por padrão**, condicionada a
-aprovação e à variável `IGFB_PAGES_ENABLED`. Ver [execução e publicação](web/README.md),
+testa e compila o site. A publicação utiliza GitHub Pages e depende da variável `IGFB_PAGES_ENABLED`. O endereço público está indicado no topo deste README. Ver [execução e publicação](web/README.md),
 [auditoria inicial](docs/WEB_AUDIT.md) e [validação](docs/WEB_VALIDATION.md).
 
 ## Visão geral
