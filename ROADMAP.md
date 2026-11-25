@@ -158,3 +158,10 @@ Comparação programática de 28 fontes candidatas com a referência secundária
 
 ### 25/11/2026 — retomada da execução
 Acesso GitHub confirmado por leitura da regra de 1987. Decisão vigente: Flamengo* e Sport*, vencedores provisórios IGFB aguardando revisão, Sport oficialmente reconhecido. A ausência de commits nas interações anteriores não demonstra falha do repositório. Critério operacional: cada ciclo deve produzir alteração verificável ou registrar erro concreto de ferramenta; não repetir planejamento como entrega. Próxima ação: validar integração da regra no exportador e testes, sem homologação automática.
+
+
+### Checkpoint — 25/11/2026: convenção de 1987
+
+- Backend: `f72b6b44` e teste `6ed22100`. CI [45708087910](https://github.com/samuelbarrosmacedo/igfb/actions/runs/45708087910): 151 testes aprovados, incluindo `test_1987_dispute_remains_visible_without_candidates`; logs conferidos.
+- Frontend: `5a0c8542` substitui texto obsoleto da linha do tempo pela regra do dataset metodológico. Gravação conferida; build, testes frontend e produção ainda pendentes.
+- Aceite restante: validar a interface de 1987, ambos os nomes com asterisco, distinção oficial e ausência de pontuação homologada. Depois retomar reconciliação reproduzível e arquivo documental do Brasileirão.
