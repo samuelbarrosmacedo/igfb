@@ -152,3 +152,6 @@ Publicação confirmada pelo proprietário: https://samuelbarrosmacedo.github.io
 
 ### 25/11/2026 — conferência secundária integral
 Registro em [docs/evidence/brasileirao-crosscheck-2025.md](docs/evidence/brasileirao-crosscheck-2025.md): 55/55 anos enumerados pela ESPN, verificação estrutural de unicidade e intervalo executada. Não equivale a conferência primária, arquivo original ou homologação. CBF Flamengo e Palmeiras retornaram HTTP 500. Próximo: confrontar candidatos com a referência secundária e recuperar evidências primárias alternativas, preservando 1987 como caso separado.
+
+### 25/11/2026 — cruzamento integral executado
+Comparação programática de 28 fontes candidatas com a referência secundária registrada: 55/55 edições comparadas, 54 concordantes, uma divergência (1987: Sport na referência, Flamengo no candidato), sem anos ausentes. Resultado versionado em [brasileirao-reconciliation-2025.json](docs/evidence/brasileirao-reconciliation-2025.json), com hashes dos blobs de entrada. Commit 49d3d1169fe898cd98f0f41dbbe1b556883d616e. Não equivale a homologação nem arquivamento original. Próximo: registrar separadamente a atribuição oficial de 1987 com fonte institucional recuperada e implementar comando reproduzível de reconciliação com testes.
