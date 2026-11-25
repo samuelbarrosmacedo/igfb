@@ -43,4 +43,14 @@ Os E2E incluem axe nas rotas principais, laboratório ativo e edição sintétic
 | Estadual com identidade própria | Jurisdição/federação validadas e rota sintética |
 | Rejeição de resultados inelegíveis | Testes do núcleo: pré-1971, 2026, Taça Brasil, Robertão e 1937 |
 
-Publicação e inspeção visual da nova versão em produção serão verificadas após a integração. Pesquisa histórica, homologações, resultados esportivos atuais e demais escudos continuam dependendo de cadastro documental; não foram fabricados para completar a interface.
+## Integração e publicação verificadas — 25/11/2026
+
+PR #2 integrado em `90134764ad0408dfbb3baebbb441596403962ffd`, preservando as alterações concorrentes sobre 1987. A integração passou em 162 testes Python, 21 Vitest e 16 Playwright no [run 45719459436](https://github.com/samuelbarrosmacedo/igfb/actions/runs/45719459436). Build e publicação da main confirmados no [run 45719719686](https://github.com/samuelbarrosmacedo/igfb/actions/runs/45719719686).
+
+O job de publicação conferiu os dez datasets servidos por HTTP contra o manifesto do artefato aprovado, incluindo commit, versão e SHA-256. Snapshot `f5bc91d55a39f2896fd66a3f2565875af306b18bbea7fe800ffa92aca0bbc4d3`.
+
+Inspeção manual em navegador de produção: home, temporada 2026, edição do Carioca e suas fontes, catálogo e busca de clubes, perfil/escudo local do Flamengo, convenção de 1987, catálogo de competições e ranking bloqueado. Rodapé confirmou origem `9013476`; imagem SVG carregou com dimensões válidas. Layout desktop preservado. Desktop e mobile foram examinados automaticamente por Playwright/axe no CI; não houve teste em aparelho Android físico nem medição de Core Web Vitals.
+
+A inspeção identificou glifos de setas ausentes nos links do catálogo: substituídos por SVG Lucide, dependência já existente. Também corrigida a concordância de uma edição cadastrada. Esses ajustes visuais seguem o mesmo pipeline.
+
+ Pesquisa histórica, homologações, resultados esportivos atuais e demais escudos continuam dependendo de cadastro documental; não foram fabricados para completar a interface.

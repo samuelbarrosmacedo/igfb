@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
   PageHeading,
@@ -61,7 +62,7 @@ export function CatalogSources({
         .map((s) => (
           <p key={s.id}>
             <a href={s.url} target="_blank" rel="noreferrer">
-              {s.publisher} ↗
+              {s.publisher} <ArrowUpRight aria-hidden="true" size={14} style={{ display: "inline-block", verticalAlign: "middle" }} />
             </a>{" "}
             · {s.note}
             {s.checked_on && <small> Consulta: {s.checked_on}</small>}
@@ -268,7 +269,7 @@ export function EditionLinks({
             </h3>
             <span>{e.label}</span>
           </div>
-          <span aria-hidden="true">↗</span>
+          <ArrowUpRight aria-hidden="true" size={18} />
         </Link>
       ))}
     </div>
@@ -332,10 +333,10 @@ export function Competitions({ data }: { data: PublicData }) {
                 <p>
                   {c.state ?? ""}{" "}
                   {editions.filter((e) => e.competition_id === c.id).length}{" "}
-                  edições cadastradas
+                  {editions.filter((e) => e.competition_id === c.id).length === 1 ? "edição cadastrada" : "edições cadastradas"}
                 </p>
               </div>
-              <span aria-hidden="true">↗</span>
+              <ArrowUpRight aria-hidden="true" size={18} />
             </Link>
           ))}
       </div>

@@ -171,3 +171,8 @@ Acesso GitHub confirmado por leitura da regra de 1987. Decisão vigente: Flameng
 - Backend: `f72b6b44` e teste `6ed22100`. CI [45708087910](https://github.com/samuelbarrosmacedo/igfb/actions/runs/45708087910): 151 testes aprovados, incluindo `test_1987_dispute_remains_visible_without_candidates`; logs conferidos.
 - Frontend: `5a0c8542` substitui texto obsoleto da linha do tempo pela regra do dataset metodológico. Gravação conferida; build, testes frontend e produção ainda pendentes.
 - Aceite restante: validar a interface de 1987, ambos os nomes com asterisco, distinção oficial e ausência de pontuação homologada. Depois retomar reconciliação reproduzível e arquivo documental do Brasileirão.
+
+
+### 25/11/2026 — publicação do catálogo extensível confirmada
+
+PR #2 integrado em `90134764`; CI 45719719686 e deploy concluídos, dez datasets verificados por HTTP. Integração validada em 162 testes Python, 21 frontend e 16 E2E desktop/mobile. Inspeção manual em produção confirmou temporada, competições/edições, busca, perfil e escudo, 1987 e ranking bloqueado. Correção visual subsequente troca glifos ausentes por ícones SVG da biblioteca existente. Registro detalhado em docs/WEB_EVOLUTION_AUDIT.md. Frente estrutural entregue; próximos cadastros não exigem páginas React específicas. Pesquisa histórica, demais escudos e resultados atuais permanecem pendentes, sem homologação automática.
