@@ -32,7 +32,9 @@ export default function Methodology({ data }: { data: PublicData }) {
           </h2>
           <p>
             O Campeonato Brasileiro Série A começa em 1971 neste modelo. A
-            última temporada incluída é 2025.
+            última temporada do recorte de cálculo é {method.scope.last_year}.
+            Temporadas posteriores podem ser acompanhadas sem entrar neste
+            cálculo.
           </p>
         </div>
         <div>
@@ -47,10 +49,7 @@ export default function Methodology({ data }: { data: PublicData }) {
             IGFB.
           </p>
           <h3>A convenção de 1987</h3>
-          <p>
-            Flamengo campeão por {method.flamengo_1987}. Não representa consenso
-            institucional ou jurídico.
-          </p>
+          <p>{method.flamengo_1987}</p>
         </div>
       </div>
       <section className="section">

@@ -1,3 +1,5 @@
+import { useState } from "react";
+import type { IdentityAsset } from "../lib/observatory-contract";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ExternalLink, FileText, X, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -48,7 +50,7 @@ export function EmptyMetrics() {
 }
 const sourceStates: Record<Source["state"], string> = {
   unverified_lead: "Pista ainda não conferida",
-  page_checked_not_archived: "Página conferida; bytes não arquivados",
+  page_checked_not_archived: "Conferência declarada; bytes não arquivados",
   partially_archived: "Parte das edições com arquivo verificado",
   archived_pending_review: "Bytes verificados; revisão histórica pendente",
 };
@@ -153,14 +155,31 @@ export function SourcesList({
 }
 export function ClubMark({
   name,
+  crest = null,
   large = false,
 }: {
   name: string;
+  crest?: IdentityAsset | null;
   large?: boolean;
 }) {
+  const [failed, setFailed] = useState<string | null>(null);
   return (
-    <div aria-hidden="true" className={`club-mark ${large ? "large" : ""}`}>
-      {name.slice(0, 3).toLocaleUpperCase("pt-BR")}
+    <div
+      aria-hidden="true"
+      className={`club-mark ${large ? "large" : ""} ${crest && failed !== crest.path ? "with-crest" : ""}`}
+    >
+      {crest && failed !== crest.path ? (
+        <img
+          src={import.meta.env.BASE_URL + crest.path}
+          alt=""
+          width={large ? 112 : 64}
+          height={large ? 112 : 64}
+          loading="lazy"
+          onError={() => setFailed(crest.path)}
+        />
+      ) : (
+        name.slice(0, 3).toLocaleUpperCase("pt-BR")
+      )}
     </div>
   );
 }

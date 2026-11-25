@@ -1,4 +1,4 @@
-"""Contrato público v2. Exporta pesquisa, nunca homologa ou fabrica ranking.
+"""Contrato público v3. Exporta pesquisa, nunca homologa ou fabrica ranking.
 
 Amplia o exportador v1. Snapshots endereçados por conteúdo evitam misturar
 arquivos de publicações diferentes. O manifesto é sempre gravado por último.
@@ -19,10 +19,11 @@ from .evidence_reconciliation import reconcile_evidence
 from .candidates import build_candidates, LEADS
 from .calendar import brasileirao_editions
 from .scoring import WEIGHTS, BASELINE_YEAR, THROUGH_YEAR
+from .observatory import build_observatory
 
 ROOT = Path(__file__).resolve().parents[1]
-SCHEMA_VERSION = 2
-PUBLIC_FILES = ("project-status.json", "coverage.json", "methodology.json", "review-queue.json", "ranking.json", "clubs.json", "editions.json", "sources.json", "research-backlog.json")
+SCHEMA_VERSION = 3
+PUBLIC_FILES = ("project-status.json", "coverage.json", "methodology.json", "review-queue.json", "ranking.json", "clubs.json", "editions.json", "sources.json", "research-backlog.json", "observatory.json")
 REPO = "https://github.com/samuelbarrosmacedo/igfb"
 
 
@@ -34,7 +35,7 @@ def source_commit():
     return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
 
 
-def build_public_data(*, candidates=None, status_path=None, commit_sha=None, generated_at=None, inventory_path=None, evidence_root=None):
+def build_public_data(*, candidates=None, status_path=None, commit_sha=None, generated_at=None, inventory_path=None, evidence_root=None, catalog_path=None, current_year=None):
     records = tuple(build_candidates() if candidates is None else candidates)
     evidence = reconcile_evidence(candidates=records, inventory_path=inventory_path, root=evidence_root)
     records = tuple(evidence["candidates"])
@@ -63,7 +64,11 @@ def build_public_data(*, candidates=None, status_path=None, commit_sha=None, gen
             raise ValueError("Fonte pública sem procedência no catálogo")
     source_ids = sorted({r["source_id"] for r in records})
     counts = Counter(r["club_id"] for r in records)
-    club_ids = sorted(counts)
+    observatory = build_observatory(catalog_path=catalog_path, current_year=current_year)
+    identities = {c["id"]: c for c in observatory["clubs"]}
+    if set(counts) - set(identities):
+        raise ValueError("Clube das pistas ausente do catálogo canônico")
+    club_ids = sorted(identities)
     checked = {r["source_id"] for r in records if r["source_page_checked"]}
     by_year = {row["year"]: row for row in queue}
     documents = {}
@@ -98,9 +103,9 @@ def build_public_data(*, candidates=None, status_path=None, commit_sha=None, gen
     add("ranking", status="unavailable_pending_homologation", approved_results=0,
         publication_authorized=False, ranking=[],
         reason="Ranking histórico em construção. A publicação depende da homologação documental dos resultados.")
-    add("clubs", status="identities_from_source_leads", scope_note="Identidades presentes nas pistas; não é um cadastro completo dos clubes brasileiros.",
-        clubs=[{"id": cid, "name": labels["clubs"].get(cid, cid.replace("_", " ").title()),
-                "identity_status": "source_lead_identity", "crest": None,
+    add("clubs", status="canonical_catalog", scope_note="Cadastro independente de clubes; ausência de pistas não significa ausência de história.",
+        clubs=[{**identities[cid],
+                "identity_status": "catalogued",
                 "lead_count": counts[cid], "source_ids": sorted({r["source_id"] for r in records if r["club_id"] == cid}),
                 "years_with_leads": sorted({r["year"] for r in records if r["club_id"] == cid}),
                 "titles": None, "score": None, "participations": None, "relegations": None}
@@ -119,6 +124,8 @@ def build_public_data(*, candidates=None, status_path=None, commit_sha=None, gen
                   "archived_sha256": None, "approved": False,
                   "club_ids": sorted({r["club_id"] for r in records if r["source_id"] == sid}),
                   "years": sorted({r["year"] for r in records if r["source_id"] == sid})} for sid in source_ids])
+    observatory["schema_version"] = SCHEMA_VERSION
+    documents["observatory.json"] = observatory
     digest = sha256(encode(documents)).hexdigest()
     hashes = {filename: sha256(encode(doc)).hexdigest() for filename, doc in documents.items()}
     manifest = {"schema_version": SCHEMA_VERSION, "dataset_status": "research_in_progress", "approved_results": 0,

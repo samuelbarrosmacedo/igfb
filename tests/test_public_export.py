@@ -65,14 +65,14 @@ class PublicExportTests(unittest.TestCase):
     def test_export_files_match_manifest(self):
         folder = self.root / "data"
         exported = export_public_data(folder, candidates=[], status_path=self.status, inventory_path=self.inventory, evidence_root=self.root)
-        self.assertEqual(len(exported), 10)
+        self.assertEqual(len(exported), 11)
         manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
         self.assertEqual(set(manifest["files"]), set(exported) - {"manifest.json"})
         for filename, expected in manifest["sha256"].items():
             self.assertEqual(sha256((folder / filename).read_bytes()).hexdigest(), expected)
         self.assertEqual(set(manifest["sha256"]), set(manifest["files"]))
         for filename in exported:
-            self.assertEqual(json.loads((folder / filename).read_text(encoding="utf-8"))["schema_version"], 2)
+            self.assertEqual(json.loads((folder / filename).read_text(encoding="utf-8"))["schema_version"], 3)
 
     def test_real_leads_remain_unapproved(self):
         files = build_public_data(status_path=self.status)

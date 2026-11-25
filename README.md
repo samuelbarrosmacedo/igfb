@@ -36,10 +36,12 @@ O IGFB é um **site de pesquisa e análise do futebol brasileiro**, disponível 
 | Conhecer os clubes e comparar informações | Menus Clubes e Comparador do site |
 | Entender os critérios | Menu Metodologia |
 | Experimentar pesos | Laboratório, com simulações fictícias |
+| Acompanhar a temporada atual e anteriores | Menu Temporada |
+| Navegar por torneios e edições | Menu Competições |
 | Acompanhar a pesquisa | Linha do tempo e Pesquisa |
 | Consultar ou executar o código | Este repositório; veja [instruções técnicas](web/README.md) |
 
-**Estado atual:** o site está publicado, conforme confirmação do proprietário, mas a base histórica ainda está em construção. O ranking definitivo não está disponível. Escudos, dados históricos e acompanhamento da temporada 2026 serão incorporados progressivamente. Campos vazios não significam zero títulos ou zero pontos.
+**Estado atual:** o site está publicado, conforme confirmação do proprietário, mas a base histórica ainda está em construção. O ranking definitivo não está disponível. O catálogo e as páginas de competições, edições e temporadas são orientados a dados. As pistas históricas aparecem como candidatas. A temporada atual mostra apenas informações já cadastradas; escudos disponíveis têm procedência registrada. Campos vazios não significam zero títulos ou zero pontos.
 
 O GitHub reúne o código-fonte, as referências, os testes e a metodologia que sustentam o site. A pasta `web/` contém o frontend; o núcleo Python processa e valida os dados. Esses arquivos são destinados a desenvolvedores e pesquisadores, não são requisitos para visitar o observatório.
 
@@ -54,10 +56,10 @@ com home, clubes, comparação documental, laboratório sintético, linha do tem
 metodologia e central de pesquisa. O ranking histórico permanece bloqueado.
 
 O exportador `python -m igfb_agent.public_export --output web/public/data` amplia
-o contrato existente para v2, com dez documentos JSON, commit de origem,
+o contrato existente para v3, com onze documentos JSON, commit de origem,
 snapshots e SHA-256. Preserva a fila de pesquisa, a reconciliação do inventário e os indicadores recalculados da pesquisa. Não transforma pistas em resultados homologados nem cria
 pontuações reais. Dados ausentes são explícitos; a estimativa de 38% continua
-não auditada. O frontend não exige edição manual quando novas pistas entram.
+não auditada. O frontend não exige edição manual quando novas pistas, clubes, competições ou edições compatíveis entram. Veja [como alimentar o catálogo](docs/OBSERVATORY_CATALOG.md).
 
 O workflow [`igfb-web.yml`](.github/workflows/igfb-web.yml) valida o contrato,
 testa e compila o site. A publicação utiliza GitHub Pages e depende da variável `IGFB_PAGES_ENABLED`. O endereço público está indicado no topo deste README. Ver [execução e publicação](web/README.md),
@@ -82,7 +84,7 @@ O índice combina desempenho esportivo e continuidade histórica. Cada registro 
 
 **Recorte principal:** temporadas encerradas até **2025**. O Campeonato Brasileiro Série A é considerado **a partir de 1971**. Taça Brasil, Robertão e a competição de 1937 **não pontuam** neste modelo.
 
-**1987:** a atribuição do título brasileiro ao Flamengo é uma **convenção expressa do IGFB**, sem alegação de consenso institucional. O tratamento da edição deve impedir duplicidades e permanecer identificado no registro de origem.
+**1987:** consulte a convenção provisória vigente em [project_rules.json](config/project_rules.json), apresentada integralmente no site. A configuração registra Flamengo* e Sport* como vencedores provisórios para fins do IGFB, pendentes de revisão, distinguindo o reconhecimento oficial de Sport e a Copa União vencida pelo Flamengo. Isso não autoriza pontuação nem altera o reconhecimento oficial. Os protocolos históricos anteriores ainda precisam de revisão metodológica explícita; esta evolução não concede homologação.
 
 **Rebaixamentos:** só são contabilizadas quedas esportivas comprovadas. Mudanças administrativas, formatos excepcionais e resultados revertidos exigem análise documental antes de qualquer penalidade.
 

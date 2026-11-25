@@ -141,3 +141,8 @@ Ver `docs/WEB_AUDIT.md` e `docs/WEB_VALIDATION.md`.
 
 Versões exatas e integridade de instalação: `package.json` e `package-lock.json`.
 Sem Recharts duplicado, sem Motion desnecessário e sem biblioteca de escudos.
+
+
+## Catálogos e contrato v3
+
+Consulte [cadastro, estados, migração e reversão](../docs/OBSERVATORY_CATALOG.md) e [auditoria desta evolução](../docs/WEB_EVOLUTION_AUDIT.md). Nenhuma dependência de runtime nova foi necessária: as páginas reutilizam React, Zod, Radix, TanStack Table/Query e React Router já instalados. O novo catálogo não depende de APIs esportivas pagas.

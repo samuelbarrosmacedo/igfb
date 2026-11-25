@@ -5,7 +5,13 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   reporter: [["list"], ["json", { outputFile: "test-results/results.json" }]],
-  use: { baseURL: "http://127.0.0.1:4173/igfb/", trace: "retain-on-failure" },
+  use: {
+    baseURL: process.env.IGFB_TEST_URL || "http://127.0.0.1:4173/igfb/",
+    trace: "retain-on-failure",
+    launchOptions: process.env.IGFB_CHROMIUM_PATH
+      ? { executablePath: process.env.IGFB_CHROMIUM_PATH }
+      : {},
+  },
   projects: [
     { name: "desktop", use: { ...devices["Desktop Chrome"] } },
     { name: "mobile", use: { ...devices["Pixel 7"], isMobile: true } },

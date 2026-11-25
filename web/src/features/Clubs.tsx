@@ -1,3 +1,10 @@
+import {
+  CandidateClaims,
+  CatalogSources,
+  RecordList,
+  EditionLinks,
+  allEditions,
+} from "./Competitions";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Search } from "lucide-react";
@@ -17,7 +24,11 @@ export function Clubs({ data }: { data: PublicData }) {
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
   const clubs = data["clubs.json"].clubs.filter((c) =>
-    normalize(c.name).includes(normalize(search)),
+    normalize(
+      [c.name, c.official_name, c.abbreviation, c.city, c.state]
+        .filter(Boolean)
+        .join(" "),
+    ).includes(normalize(search)),
   );
   return (
     <>
@@ -44,7 +55,7 @@ export function Clubs({ data }: { data: PublicData }) {
         {clubs.map((club) => (
           <Link className="club-tile" to={`/clubes/${club.id}`} key={club.id}>
             <div className="club-tile-top">
-              <ClubMark name={club.name} />
+              <ClubMark name={club.name} crest={club.crest} />
               <StatusBadge>Em pesquisa</StatusBadge>
             </div>
             <h2>{club.name}</h2>
@@ -65,9 +76,8 @@ export function Clubs({ data }: { data: PublicData }) {
         </p>
       )}
       <p className="section-note">
-        {data["clubs.json"].scope_note} Os nomes são identificações
-        tipográficas; escudos só serão incluídos com procedência e autorização
-        adequadas.
+        {data["clubs.json"].scope_note} Identidades visuais disponíveis têm
+        origem e condições de uso indicadas no dossiê.
       </p>
     </>
   );
@@ -94,7 +104,7 @@ export function ClubProfile({ data }: { data: PublicData }) {
         Clubes / Dossiê
       </Link>
       <div className="club-profile-heading">
-        <ClubMark name={club.name} large />
+        <ClubMark name={club.name} crest={club.crest} large />
         <PageHeading
           eyebrow="DOSSIÊ DOCUMENTAL"
           title={club.name}
@@ -103,12 +113,48 @@ export function ClubProfile({ data }: { data: PublicData }) {
       </div>
       <div className="profile-meta">
         <code>{club.id}</code>
-        <StatusBadge kind="gold">Identidade presente nas pistas</StatusBadge>
+        <StatusBadge kind="gold">Identidade cadastrada</StatusBadge>
         <Link className="text-link" to={`/comparador?club=${club.id}`}>
           Comparar cobertura documental
         </Link>
       </div>
+      {club.official_name && <p>{club.official_name}</p>}
+      {(club.city || club.state) && (
+        <p>{[club.city, club.state].filter(Boolean).join(" · ")}</p>
+      )}
+      {club.crest && (
+        <p className="section-note">
+          <a href={club.crest.source_url} target="_blank" rel="noreferrer">
+            Origem do escudo
+          </a>{" "}
+          · {club.crest.attribution} · {club.crest.license}.{" "}
+          {club.crest.usage_note}
+        </p>
+      )}
+      <CatalogSources data={data} ids={club.identity_source_ids} />
       <EmptyMetrics />
+      <section className="section">
+        <h2>Temporada atual</h2>
+        <EditionLinks
+          data={data}
+          editions={allEditions(data).filter(
+            (e) =>
+              e.year === data["observatory.json"].current_season &&
+              e.participant_ids.includes(club.id),
+          )}
+        />
+      </section>
+      <section className="section">
+        <h2>Campanhas e registros esportivos</h2>
+        <RecordList
+          data={data}
+          records={data["observatory.json"].records.filter((r) =>
+            r.club_ids.includes(club.id),
+          )}
+        />
+      </section>
+      <CandidateClaims data={data} clubId={club.id} />
+
       <section className="section">
         <div className="section-heading">
           <h2>Temporadas com pistas</h2>
