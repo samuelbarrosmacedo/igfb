@@ -109,7 +109,7 @@ def build_public_data(*, candidates=None, status_path=None, commit_sha=None, gen
         editions=[{"id": e.edition_id, "year": e.year, "competition": e.competition,
                    "evidence_state": ("archived_pending_review" if e.year in by_year and all(r["source_archived"] for r in records if r["year"] == e.year) else "lead_found" if e.year in by_year else "no_lead"),
                    "source_ids": sorted({r["source_id"] for r in records if r["year"] == e.year}),
-                   "has_competing_claims": by_year.get(e.year, {}).get("has_competing_claims", False),
+                   "has_competing_claims": e.year == 1987 or by_year.get(e.year, {}).get("has_competing_claims", False),
                    "approved_results": 0, "champion": None} for e in brasileirao_editions()])
     add("sources", status="source_leads_not_homologated",
         sources=[{"id": sid, "url": known_sources[sid]["url"], "publisher": known_sources[sid]["publisher"],
