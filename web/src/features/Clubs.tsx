@@ -23,6 +23,12 @@ export function Clubs({ data }: { data: PublicData }) {
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
+  const researchedResults = new Map<string, number>();
+  for (const record of data["observatory.json"].records) {
+    if (record.kind !== "result") continue;
+    for (const id of record.club_ids)
+      researchedResults.set(id, (researchedResults.get(id) ?? 0) + 1);
+  }
   const clubs = data["clubs.json"].clubs.filter((c) =>
     normalize(
       [c.name, c.official_name, c.abbreviation, c.city, c.state]
@@ -56,7 +62,11 @@ export function Clubs({ data }: { data: PublicData }) {
           <Link className="club-tile" to={`/clubes/${club.id}`} key={club.id}>
             <div className="club-tile-top">
               <ClubMark name={club.name} crest={club.crest} />
-              <StatusBadge>Em pesquisa</StatusBadge>
+              <StatusBadge kind={researchedResults.has(club.id) ? "green" : "neutral"}>
+                {researchedResults.has(club.id)
+                  ? `${researchedResults.get(club.id)} resultado(s) provisório(s)`
+                  : "Sem registros esportivos"}
+              </StatusBadge>
             </div>
             <h2>{club.name}</h2>
             <p>
