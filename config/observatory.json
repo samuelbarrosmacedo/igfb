@@ -203,6 +203,17 @@
       "identity_source_ids": [
         "ferj-carioca-2026-formato"
       ]
+    },
+    {
+      "id": "sport",
+      "name": "Sport",
+      "official_name": "Sport Club do Recife",
+      "abbreviation": "SCR",
+      "state": "PE",
+      "city": "Recife",
+      "colors": [],
+      "crest": null,
+      "identity_source_ids": []
     }
   ],
   "competitions": [
@@ -455,6 +466,20 @@
       "url": "https://fferj.com.br/noticias/pioneiro--carioca-2026-sera-disputado-em-10-datas",
       "publisher": "Federação de Futebol do Estado do Rio de Janeiro",
       "note": "Notícia de 11/06/2025 consultada em 25/11/2026: anúncio de formato e participantes previstos. Não confirma placares, campeão ou encerramento.",
+      "checked_on": "2026-11-25"
+    },
+    {
+      "id": "espn-brasileirao-lista-2025",
+      "url": "https://www.espn.com.br/futebol/brasileirao/artigo/_/id/16037131/brasileirao-quem-maior-campeao-veja-ranking-atualizado-titulos",
+      "publisher": "ESPN Brasil",
+      "note": "Referência secundária listada em docs/evidence/brasileirao-crosscheck-2025.md; resultados importados como provisórios, sem homologação.",
+      "checked_on": "2026-11-25"
+    },
+    {
+      "id": "flamengo-titulos-1987",
+      "url": "https://www.flamengo.com.br/titulosdoflamengo",
+      "publisher": "Clube de Regatas do Flamengo",
+      "note": "Fonte institucional para a reivindicação da Copa União de 1987; não altera a atribuição oficial do campeonato brasileiro ao Sport.",
       "checked_on": "2026-11-25"
     }
   ],
