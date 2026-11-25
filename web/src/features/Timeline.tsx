@@ -128,7 +128,21 @@ export function Timeline({ data }: { data: PublicData }) {
               }
             </h2>
             <code>{selected.id}</code>
-            <p>Resultados históricos ainda não homologados.</p>
+            {data["observatory.json"].records
+              .filter((record) => record.edition_id === selected.id && record.kind === "result")
+              .map((record) => (
+                <div className="convention" key={record.id}>
+                  <h3>{record.label}</h3>
+                  <p>
+                    {record.club_ids
+                      .map((id) => data["clubs.json"].clubs.find((club) => club.id === id)?.name ?? id)
+                      .join(" / ")}
+                  </p>
+                  <StatusBadge kind="gold">
+                    {record.status === "disputed" ? "Contestado" : "Provisório · sem homologação"}
+                  </StatusBadge>
+                </div>
+              ))}
             <Link
               className="text-link"
               to={`/competicoes/${competition}/edicoes/${encodeURIComponent(selected.id)}`}
