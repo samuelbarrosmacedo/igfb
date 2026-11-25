@@ -4,6 +4,9 @@ import type { PublicData } from "../lib/contracts";
 export function Home({ data }: { data: PublicData }) {
   const coverage = data["coverage.json"];
   const scope = data.manifest.scope;
+  const provisionalResults = data["observatory.json"].records.filter(
+    (record) => record.kind === "result" && (record.status === "provisional" || record.status === "disputed"),
+  ).length;
   return (
     <>
       <section className="hero">
@@ -35,7 +38,7 @@ export function Home({ data }: { data: PublicData }) {
           </div>
           <div className="hero-footnote">
             <span className="live-dot" />
-            Pesquisa aberta · homologação pendente
+            {provisionalResults} resultados pesquisados · validação documental em andamento
           </div>
         </div>
         <div className="hero-art">
@@ -68,11 +71,11 @@ export function Home({ data }: { data: PublicData }) {
           <span>temporadas com pistas</span>
         </div>
         <div className="strip-metric">
-          <strong>{coverage.approved_results}</strong>
-          <span>resultados homologados</span>
+          <strong>{provisionalResults}</strong>
+          <span>registros esportivos provisórios</span>
         </div>
-        <Link className="text-link" to="/pesquisa">
-          Acompanhe a pesquisa
+        <Link className="text-link" to="/linha-do-tempo">
+          Explore os resultados
         </Link>
       </section>
       <section className="home-editorial">
