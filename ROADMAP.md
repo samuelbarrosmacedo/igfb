@@ -155,3 +155,9 @@ Registro em [docs/evidence/brasileirao-crosscheck-2025.md](docs/evidence/brasile
 
 ### 25/11/2026 — cruzamento integral executado
 Comparação programática de 28 fontes candidatas com a referência secundária registrada: 55/55 edições comparadas, 54 concordantes, uma divergência (1987: Sport na referência, Flamengo no candidato), sem anos ausentes. Resultado versionado em [brasileirao-reconciliation-2025.json](docs/evidence/brasileirao-reconciliation-2025.json), com hashes dos blobs de entrada. Commit 49d3d1169fe898cd98f0f41dbbe1b556883d616e. Não equivale a homologação nem arquivamento original. Próximo: registrar separadamente a atribuição oficial de 1987 com fonte institucional recuperada e implementar comando reproduzível de reconciliação com testes.
+
+### 25/11/2026 — evolução estrutural do observatório
+
+PR #2, implementação `ed11a192d479cb5cde959f05b4108a7244825c01`: contrato público v3, catálogo independente de clubes e competições, edições/temporada atual, páginas genéricas e estados esportivos separados da homologação. Escudos locais com procedência para Flamengo e Botafogo; fallback nos demais. Convenção de 1987 consumida da configuração, sem prefixo fixo na interface. Atualização diária do calendário e verificação dos hashes após deploy.
+
+Validação confirmada no Actions 45673811691: 161 Python + 20 Vitest + 16 Playwright, schemas, relações e build aprovados. Critérios de extensibilidade e limitações em [WEB_EVOLUTION_AUDIT.md](docs/WEB_EVOLUTION_AUDIT.md); cadastro e migração em [OBSERVATORY_CATALOG.md](docs/OBSERVATORY_CATALOG.md). Homologações permanecem zero. Publicação desta evolução ainda depende da integração e verificação em produção.
