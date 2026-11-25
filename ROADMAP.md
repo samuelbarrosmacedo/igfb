@@ -140,3 +140,6 @@ Textos indexados CBF efetivamente consultados: Batista (26/10/2016), Internacion
 
 ### Conferência documental — 24/11/2026
 Textos CBF consultados nesta execução confirmam Coritiba 1985, Bahia 1988 e Athletico-PR 2001. Cobertura registrada 50/55 → 53/55. Resoluções conflitantes de 1987 consultadas; reconhecimento conjunto revogado pela RDP 06/2011, Sport único campeão oficial; reivindicação Flamengo permanece pendente. Restam 1977 e 1987. Commit 5d6a5d25bcde782a52d28c34207c37a05a7826fc. JSON conferido por releitura; testes Python e arquivos originais pendentes; registros anteriores não revalidados.
+
+### 25/11/2026 — revisão jurídica e critério de encerramento
+RDP 06/2011 e notícia de 21/02/2011 reconsultadas: Sport único campeão oficial, reconhecimento conjunto revogado. Registro de Flamengo permanece pendente de decisão metodológica, sem promover a homologado. 1977: busca realizada, sem confirmação explícita suficiente nos resultados desta execução. Cobertura registrada permanece 53/55; não equivale à auditoria independente de todas as fontes. Encerrar conferência somente com evidência explícita de 1977 e tratamento separado de fato oficial e convenção em 1987. Próxima fase: arquivamento com hashes, homologação, calibração, deploy e auditoria final. Testes Python não executados.
