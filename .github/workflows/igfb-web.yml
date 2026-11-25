@@ -39,7 +39,7 @@ permissions:
   contents: read
 concurrency:
   group: igfb-web-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true # Prioriza o snapshot do commit mais recente; evita publicar versões superadas.
 jobs:
   validate-build:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
