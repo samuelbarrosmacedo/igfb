@@ -152,7 +152,9 @@ export function RecordList({
                     ? "Placar não disponível"
                     : `${r.home_score} × ${r.away_score}`
                   : r.value === null
-                    ? "Sem valor numérico"
+                    ? r.kind === "result"
+                      ? "Resultado registrado sem pontuação homologada"
+                      : "Sem valor numérico"
                     : `${r.value} ${r.unit ?? ""}`}
                 {r.played_at && <small>{dateLabel(r.played_at)}</small>}
               </>
