@@ -133,7 +133,7 @@ test("novo clube, estadual, edição, 2027 e registros provisórios aparecem sem
   ).toEqual([]);
   d["observatory.json"].editions.find((e) => e.id === "fixture:2027")!.status =
     "finished";
-  Object.assign(d["observatory.json"].records[0], {
+  Object.assign(d["observatory.json"].records.find((r) => r.id === "fixture-result")!, {
     status: "official_final",
     revision: 2,
     revision_note: "Correção sintética",
