@@ -38,6 +38,16 @@ class ObservatoryTests(unittest.TestCase):
         self.assertIn("Flamengo* e Sport*",disputed["label"])
         self.assertEqual(disputed["status"],"disputed")
         self.assertTrue(all(r["value"] is None for r in history))
+        evidence=json.loads((ROOT/"docs/evidence/brasileirao-reconciliation-2025.json").read_text())
+        by_edition={r["edition_id"]:r for r in history}
+        sources={s["id"]:s for s in catalog["sources"]}
+        for row in evidence["years"]:
+            record=by_edition[f'brasileirao:{row["year"]}']
+            for claim in row["claims"]:
+                self.assertIn(claim["source"],record["source_ids"])
+                self.assertIsNone(sources[claim["source"]]["checked_on"])
+            self.assertIn("espn-brasileirao-lista-2025",record["source_ids"])
+
         documents=build_public_data(current_year=2026)
         self.assertEqual(documents["ranking.json"]["ranking"],[])
         self.assertEqual(documents["ranking.json"]["approved_results"],0)
