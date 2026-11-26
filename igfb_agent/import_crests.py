@@ -25,10 +25,17 @@ def import_crests(root=ROOT):
             if urlparse(response.geturl()).hostname != "upload.wikimedia.org":
                 raise ValueError("Unexpected download host")
             data = response.read(2_000_001)
-        if len(data) > 2_000_000 or b"<!DOCTYPE" in data.upper() or b"<!ENTITY" in data.upper():
-            raise ValueError("Unsafe SVG")
+        if len(data) > 2_000_000 or b"<!ENTITY" in data.upper():
+            raise ValueError(f"Unsafe SVG: {filename}")
+        # Accept only the standard external SVG 1.0/1.1 declaration.
+        # ElementTree does not fetch external DTDs; reject internal subsets.
+        import re
+        declaration = rb'<!DOCTYPE\s+svg\s+PUBLIC\s+["\x27]-//W3C//DTD SVG 1\.[01]//EN["\x27]\s+["\x27]https?://www\.w3\.org/Graphics/SVG/1\.[01]/DTD/svg1[01]\.dtd["\x27]\s*>'
+        cleaned = re.sub(declaration, b"", data, count=1, flags=re.I)
+        if b"<!DOCTYPE" in cleaned.upper():
+            raise ValueError(f"Unexpected SVG DTD: {filename}")
         import xml.etree.ElementTree as ET
-        if ET.fromstring(data).tag != "{http://www.w3.org/2000/svg}svg":
+        if ET.fromstring(cleaned).tag != "{http://www.w3.org/2000/svg}svg":
             raise ValueError("Not an SVG")
         digest = sha256(data).hexdigest()
         relative = f"assets/identities/{club['id']}-{digest[:12]}.svg"
