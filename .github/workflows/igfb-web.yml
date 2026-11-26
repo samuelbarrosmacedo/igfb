@@ -58,6 +58,8 @@ jobs:
           node-version: "24"
           cache: "npm"
           cache-dependency-path: web/package-lock.json
+      - name: Importar escudos de fontes revisadas
+        run: python -m igfb_agent.import_crests
       - name: Validar núcleo e auditoria documental
         run: |
           python -m compileall -q igfb_agent tests
