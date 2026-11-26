@@ -120,6 +120,21 @@ def include_historical_results(catalog, *, root=ROOT):
     source_ids = {s["id"] for s in catalog["sources"]}
     if not {"espn-brasileirao-lista-2025", "flamengo-titulos-1987"} <= source_ids:
         raise ValueError("Fontes do cruzamento ausentes do catálogo")
+    leads = json.loads((Path(root) / "config/historical_source_leads.json").read_text(encoding="utf-8"))["sources"]
+    by_source = {s["source_id"]: s for s in leads}
+    for row in years:
+        for claim in row["claims"]:
+            lead = by_source.get(claim["source"])
+            if lead is None or row["year"] not in lead["claim_years"] or claim["club"] != lead["claim_club"]:
+                raise ValueError("Pista histórica divergente do cruzamento versionado")
+            if lead["source_id"] not in source_ids:
+                catalog["sources"].append({
+                    "id": lead["source_id"], "url": lead["url"],
+                    "publisher": lead["publisher"],
+                    "note": "Pista candidata, sem homologação. " + lead["note"],
+                    "checked_on": None,
+                })
+                source_ids.add(lead["source_id"])
     existing_editions = {e["id"] for e in catalog["editions"]}
     existing_records = {r["id"] for r in catalog["records"]}
     for row in sorted(years, key=lambda r: r["year"]):
@@ -129,11 +144,12 @@ def include_historical_results(catalog, *, root=ROOT):
         if not set(clubs) <= club_ids:
             raise ValueError(f"Clube histórico ausente do catálogo: {year}")
         sources = ["espn-brasileirao-lista-2025", "flamengo-titulos-1987"] if disputed else ["espn-brasileirao-lista-2025"]
+        sources = sorted(set(sources) | {claim["source"] for claim in row["claims"]})
         edition_id = f"brasileirao:{year}"
         if edition_id not in existing_editions:
             catalog["editions"].append({
                 "id": edition_id, "competition_id": "brasileirao", "year": year,
-                "label": str(year), "status": "finished", "format": "mixed",
+                "label": str(year), "status": "finished", "format": "unknown",
                 "participant_ids": [], "source_ids": sources,
                 "updated_at": "2026-11-25T23:00:00Z",
             })
