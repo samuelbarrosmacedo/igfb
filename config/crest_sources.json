@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "club_id": "palmeiras",
+      "file": "Palmeiras_logo.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Palmeiras_logo.svg",
+      "license": "PD-textlogo — classificação Wikimedia Commons",
+      "attribution": "Sociedade Esportiva Palmeiras; Wikimedia Commons"
+    },
+    {
+      "club_id": "santos",
+      "file": "Santos_logo.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Santos_logo.svg",
+      "license": "PD-textlogo — classificação Wikimedia Commons",
+      "attribution": "Santos Futebol Clube; Wikimedia Commons"
+    }
+  ]
+}
