@@ -14,6 +14,20 @@
       "source_url": "https://commons.wikimedia.org/wiki/File:Santos_logo.svg",
       "license": "PD-textlogo — classificação Wikimedia Commons",
       "attribution": "Santos Futebol Clube; Wikimedia Commons"
+    },
+    {
+      "club_id": "atletico_mg",
+      "file": "Clube_Atlético_Mineiro_logo.svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Clube_Atl%C3%A9tico_Mineiro_logo.svg",
+      "license": "PD-textlogo — classificação Wikimedia Commons",
+      "attribution": "Clube Atlético Mineiro; Wikimedia Commons"
+    },
+    {
+      "club_id": "cruzeiro",
+      "file": "Cruzeiro_Esporte_Clube_(logo).svg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Cruzeiro_Esporte_Clube_(logo).svg",
+      "license": "PD-textlogo — classificação Wikimedia Commons",
+      "attribution": "Cruzeiro Esporte Clube; Wikimedia Commons"
     }
   ]
 }
