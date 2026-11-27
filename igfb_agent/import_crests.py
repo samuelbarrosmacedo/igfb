@@ -17,6 +17,7 @@ def import_crests(root=ROOT):
         club = clubs[source["club_id"]]
         if club["crest"]:
             continue
+        target = None
         try:
             filename = source["file"]
             if not filename.endswith(".svg") or "/" in filename:
@@ -51,6 +52,8 @@ def import_crests(root=ROOT):
             print(f"Imported crest: {club['id']}")
         except (ValueError, OSError, ET.ParseError) as exc:
             club["crest"] = None
+            if target is not None:
+                target.unlink(missing_ok=True)
             print(f"::warning::Crest {club['id']} skipped: {exc}")
     validate_catalog(catalog, root=root)
     path.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
