@@ -190,3 +190,6 @@ Deploy anterior confirmado no workflow [45722772205](https://github.com/samuelba
 
 ### 26/11/2026 — importação de escudos
 Fontes Commons de Palmeiras e Santos revisadas em config/crest_sources.json. Importador a287abeb e integração ao build 1064fef. Execução [45863584405](https://github.com/samuelbarrosmacedo/igfb/actions/runs/45863584405) falhou em Unsafe SVG; deploy não ocorreu. Correção fc37b779 permite somente DTD SVG padrão, mantendo rejeição de entidades e validação do catálogo. Causa específica ainda não confirmada por novo CI. Aceite: download, hash, validação, build e publicação dos dois escudos; depois ampliar para 18/18. Não contabilizar fontes como imagens publicadas.
+
+### 26/11/2026 — isolamento de falhas de escudos
+Workflow 45873497907 confirmou rejeição de Santos_logo.svg (Unsafe SVG); motivo exato dentro da condição tamanho/entidades ainda indeterminado. Commits 3c5e95de e b37607c2 isolam falhas por clube, removem arquivos rejeitados e preservam validação final. Não relaxar segurança para publicar Santos. Próximo aceite: CI/deploy e confirmação de Palmeiras; obter alternativa segura para Santos, completar 18 escudos. A contagem confirmada permanece 2/18 até verificação em produção.
